@@ -12,7 +12,7 @@ conn.execute(
     ''' CREATE TABLE reports2010 (id, year, company name, total impact score, rank overall, number of diseases) ''')
 
 conn.execute(
-    ''' CREATE TABLE reportsdetail2010 (id, year, company name, drug, disease target, individual impact) ''')
+    ''' CREATE TABLE reportsdetail2010 (id, year, company name, drug, disease target, diseaseimpact, diseasepercent, companyrankdisease, percentdalycompanydisease) ''')
 
 
 conn.execute(
@@ -79,14 +79,29 @@ for k in range(0, 44):
     print(drug)
     diseaseTargeted = df.iloc[k, 7]
     print(diseaseTargeted)
-    individualImpactScore = cleanfloat(df.iloc[k, 8])
-    print(individualImpactScore)
-    rowdata = [_id, 2010, companyname, drug, diseaseTargeted, individualImpactScore]
+    diseaseimpact = cleanfloat(df.iloc[k, 8])
+    print(diseaseimpact)
+    if is_df_true.iloc[k, 10] == True:
+        diseasepercent = df.iloc[k, 10]
+        print(diseasepercent)
+    else:
+        diseasepercent = ''
+    if is_df_true.iloc[k, 11] == True:
+        companyrankdisease = df.iloc[k, 11]
+        print(companyrankdisease)
+    else:
+        companyrankdisease = ''
+    if is_df_true.iloc[k, 12] == True:
+        percentdalycompanydisease = df.iloc[k, 12]
+        print(percentdalycompanydisease)
+    else:
+        percentdalycompanydisease = ''
+    rowdata = [_id, 2010, companyname, drug, diseaseTargeted, diseaseimpact, diseasepercent,companyrankdisease, percentdalycompanydisease ]
     reportsdetail2010.append(rowdata)
 
 for item in reportsdetail2010:
     print(item)
-    conn.execute(' insert into reportsdetail2010 values (?,?,?,?,?,?) ', item)
+    conn.execute(' insert into reportsdetail2010 values (?,?,?,?,?,?,?,?,?) ', item)
 
 
 
