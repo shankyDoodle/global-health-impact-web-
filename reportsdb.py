@@ -30,7 +30,8 @@ def cleanfloat(var):
     if var == '#DIV/0!' or var == 'No data':
         var = 0
     if type(var) != float and type(var) != int:
-        var = float(var.replace(',', '').replace('%', ''))
+        if ',' in var:
+            var = float(var.replace(',', '').replace('%', ''))
     if var != var:
         var = 0
     return var
@@ -49,10 +50,10 @@ for k in range(0, 44):
         totalimpactscore = cleanfloat(df.iloc[k, 2])
         print(totalimpactscore)
     if is_df_true.iloc[k, 3] == True:
-        companyrank = cleanfloat(df.iloc[k, 3])
+        companyrank = int(df.iloc[k, 3])
         print(companyrank)
     if is_df_true.iloc[k, 4] == True:
-        numOfDisease = cleanfloat(df.iloc[k, 4])
+        numOfDisease = int(df.iloc[k, 4])
         print(numOfDisease)
     if is_df_true.iloc[k, 1] == True and is_df_true.iloc[k, 2] == True and  is_df_true.iloc[k, 3] == True and  is_df_true.iloc[k, 4] == True:
         id = id+1
@@ -74,11 +75,11 @@ for k in range(0, 44):
         tempcompanyname = companyname
     print(tempcompanyname)
     print(companyname)
-    drug = df.iloc[k, 5]
+    drug = df.iloc[k, 6]
     print(drug)
-    diseaseTargeted = df.iloc[k, 6]
+    diseaseTargeted = df.iloc[k, 7]
     print(diseaseTargeted)
-    individualImpactScore = cleanfloat(df.iloc[k, 7])
+    individualImpactScore = cleanfloat(df.iloc[k, 8])
     print(individualImpactScore)
     rowdata = [_id, 2010, companyname, drug, diseaseTargeted, individualImpactScore]
     reportsdetail2010.append(rowdata)

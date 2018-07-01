@@ -2144,7 +2144,7 @@ def ManageAccount():
                 i += 1
                 conn.execute('insert into manudis2015 values (?,?,?,?,?)', row)
         i = 0
-        for k in range(25, 66):
+        for k in range(26, 66):
             company = df2015.iloc[k, 5]
             if isinstance(company, float):
                 if math.isnan(company):
@@ -2184,7 +2184,7 @@ def ManageAccount():
                 conn.execute('insert into manudis2015 values (?,?,?,?,?)', row)
 
         i = 0
-        for k in range(25, 66):
+        for k in range(26, 66):
             company = df2015.iloc[k, 8]
             if isinstance(company, float):
                 if math.isnan(company):
@@ -2222,7 +2222,7 @@ def ManageAccount():
                 conn.execute('insert into manudis2015 values (?,?,?,?,?)', row)
 
         i = 0
-        for k in range(25, 98):
+        for k in range(26, 98):
             company = df2015.iloc[k, 12]
             if isinstance(company, float):
                 if math.isnan(company):
