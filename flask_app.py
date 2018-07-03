@@ -6,7 +6,6 @@ from openpyxl.compat import range
 import pandas as pd
 import sqlite3
 import json
-
 import math
 
 app = Flask(__name__)
@@ -42,7 +41,6 @@ def requires_auth(f):
 
 
 def connect_db():
-    # print("in connect_db")
     return sqlite3.connect('F:/global-health-impact-web/ghi.db')
 
 @app.before_request
@@ -1414,7 +1412,6 @@ def company():
     g.db.close()
     url = name.lower()
     speclocate = [year,name,url]
-    print (bardata)
     return render_template('company.html', data1=piedata2, data2=piedata1,name=name, navsub=2, showindex=1, pielab1=pielab1, pielab2=pielab2, bardata=bardata, comptype = 0, speclocate = speclocate, scrolling=1)
 
 @app.route('/index/company/manufacturer/<year>/<disease>')
@@ -1439,8 +1436,10 @@ def companyindx(year,disease):
     bardata = []
     if year == '2010':
         if disease == 'all':
-            cur = g.db.execute(' select company,disease, daly2010, color from manudis order by daly2010 DESC')
-            cdd = g.db.execute(' select company, disease, daly2010, color from manudis order by daly2010 DESC ')
+            #cur = g.db.execute(' select company,disease, daly2010, color from manudis order by daly2010 DESC')
+            #cdd = g.db.execute(' select company, disease, daly2010, color from manudis order by daly2010 DESC ')
+            cur = g.db.execute(' select distinct company,disease, daly2010 from manudis order by daly2010 DESC')#====10.7
+            cdd = g.db.execute(' select distinct company, disease, daly2010 from manudis order by daly2010 DESC ')
             name = 'ALL'
             colcnt = 0
             piee = cur.fetchall()
@@ -1464,7 +1463,7 @@ def companyindx(year,disease):
             n = 0
             temprow = []
             for k in piedata1:
-                print(k)
+                #print(k)
                 if n < 4:
                     comp = k[0]
                     #shortcomp = comp[0:10]
@@ -1481,12 +1480,12 @@ def companyindx(year,disease):
             n = 0
             temprow = []
             for k in piedata2:
-                print(k)
+                #print(k)
                 if n < 4:
                     comp = k[0]
-                    #shortcomp = comp[0:10]
+                    shortcomp = comp[0:10]
                     temprow.append(comp)
-                    temprow.append(comp)
+                    temprow.append(shortcomp)
                     scolor = k[2]
                     sscolor = scolor[1:7]
                     temprow.append(sscolor)
@@ -1509,14 +1508,14 @@ def companyindx(year,disease):
                 colcnt += 1
                 xyz = [company, daly2010, disease, color]
                 barchart.append(xyz)
-                print(barchart)
+                #print(barchart)
             # barchart.sort(key=lambda x: x[1], reverse=True)
             maxim = barchart[0]
             maxval = maxim[1]
             colcnt = 1
             for row in barchart:
                 comp = row[0]
-                print(row[1])
+                #print(row[1])
                 if maxval > 0:
                     daly = (row[1] / maxval) * 100
                 else:
@@ -1532,9 +1531,9 @@ def companyindx(year,disease):
             g.db.close()
             url = name.lower()
             speclocate = [year, name, url]
-            print(bardata)
-            print(pielab1)
-            print(pielab2)
+            #print(bardata)
+            #print(pielab1)
+            #print(pielab2)
             return render_template('company.html', data1=piedata2, data2=piedata1, name=name, navsub=2, showindex=1,
                                    pielab1=pielab1, pielab2=pielab2, bardata=bardata, comptype=0, speclocate=speclocate,
                                    scrolling=1)
@@ -1566,8 +1565,10 @@ def companyindx(year,disease):
     #name = 'MALARIA'
     elif year == '2013':
         if disease == 'all':
-            cur = g.db.execute(' select company,disease, daly2013, color from manudis order by daly2013 DESC')
-            cdd = g.db.execute(' select company, disease, daly2013, color from manudis order by daly2013 DESC')
+            #cur = g.db.execute(' select company,disease, daly2010, color from manudis order by daly2010 DESC')
+            #cdd = g.db.execute(' select company, disease, daly2010, color from manudis order by daly2010 DESC')
+            cur = g.db.execute(' select distinct company,disease, daly2013 from manudis order by daly2013 DESC')#====10.7
+            cdd = g.db.execute(' select distinct company, disease, daly2013 from manudis order by daly2013 DESC ')
             name = 'ALL'
         elif disease == 'hiv':
             cur = g.db.execute(' select company, disease,daly2013, color from manudis where disease = ? order by daly2013 DESC', ('HIV',))
@@ -1579,8 +1580,10 @@ def companyindx(year,disease):
             name = 'TB'
     elif year == '2015':#=====add 2015 SQL=========
         if disease == 'all':
-            cur = g.db.execute(' select company,disease, daly2015, color from manudis2015  order by daly2015 DESC')
-            cdd = g.db.execute(' select company, disease, daly2015, color from manudis2015 order by daly2015 DESC')
+            cur = g.db.execute(' select distinct company,disease, daly2015 from manudis2015 order by daly2015 DESC')#====10.7
+            cdd = g.db.execute(' select distinct company, disease, daly2015 from manudis2015 order by daly2015 DESC ')
+            #cur = g.db.execute(' select company,disease, daly2010, color from manudis  order by daly2010 DESC')
+            #cdd = g.db.execute(' select company, disease, daly2010, color from manudis order by daly2010 DESC')
             name = 'ALL'
         elif disease == 'hiv':
             cur = g.db.execute(' select company, disease,daly2015, color from manudis2015 where disease = ? order by daly2015 DESC', ('HIV',))
@@ -1597,15 +1600,15 @@ def companyindx(year,disease):
             #=====2015--end============
     piee = cur.fetchall()
     barr = cdd.fetchall()
-    print(piee)
-    print(barr)
+    #print(piee)
+    #print(barr)
     colocnt = 0
     for j in piee:
         company = j[0]
-        print(company)
+        #print(company)
         dis = j[1]
         daly2010 = j[2]
-        print(daly2010)
+        #print(daly2010)
         if (company == 'Unalleviated Burden') and (disease != dis):
             #colcnt += 1
             continue
@@ -1625,7 +1628,7 @@ def companyindx(year,disease):
     colocnt = 0
 
     for k in piedata1:
-        print(k)
+        #print(k)
         if n < 4:
             comp = k[0]
             #shortcomp = comp[0:10]
@@ -1646,7 +1649,7 @@ def companyindx(year,disease):
     colocnt = 0
 
     for k in piedata2:
-        print(k)
+        #print(k)
         if n < 4:
             comp = k[0]
             #shortcomp = comp[0:10]
@@ -1675,14 +1678,14 @@ def companyindx(year,disease):
         colcnt += 1
         xyz = [company,daly2010,disease,color]
         barchart.append(xyz)
-        print(barchart)
+        #print(barchart)
     #barchart.sort(key=lambda x: x[1], reverse=True)
     maxim = barchart[0]
     maxval = maxim[1]
     colcnt = 1
     for row in barchart:
         comp = row[0]
-        print(row[1])
+        #print(row[1])
         if maxval > 0:
            daly = (row[1]/maxval) * 100
         else:
@@ -1691,16 +1694,16 @@ def companyindx(year,disease):
         color = compcolors[colcnt]
         #color = row[3]
         colcnt += 1
-        actualNumDaly = row[1]
+        actualNumDaly=row[1]
         xyz = [comp,daly,disease,color,actualNumDaly]
         bardata.append(xyz)
 #-----------------------------------------------------------------------------------------------------------------------------------------
     g.db.close()
     url = name.lower()
     speclocate = [year,name,url]
-    print(bardata)
-    print(pielab1)
-    print(pielab2)
+    #print(bardata)
+    #print(pielab1)
+    #print(pielab2)
     return render_template('company.html', data1=piedata2, data2=piedata1, name=name, navsub=2, showindex=1, pielab1=pielab1, pielab2=pielab2, bardata=bardata, comptype = 0, speclocate = speclocate, scrolling=1)
 
 
@@ -1708,67 +1711,67 @@ def companyindx(year,disease):
 def patent(year,disease):
     if year == '2010':
         if disease == 'all':
-            dat = g.db.execute(' select company, total, color, year from patent2010 ')
+            dat = g.db.execute(' select company, total, color from patent2010 ')
         elif disease == 'tb':
-            dat = g.db.execute(' select company, tb, color, year from patent2010 ')
+            dat = g.db.execute(' select company, tb, color from patent2010 ')
         elif disease == 'malaria':
-            dat = g.db.execute(' select company, malaria, color, year from patent2010 ')
+            dat = g.db.execute(' select company, malaria, color from patent2010 ')
         elif disease == 'hiv':
-            dat = g.db.execute(' select company, hiv, color, year from patent2010 ')
+            dat = g.db.execute(' select company, hiv, color from patent2010 ')
         elif disease == 'roundworm':
-            dat = g.db.execute(' select company, roundworm, color, year from patent2010 ')
+            dat = g.db.execute(' select company, roundworm, color from patent2010 ')
         elif disease == 'hookworm':
-            dat = g.db.execute(' select company, hookworm, color, year from patent2010 ')
+            dat = g.db.execute(' select company, hookworm, color from patent2010 ')
         elif disease == 'whipworm':
-            dat = g.db.execute(' select company, whipworm, color, year from patent2010 ')
+            dat = g.db.execute(' select company, whipworm, color from patent2010 ')
         elif disease == 'schistosomiasis':
-            dat = g.db.execute(' select company, schistosomiasis, color, year from patent2010 ')
+            dat = g.db.execute(' select company, schistosomiasis, color from patent2010 ')
         elif disease == 'onchocerciasis':
-            dat = g.db.execute(' select company, onchocerciasis, color, year from patent2010 ')
+            dat = g.db.execute(' select company, onchocerciasis, color from patent2010 ')
         elif disease == 'lf':
-            dat = g.db.execute(' select company, lf, color, year from patent2010 ')
+            dat = g.db.execute(' select company, lf, color from patent2010 ')
     elif year == '2013':
         if disease == 'all':
-            dat = g.db.execute(' select company, total, color, year from patent2013 ')
+            dat = g.db.execute(' select company, total, color from patent2013 ')
         elif disease == 'tb':
-            dat = g.db.execute(' select company, tb, color, year from patent2013 ')
+            dat = g.db.execute(' select company, tb, color from patent2013 ')
         elif disease == 'malaria':
-            dat = g.db.execute(' select company, malaria, color, year from patent2013 ')
+            dat = g.db.execute(' select company, malaria, color from patent2013 ')
         elif disease == 'hiv':
-            dat = g.db.execute(' select company, hiv, color, year from patent2013 ')
+            dat = g.db.execute(' select company, hiv, color from patent2013 ')
         elif disease == 'roundworm':
-            dat = g.db.execute(' select company, roundworm, color, year from patent2013 ')
+            dat = g.db.execute(' select company, roundworm, color from patent2013 ')
         elif disease == 'hookworm':
-            dat = g.db.execute(' select company, hookworm, color, year from patent2013 ')
+            dat = g.db.execute(' select company, hookworm, color from patent2013 ')
         elif disease == 'whipworm':
-            dat = g.db.execute(' select company, whipworm, color, year from patent2013 ')
+            dat = g.db.execute(' select company, whipworm, color from patent2013 ')
         elif disease == 'schistosomiasis':
-            dat = g.db.execute(' select company, schistosomiasis, color, year from patent2013 ')
+            dat = g.db.execute(' select company, schistosomiasis, color from patent2013 ')
         elif disease == 'onchocerciasis':
-            dat = g.db.execute(' select company, onchocerciasis, color, year from patent2013 ')
+            dat = g.db.execute(' select company, onchocerciasis, color from patent2013 ')
         elif disease == 'lf':
-            dat = g.db.execute(' select company, lf, color, year from patent2013 ')
+            dat = g.db.execute(' select company, lf, color from patent2013 ')
     elif year == '2015':
         if disease == 'all':
-            dat = g.db.execute(' select company, total, color, year from patent2015 ')
+            dat = g.db.execute(' select company, total, color from patent2015 ')
         elif disease == 'tb':
-            dat = g.db.execute(' select company, tb, color, year from patent2015 ')
+            dat = g.db.execute(' select company, tb, color from patent2015 ')
         elif disease == 'malaria':
-            dat = g.db.execute(' select company, malaria, color, year from patent2015 ')
+            dat = g.db.execute(' select company, malaria, color from patent2015 ')
         elif disease == 'hiv':
-            dat = g.db.execute(' select company, hiv, color, year from patent2015 ')
+            dat = g.db.execute(' select company, hiv, color from patent2015 ')
         elif disease == 'roundworm':
-            dat = g.db.execute(' select company, roundworm, color, year from patent2015 ')
+            dat = g.db.execute(' select company, roundworm, color from patent2015 ')
         elif disease == 'hookworm':
-            dat = g.db.execute(' select company, hookworm, color, year from patent2015 ')
+            dat = g.db.execute(' select company, hookworm, color from patent2015 ')
         elif disease == 'whipworm':
-            dat = g.db.execute(' select company, whipworm, color, year from patent2015 ')
+            dat = g.db.execute(' select company, whipworm, color from patent2015 ')
         elif disease == 'schistosomiasis':
-            dat = g.db.execute(' select company, schistosomiasis, color, year from patent2015 ')
+            dat = g.db.execute(' select company, schistosomiasis, color from patent2015 ')
         elif disease == 'onchocerciasis':
-            dat = g.db.execute(' select company, onchocerciasis, color, year from patent2015 ')
+            dat = g.db.execute(' select company, onchocerciasis, color from patent2015 ')
         elif disease == 'lf':
-            dat = g.db.execute(' select company, lf, color, year from patent2015 ')
+            dat = g.db.execute(' select company, lf, color from patent2015 ')
     data = dat.fetchall()
     patent1 = []
     patent2 = []
@@ -1776,9 +1779,8 @@ def patent(year,disease):
         comp = j[0]
         score = j[1]
         color = j[2]
-        patYear = j[3]
         if score > 0:
-            patent1.append([comp,score,color, patYear])
+            patent1.append([comp,score,color])
     patent1.sort(key=lambda x: x[1], reverse=True)
     print(patent1)
     maxrow = patent1[0]
@@ -1792,7 +1794,6 @@ def patent(year,disease):
             patent2.append(row)
     specname = disease
     specname[0].upper()
-    print(year)
     speclocate = [year,specname,disease]
     pielabb1 = []
     lablist1 = []
@@ -1826,7 +1827,6 @@ def patent(year,disease):
         comp = k[0]
         score = k[1]
         color = "#"+k[2]
-        patYear = k[3]
         #shortcomp = comp[0:10]
         labit.append(comp)
         labit.append(comp)
@@ -1845,7 +1845,6 @@ def patent(year,disease):
                 pielabb2.append(labrow)
                 labrow = []
                 xx = 0
-    print(patent2)
     return render_template('company.html', navsub=2, showindex=1, comptype = 1, speclocate = speclocate, scrolling=1, patent1 = patent1, patent2 = patent2, pielabb1 = pielabb1, pielabb2 = pielabb2)
 
 @app.route('/account')
@@ -2035,9 +2034,12 @@ def ManageAccount():
                     break
             disease = 'TB'
             tbdaly2010 = float(df.iloc[k, 3].replace('-', '0').replace(',', ''))
-            if df.iloc[k, 4] > 0:
+            try:
+             if float(df.iloc[k, 4].replace('-', '0').replace(',', '')) > 0:
                 tbdaly2013 = float(df.iloc[k, 4].replace('-', '0').replace(',', ''))
-            else:
+             else:
+                tbdaly2013 = 0
+            except:
                 tbdaly2013 = 0
             if tbdaly2010 > 0 or tbdaly2013 > 0:
                 color = colors[i]
@@ -2464,8 +2466,8 @@ def ManageAccount():
                     temp = (mal1 + mal2)
                     prow.append(temp)
                 elif j == 20:
-                    if is_df2015_true.iloc[j - 1, i] == True:
-                        total = cleanfloat(df2015.iloc[j - 1, i])
+                    if is_df2015_true.iloc[j , i] == True:
+                        total = cleanfloat(df2015.iloc[j, i])
                     else:
                         total = 0
                     prow.append(total)
@@ -2541,7 +2543,7 @@ def ManageAccount():
             item.append(colors[colind])
             colind += 1
             conn.execute(' insert into patent2015 values (?,?,?,?,?,?,?,?,?,?,?,?) ', item)
-
+        #print("Man Done")
         conn.execute('''DELETE FROM countrybydis2010_bkp''')
         conn.execute('''DELETE FROM countrybydis2013_bkp''')
         conn.execute('''DELETE FROM diseaseall2010_bkp''')
@@ -2563,7 +2565,7 @@ def ManageAccount():
         df_2010B_2015 = pd.read_csv(datasrc3, skiprows=1)
         for i in range(1, 218):
             temprow = []
-            temp1 = df.iloc[i, 0].decode('utf8')
+            temp1 = df.iloc[i, 0]
             temprow.append(temp1)
             # print df.iloc[i, 0]
             for k in range(1, 10):
@@ -2574,9 +2576,10 @@ def ManageAccount():
                     temprow.append(float(temp.replace(',', '').replace('-', '0')))
             conn.execute(' insert into countrybydis2010 values (?,?,?,?,?,?,?,?,?,?)', temprow)
             conn.execute(' insert into diseaseall2010 values (?,?,?,?,?,?,?,?,?,?)', temprow)
+        print("countrybydis2010 Done")
         for i in range(1, 218):
             temprow = []
-            temprow.append(df.iloc[i, 11].decode('utf8'))
+            temprow.append(df.iloc[i, 11])
             for k in range(12, 21):
                 temp = df.iloc[i, k]
                 # if isinstance(temp, float):
@@ -2598,7 +2601,7 @@ def ManageAccount():
         data2015 = []
         for i in range(1, 218):
             temprow = []
-            temprow.append(df_2010B_2015.iloc[i, 11].decode('utf8'))
+            temprow.append(df_2010B_2015.iloc[i, 11])
             for k in range(12, 21):
                 temp = df_2010B_2015.iloc[i, k]
                 # if isinstance(temp, float):
@@ -2615,7 +2618,7 @@ def ManageAccount():
                         temprow.append(0.0)
             # conn.execute(' insert into countrybydis2015 values (?,?,?,?,?,?,?,?,?,?)', temprow)
             conn.execute(' insert into diseaseall2015 values (?,?,?,?,?,?,?,?,?,?)', temprow)
-
+        #print("Country Done")
         conn.execute(''' DELETE FROM country2010_bkp ''')
         conn.execute(''' DELETE FROM country2013_bkp ''')
         conn.execute(''' DELETE FROM country2015_bkp ''')
@@ -2648,7 +2651,7 @@ def ManageAccount():
         mapp = []
 
         for i in range(3, 220):
-            country = df.iloc[i, 0].decode('utf8')
+            country = df.iloc[i, 0]
             tb = clean(df.iloc[i, 7])
             malaria = clean(df.iloc[i, 34])
             hiv = clean(df.iloc[i, 47])
@@ -2686,7 +2689,7 @@ def ManageAccount():
         countrydata2 = []
         mapp2 = []
         for i in range(3, 220):
-            country = df.iloc[i, 67].decode('utf8')
+            country = df.iloc[i, 67]
             tb = clean(df.iloc[i, 74])
             malaria = clean(df.iloc[i, 104])
             hiv = clean(df.iloc[i, 115])
@@ -2727,7 +2730,7 @@ def ManageAccount():
         countrydata3 = []
         mapp2 = []
         for i in range(3, 220):
-            country = df2015.iloc[i, 67].decode('utf8')
+            country = df2015.iloc[i, 67]
             if is_df2015_true.iloc[i, 74] == True:
                 tb = clean(df2015.iloc[i, 74])
             else:
@@ -2793,7 +2796,7 @@ def ManageAccount():
         for l in mapp2:
             # print(l)
             conn.execute(''' INSERT INTO countryp2015 VALUES (?,?,?,?,?,?,?,?,?,?,?) ''', l)
-
+        #print("Country2 Done")
         conn.execute('''DELETE FROM disease2010_bkp''')
         conn.execute('''DELETE FROM disease2013_bkp''')
         conn.execute('''DELETE FROM disease2015_bkp''')
@@ -2822,7 +2825,7 @@ def ManageAccount():
         # datasrc = 'ORS_GlobalBurdenDisease_2010_2013.csv'
         df = pd.read_csv(datasrc, skiprows=1)
         # datasrc2 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQI7j2NartMCCF_N-OCkFqAyD67N9Q32yybE21x-zaRPrETsszdZep91dVVVSCjeXXbPjPfZVdE-odE/pub?gid=1560508440&single=true&output=csv'
-        datasrc2 = 'ORS_GlobalBurdenDisease_2010_2013.csv'
+        datasrc2 = 'https://docs.google.com/spreadsheets/d/1IBfN_3f-dG65YbLWQbkXojUxs2PlQyo7l04Ubz9kLkU/pub?gid=1560508440&single=true&output=csv'
         datasrc3 = 'https://docs.google.com/spreadsheets/d/1vwMReqs8G2jK-Cx2_MWKn85MlNjnQK-UR3Q8vZ_pPNk/pub?gid=1560508440&single=true&output=csv'
         df2 = pd.read_csv(datasrc2, skiprows=1)
         df_2010B_2015 = pd.read_csv(datasrc3, skiprows=1)
@@ -3418,7 +3421,7 @@ def ManageAccount():
                     if temp != temp:
                         temp = 0
                     drugr.append(temp)
-                if temp > 0:
+                if int(temp) > 0:
                     if j == 10:
                         disease = 'TB'
                         color = 'FFB31C'
@@ -3517,7 +3520,7 @@ def ManageAccount():
                     if temp != temp:
                         temp = 0
                     drugr.append(temp)
-                if temp > 0:
+                if int(temp) > 0:
                     if j == 10:
                         disease = 'TB'
                         color = 'FFB31C'
@@ -3583,7 +3586,7 @@ def ManageAccount():
         perc2015 = []
         for i in range(45, 88):
             drugr = []
-            name = df2015.iloc[4, i]
+            name = df2015.iloc[5, i]
             drugr.append(name)
             company = df2015.iloc[0, i]
             if is_df2015_true.iloc[0, i] == True:
@@ -3593,15 +3596,15 @@ def ManageAccount():
             drugr.append(company)
             for j in range(11, 20):
                 if j == 11:
-                    tb1 = cleanfloat(df2015.iloc[7, i])
-                    tb2 = cleanfloat(df2015.iloc[8, i])
-                    tb3 = cleanfloat(df2015.iloc[9, i])
+                    tb1 = cleanfloat(df2015.iloc[8, i])
+                    tb2 = cleanfloat(df2015.iloc[9, i])
+                    tb3 = cleanfloat(df2015.iloc[10, i])
                     tb = [tb1, tb2, tb3]
                     temp = (tb1 + tb2 + tb3)
                     drugr.append(temp)
                 elif j == 12:
-                    mal1 = cleanfloat(df2015.iloc[10, i])
-                    mal2 = cleanfloat(df2015.iloc[11, i])
+                    mal1 = cleanfloat(df2015.iloc[11, i])
+                    mal2 = cleanfloat(df2015.iloc[12, i])
                     mal = [mal1, mal2]
                     temp = (mal1 + mal2)
                     drugr.append(temp)
@@ -3610,13 +3613,13 @@ def ManageAccount():
                     zz = [name, total]
                     perc2015.append(zz)
                 else:
-                    temp = df2015.iloc[j - 1, i]
+                    temp = df2015.iloc[j, i]
                     if isinstance(temp, float) == False and isinstance(temp, int) == False:
                         temp = float(temp.replace(',', ''))
                     if temp != temp:
                         temp = 0
                     drugr.append(temp)
-                if temp > 0:
+                if int(temp) > 0:
                     if j == 11:
                         disease = 'TB'
                         color = 'FFB31C'
@@ -3658,7 +3661,7 @@ def ManageAccount():
 
         unmet = ['Unmet Need', 'Unmet Need']
         unmetsum = 0
-        for xx in [[7, 8, 9], [10, 11], [12], [13], [14], [15], [16], [17], [18]]:
+        for xx in [[8, 9, 10], [11, 12], [13], [14], [15], [16], [17], [18], [19]]:
             val = 0
             for yy in xx:
                 t = df2015.iloc[yy, 91]
@@ -3679,11 +3682,11 @@ def ManageAccount():
         perc2015.sort(key=lambda x: x[1], reverse=True)
         conn.commit()
         print ("Completed Update")
+
     except Exception as e:
         error = str(e)
         conn.rollback()
-        return render_template('accountF.html',error=error,  showthediv=0)
-
+        return render_template('accountF.html', error = error ,  showthediv=0)
     return render_template('accountS.html', showthediv=0)
 
 if __name__ == '__main__':
