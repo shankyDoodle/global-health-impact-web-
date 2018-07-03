@@ -1407,13 +1407,14 @@ def company():
             color = compcolors[colcnt]
             #color=row[3]
             colcnt += 1
-            xyz = [comp,daly,disease,color]
+            actualNumDaly=row[1]
+            xyz = [comp,daly,disease,color, actualNumDaly]
             bardata.append(xyz)
 
     g.db.close()
     url = name.lower()
     speclocate = [year,name,url]
-    print (piedata1)
+    print (bardata)
     return render_template('company.html', data1=piedata2, data2=piedata1,name=name, navsub=2, showindex=1, pielab1=pielab1, pielab2=pielab2, bardata=bardata, comptype = 0, speclocate = speclocate, scrolling=1)
 
 @app.route('/index/company/manufacturer/<year>/<disease>')
@@ -1524,7 +1525,8 @@ def companyindx(year,disease):
                 color = compcolors[colcnt]
                 # color = row[3]
                 colcnt += 1
-                xyz = [comp, daly, disease, color]
+                actualNumDaly=row[1]
+                xyz = [comp, daly, disease, color, actualNumDaly]
                 bardata.append(xyz)
             # -----------------------------------------------------------------------------------------------------------------------------------------
             g.db.close()
@@ -1689,7 +1691,8 @@ def companyindx(year,disease):
         color = compcolors[colcnt]
         #color = row[3]
         colcnt += 1
-        xyz = [comp,daly,disease,color]
+        actualNumDaly = row[1]
+        xyz = [comp,daly,disease,color,actualNumDaly]
         bardata.append(xyz)
 #-----------------------------------------------------------------------------------------------------------------------------------------
     g.db.close()
@@ -1705,67 +1708,67 @@ def companyindx(year,disease):
 def patent(year,disease):
     if year == '2010':
         if disease == 'all':
-            dat = g.db.execute(' select company, total, color from patent2010 ')
+            dat = g.db.execute(' select company, total, color, year from patent2010 ')
         elif disease == 'tb':
-            dat = g.db.execute(' select company, tb, color from patent2010 ')
+            dat = g.db.execute(' select company, tb, color, year from patent2010 ')
         elif disease == 'malaria':
-            dat = g.db.execute(' select company, malaria, color from patent2010 ')
+            dat = g.db.execute(' select company, malaria, color, year from patent2010 ')
         elif disease == 'hiv':
-            dat = g.db.execute(' select company, hiv, color from patent2010 ')
+            dat = g.db.execute(' select company, hiv, color, year from patent2010 ')
         elif disease == 'roundworm':
-            dat = g.db.execute(' select company, roundworm, color from patent2010 ')
+            dat = g.db.execute(' select company, roundworm, color, year from patent2010 ')
         elif disease == 'hookworm':
-            dat = g.db.execute(' select company, hookworm, color from patent2010 ')
+            dat = g.db.execute(' select company, hookworm, color, year from patent2010 ')
         elif disease == 'whipworm':
-            dat = g.db.execute(' select company, whipworm, color from patent2010 ')
+            dat = g.db.execute(' select company, whipworm, color, year from patent2010 ')
         elif disease == 'schistosomiasis':
-            dat = g.db.execute(' select company, schistosomiasis, color from patent2010 ')
+            dat = g.db.execute(' select company, schistosomiasis, color, year from patent2010 ')
         elif disease == 'onchocerciasis':
-            dat = g.db.execute(' select company, onchocerciasis, color from patent2010 ')
+            dat = g.db.execute(' select company, onchocerciasis, color, year from patent2010 ')
         elif disease == 'lf':
-            dat = g.db.execute(' select company, lf, color from patent2010 ')
+            dat = g.db.execute(' select company, lf, color, year from patent2010 ')
     elif year == '2013':
         if disease == 'all':
-            dat = g.db.execute(' select company, total, color from patent2013 ')
+            dat = g.db.execute(' select company, total, color, year from patent2013 ')
         elif disease == 'tb':
-            dat = g.db.execute(' select company, tb, color from patent2013 ')
+            dat = g.db.execute(' select company, tb, color, year from patent2013 ')
         elif disease == 'malaria':
-            dat = g.db.execute(' select company, malaria, color from patent2013 ')
+            dat = g.db.execute(' select company, malaria, color, year from patent2013 ')
         elif disease == 'hiv':
-            dat = g.db.execute(' select company, hiv, color from patent2013 ')
+            dat = g.db.execute(' select company, hiv, color, year from patent2013 ')
         elif disease == 'roundworm':
-            dat = g.db.execute(' select company, roundworm, color from patent2013 ')
+            dat = g.db.execute(' select company, roundworm, color, year from patent2013 ')
         elif disease == 'hookworm':
-            dat = g.db.execute(' select company, hookworm, color from patent2013 ')
+            dat = g.db.execute(' select company, hookworm, color, year from patent2013 ')
         elif disease == 'whipworm':
-            dat = g.db.execute(' select company, whipworm, color from patent2013 ')
+            dat = g.db.execute(' select company, whipworm, color, year from patent2013 ')
         elif disease == 'schistosomiasis':
-            dat = g.db.execute(' select company, schistosomiasis, color from patent2013 ')
+            dat = g.db.execute(' select company, schistosomiasis, color, year from patent2013 ')
         elif disease == 'onchocerciasis':
-            dat = g.db.execute(' select company, onchocerciasis, color from patent2013 ')
+            dat = g.db.execute(' select company, onchocerciasis, color, year from patent2013 ')
         elif disease == 'lf':
-            dat = g.db.execute(' select company, lf, color from patent2013 ')
+            dat = g.db.execute(' select company, lf, color, year from patent2013 ')
     elif year == '2015':
         if disease == 'all':
-            dat = g.db.execute(' select company, total, color from patent2015 ')
+            dat = g.db.execute(' select company, total, color, year from patent2015 ')
         elif disease == 'tb':
-            dat = g.db.execute(' select company, tb, color from patent2015 ')
+            dat = g.db.execute(' select company, tb, color, year from patent2015 ')
         elif disease == 'malaria':
-            dat = g.db.execute(' select company, malaria, color from patent2015 ')
+            dat = g.db.execute(' select company, malaria, color, year from patent2015 ')
         elif disease == 'hiv':
-            dat = g.db.execute(' select company, hiv, color from patent2015 ')
+            dat = g.db.execute(' select company, hiv, color, year from patent2015 ')
         elif disease == 'roundworm':
-            dat = g.db.execute(' select company, roundworm, color from patent2015 ')
+            dat = g.db.execute(' select company, roundworm, color, year from patent2015 ')
         elif disease == 'hookworm':
-            dat = g.db.execute(' select company, hookworm, color from patent2015 ')
+            dat = g.db.execute(' select company, hookworm, color, year from patent2015 ')
         elif disease == 'whipworm':
-            dat = g.db.execute(' select company, whipworm, color from patent2015 ')
+            dat = g.db.execute(' select company, whipworm, color, year from patent2015 ')
         elif disease == 'schistosomiasis':
-            dat = g.db.execute(' select company, schistosomiasis, color from patent2015 ')
+            dat = g.db.execute(' select company, schistosomiasis, color, year from patent2015 ')
         elif disease == 'onchocerciasis':
-            dat = g.db.execute(' select company, onchocerciasis, color from patent2015 ')
+            dat = g.db.execute(' select company, onchocerciasis, color, year from patent2015 ')
         elif disease == 'lf':
-            dat = g.db.execute(' select company, lf, color from patent2015 ')
+            dat = g.db.execute(' select company, lf, color, year from patent2015 ')
     data = dat.fetchall()
     patent1 = []
     patent2 = []
@@ -1773,8 +1776,9 @@ def patent(year,disease):
         comp = j[0]
         score = j[1]
         color = j[2]
+        patYear = j[3]
         if score > 0:
-            patent1.append([comp,score,color])
+            patent1.append([comp,score,color, patYear])
     patent1.sort(key=lambda x: x[1], reverse=True)
     print(patent1)
     maxrow = patent1[0]
@@ -1788,6 +1792,7 @@ def patent(year,disease):
             patent2.append(row)
     specname = disease
     specname[0].upper()
+    print(year)
     speclocate = [year,specname,disease]
     pielabb1 = []
     lablist1 = []
@@ -1821,6 +1826,7 @@ def patent(year,disease):
         comp = k[0]
         score = k[1]
         color = "#"+k[2]
+        patYear = k[3]
         #shortcomp = comp[0:10]
         labit.append(comp)
         labit.append(comp)
@@ -1839,6 +1845,7 @@ def patent(year,disease):
                 pielabb2.append(labrow)
                 labrow = []
                 xx = 0
+    print(patent2)
     return render_template('company.html', navsub=2, showindex=1, comptype = 1, speclocate = speclocate, scrolling=1, patent1 = patent1, patent2 = patent2, pielabb1 = pielabb1, pielabb2 = pielabb2)
 
 @app.route('/account')
