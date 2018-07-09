@@ -558,7 +558,7 @@ background-color: #EDDFDF;
     max-height:80px;
     overflow-y:scroll;
     position: relative;
-    overflow-x:scroll;
+    overflow-x:hidden;
     z-index:9999;
 }
 #chart_div {
