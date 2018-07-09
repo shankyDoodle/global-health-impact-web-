@@ -1711,7 +1711,7 @@ def companyindx(year,disease):
 def patent(year,disease):
     if year == '2010':
         if disease == 'all':
-            dat = g.db.execute(' select company, total, color from patent2010 ')
+            dat = g.db.execute(' select company, total, color, year from temppatent2010 ')
         elif disease == 'tb':
             dat = g.db.execute(' select company, tb, color from patent2010 ')
         elif disease == 'malaria':
@@ -1776,13 +1776,13 @@ def patent(year,disease):
     patent1 = []
     patent2 = []
     for j in data:
-        comp = j[0]
+        comp = str(j[0])
         score = j[1]
-        color = j[2]
+        color = str(j[2])
+        patYear = str(j[3])
         if score > 0:
-            patent1.append([comp,score,color])
+            patent1.append([comp,score,color, patYear])
     patent1.sort(key=lambda x: x[1], reverse=True)
-    print(patent1)
     maxrow = patent1[0]
     if maxrow[0] == 'Unmet Need':
         maxrow = patent1[0]
@@ -1827,11 +1827,13 @@ def patent(year,disease):
         comp = k[0]
         score = k[1]
         color = "#"+k[2]
+        patYear = k[3]
         #shortcomp = comp[0:10]
         labit.append(comp)
         labit.append(comp)
         labit.append(color)
         labit.append(score)
+        labit.append(patYear)
         lablist2.append(labit)
     labrow = []
     xx = 0
@@ -1845,6 +1847,7 @@ def patent(year,disease):
                 pielabb2.append(labrow)
                 labrow = []
                 xx = 0
+    print(patent2)
     return render_template('company.html', navsub=2, showindex=1, comptype = 1, speclocate = speclocate, scrolling=1, patent1 = patent1, patent2 = patent2, pielabb1 = pielabb1, pielabb2 = pielabb2)
 
 @app.route('/account')
@@ -2466,8 +2469,8 @@ def ManageAccount():
                     temp = (mal1 + mal2)
                     prow.append(temp)
                 elif j == 20:
-                    if is_df2015_true.iloc[j , i] == True:
-                        total = cleanfloat(df2015.iloc[j, i])
+                    if is_df2015_true.iloc[j - 1, i] == True:
+                        total = cleanfloat(df2015.iloc[j - 1, i])
                     else:
                         total = 0
                     prow.append(total)

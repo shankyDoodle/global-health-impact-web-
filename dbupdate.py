@@ -128,7 +128,7 @@ for i in range(1,43):
 
 unmet = ['Unmet Need','Unmet Need']
 unmetsum = 0
-for xx in [[7,8,9],[10,11],[12],[13],[14],[15],[16],[17],[18]]:
+for xx in [[8,9,10],[11,12],[13],[14],[15],[16],[17],[18],[19]]:
     val = 0
     for yy in xx:
         t = df.iloc[yy,45]
@@ -230,10 +230,10 @@ for i in range(50,91):
 
 unmet = ['Unmet Need','Unmet Need']
 unmetsum = 0
-for xx in [[7,8,9],[10,11],[12],[13],[14],[15],[16],[17],[18]]:
+for xx in [[8,9,10],[11,12],[13],[14],[15],[16],[17],[18],[19]]:
     val = 0
     for yy in xx:
-        t = df.iloc[yy,93]
+        t = df.iloc[yy,94]
         if isinstance(t,float) == False and isinstance(t,int) == False:
             t = float(t.replace(',',''))
         if t != t:
@@ -241,8 +241,9 @@ for xx in [[7,8,9],[10,11],[12],[13],[14],[15],[16],[17],[18]]:
         val += t
     unmet.append(val)
     unmetsum += val
+print(unmet)
+print(drugrdata[0])
 drugrdata.append(unmet)
-sortedlist = sorted(drug2013, key=lambda xy: xy[3], reverse=True)
 
 for row in drugrdata:
     tot = sum(row[2:])
@@ -328,10 +329,10 @@ for i in range(50,91):
 
 unmet = ['Unmet Need','Unmet Need']
 unmetsum = 0
-for xx in [[7,8,9],[10,11],[12],[13],[14],[15],[16],[17],[18]]:
+for xx in [[8,9,10],[11,12],[13],[14],[15],[16],[17],[18],[19]]:
     val = 0
     for yy in xx:
-        t = df2015.iloc[yy,93]
+        t = df.iloc[yy,94]
         if isinstance(t,float) == False and isinstance(t,int) == False:
             t = float(t.replace(',',''))
         if t != t:
@@ -339,8 +340,9 @@ for xx in [[7,8,9],[10,11],[12],[13],[14],[15],[16],[17],[18]]:
         val += t
     unmet.append(val)
     unmetsum += val
+print(unmet)
+print(drugrdata[0])
 drugrdata.append(unmet)
-sortedlist = sorted(drug2015, key=lambda xy: xy[3], reverse=True)
 
 for row in drugrdata:
     tot = sum(row[2:])

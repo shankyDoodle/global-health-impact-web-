@@ -89,7 +89,7 @@ body {
 /* Links inside the dropdown */
 .dropdown-content a {
     color: #FFFFFF;
-    padding: 12px 16px;
+    padding: 12px 12px;
     text-decoration: none;
     display: block;
 }
@@ -178,23 +178,23 @@ body {
     font-family: 'avenir next regular', sans-serif;
 }
 .bluetxtabout {
-    font-size: 28px;
+    font-size: 36px;
     color: #0083C4;
     font-family: 'avenir next demi bold', sans-serif;
 }
 .redtxtabout {
-    font-size: 28px;
+    font-size: 36px;
     color: #FF7474;
     font-family: 'avenir next demi bold', sans-serif;
 }
 
 .newsred {
-    font-size: 18px;
+    font-size: 36px;
     color: #FF7474;
     font-family: 'avenir next demi bold', sans-serif;
 }
 .newsblue {
-    font-size: 18px;
+    font-size: 36px;
     color: #0083C4;
     font-family: 'avenir next demi bold', sans-serif;
 }
@@ -296,7 +296,7 @@ background-color: #EDDFDF;
         width: 500px;
     }
     .iconimg {
-        width: 110px;
+        width: 80px;
     }
 }
 @media only screen and (max-width: 999px) {
@@ -357,6 +357,41 @@ background-color: #EDDFDF;
         font-weight: bolder;
     }
 }
+
+@media only screen and (max-width: 420px) {
+    .cap {
+        font-size: 8px;
+        text-align: center;
+        font-family: 'Nunito', sans-serif;
+    }
+    .cap2 {
+        font-size: 10px;
+        text-align: center;
+        font-family: 'Nunito', sans-serif;
+        font-weight: bolder;
+    }
+    .navbtn {
+    color: #404040;
+    background-color: #FFFFFF;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    vertical-align: middle;
+    position: relative;
+    display: inline-block;
+    float: right;
+    width: 75px;
+    }
+
+}
+
+
+
+
 .iconlabel {
     font-family: 'Nunito', sans-serif;
     font-size: 14;
@@ -371,6 +406,7 @@ background-color: #EDDFDF;
     z-index: 2;
     display: block;
     position: relative;
+    padding:15px;
 }
 .height {
     z-index: 1;
@@ -595,7 +631,8 @@ background-color: #EDDFDF;
 .nametxt {
     font-family: 'Nunito';
     font-size:20px;
-    color: #FF7474;
+    color: #0083C4;
+    font-weight: bold;
 }
 .headshotimg {
     padding-right: 15px;
