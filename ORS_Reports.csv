@@ -1,111 +1,111 @@
 Year,Company,Total impact score,Company rank overall,Number of diseases,Number of drugs,Drug name,Disease targeted,Individual impact,Numbers of treatments:,DiseasePercent,Company Rank Disease,percentdalycompanydisease
-2010,"Guilin Pharmaceutical Co., Ltd",0,17,1,1,Artesunate,p. vivax Malaria,0,,0,,
-2010,Chongqing Holley Pharmaceutical Co. Ltd and Sigma Tau Industrie Farmaceutiche,"7,129,446.79",6,2,1,DHA-Piperaquine,p. falc Malaria,"7,129,446.79",,16.15,3,
-,,,,,,DHA-Piperaquine,p. vivax Malaria,0,,0,,
-2010,"Kyorin Pharmaceutical Co., Ltd.","4,680.81",15,1,1,Gatifloxacin,XDR-TB,"4,680.81",,9.16,5,
-2010,Eli Lilly and Company,"6,436.11",14,1,1,Capreomycin,XDR-TB,"6,436.11",,12.6,3,
-2010,Daiichi Sankyo,"19,893.76",13,3,2,Ofloxacin,XDR-TB,"4,680.81",,18.32,2,
-,,,,,,Levofloxacin,XDR-TB,"4,680.81",,,,
-,,,,,,Levofloxacin,MDR-TB,"10,532.14",,,,
-2010,Abbot Laboratories,"40,612.35",12,1,1,Lopinavir / Ritonavir,HIV,"40,612.35",,,,
-2010,Johnson and Johnson,425.16,16,3,1,Mebendazole,Roundworm,0,,0,,
-,,,,,,Mebendazole,Hookworm,131.45,,0.47,2,
-,,,,,,Mebendazole,Whipworm,293.71,,15.43,1,
-2010,GlaxoSmithKline,"435,928.67",10,6,3,Zidovudine,HIV,"256,064.93",,7.51,5,
-,,,,,,Albendazole,Roundworm,"132,138.07",,58.54,1,
-,,,,,,Albendazole,Hookworm,"27,757.01",,99.53,1,
-,,,,,,Albendazole,Whipworm,"1,609.90",,5.77,2,
-,,,,,,Albendazole,LF,467.83,,,,
-,,,,,,Abacavir,HIV,"17,890.93",,,,
-2010,Bristol-Myers Squibb,"531,565.63",9,4,4,Amikacin,XDR-TB,"6,436.11",,,,
-,,,,,,Didanosine,HIV,"9,525.13",,,,
-,,,,,,Stavudine,HIV,"512,379.06",,,,
-,,,,,,Atazanafir / Ritonavir,HIV,"3,225.33",,,,
-2010,Bayer Healthcare,"174,621.57",11,3,3,Moxifloxacin,XDR-TB,"4,680.81",,,,
-,,,,,,Chloroquine,p. vivax Malaria,0,,,,
-,,,,,,Praziquantel,Schistosomiasis,"169,940.76",,,,
-2010,Boehringer Ingelheim,"810,100.27",8,1,1,Nevirapine,HIV,"810,100.27",,,,
-2010,Shire Pharmaceuticals,"1,194,589.55",7,1,1,Lamivudine,HIV,"1,194,589.55",,,,
-2010,F. Hoffmann-La Roche Ltd,"13,398,454.29",5,1,1,Isoniazid,DS-TB,"13,398,454.29",,,,
-2010,Pfizer Inc.,"13,439,349.74",4,7,6,Ethambutol,DS-TB,"13,398,454.29",,,,
-,,,,,,Ethionamide,MDR-TB,"10,532.14",,,,
-,,,,,,Cycloserine,MDR-TB,"10,532.14",,,,
-,,,,,,Cycloserine,XDR-TB,"19,503.35",,,,
-,,,,,,p-aminosalicylic acid,MDR-TB,0,,,,
-,,,,,,Diethylcarbamazine,LF,272.39,,,,
-,,,,,,Nelfinavir,HIV,55.42,,,,
-2010,Merck,"13,992,698.82",3,7,4,Streptomycin,MDR-TB,"3,383.08",,,,
-,,,,,,Efavirenz,HIV,"494,220.13",,,,
-,,,,,,Ivermectin,Roundworm,"93,584.06",,,,
-,,,,,,Ivermectin,Whipworm,0,,,,
-,,,,,,Ivermectin,LF,195.43,,,,
-,,,,,,Pyrazinamide,DS-TB,"13,398,454.29",,,,
-,,,,,,Pyrazinamide,MDR-TB,"2,861.83",,,,
-2010,Sanofi,"21,064,066.16",2,6,4,RIfampicin,DS-TB,"13,398,454.29",,,,
-,,,,,,Artesunate/Amodiaquine,p. falc Malaria,"5,812,167.07",,,,
-,,,,,,Artesunate/Amodiaquine,p. vivax Malaria,0,,,,
-,,,,,,Artesunate / Sulfadoxine-pyrimethamine,p. falc Malaria,"1,638,444.02",,,,
-,,,,,,Chloroquine + Primaquine,p. falc Malaria,0,,,,
-,,,,,,Chloroquine + Primaquine,p. vivax Malaria,"215,000.78",,,,
-2010,Novartis,"29,575,484.58",1,2,1,Artemether-Lumefantrine,p. falc Malaria,"29,575,484.58",,,,
-,,,,,,Artemether-Lumefantrine,p. vivax Malaria,0,,,,
-,,,,,,,,,,,,
-2013,"Kyorin Pharmaceutical Co., Ltd.",4490.586923,16,1,1,Gatifloxacin (Gfx),XDR-TB,"4,490.59",,,,
-2013,F. Hoffmann-La Roche Ltd,10817673.56,5,1,1,Isoniazid (H or INH),DS-TB,"10,817,673.56",,,,
-2013,Merck,11290394.2,2,8,4,Streptomycin (S or STR),MDR-TB,"2,896.11",,,,
-,,,,,,Efavirenz (EFV),HIV,"421,320.99",,,,
-,,,,,,Ivermectin (IVM),Roundworm,"2,500.47",,,,
-,,,,,,Ivermectin (IVM),Whipworm,0,,,,
-,,,,,,Ivermectin (IVM),Onchocerciasis,"43,430.08",,,,
-,,,,,,Ivermectin (IVM),LF,123.09,,,,
-,,,,,,Pyrazinamide (Z or PZA),DS-TB,"10,817,673.56",,,,
-,,,,,,Pyrazinamide (Z or PZA),MDR-TB,"2,449.89",,,,
-2013,Bayer Healthcare,237740.8958,11,3,4,Moxifloxacin (Mfx),XDR-TB,"4,490.59",,,,
-,,,,,,Praziquantel (PZQ),Schistosomiasis,"93,545.15",,,,
-,,,,,,Chloroquine (CQ),p. vivax Malaria,"139,705.16",,,,
-2013,Sanofi,10860419.51,4,8,6,RIfampicin (R or RMP),DS-TB,"10,817,673.56",,,,
-,,,,,,Artesunate/Amodiaquine (AS + AQ),p. falc Malaria,0,,,,
-,,,,,,Artesunate/Amodiaquine (AS + AQ),p. vivax Malaria,0,,,,
-,,,,,,Artesunate / Sulfadoxine-pyrimethamine (AS + SP),p. falc Malaria,"22,119.06",,,,
-,,,,,,Chloroquine + Primaquine (CQ+PQ),p. falc Malaria,0,,,,
-,,,,,,Chloroquine + Primaquine (CQ+PQ),p. vivax Malaria,"19,321.66",,,,
-,,,,,,Artesunate + Mefloquine + Primaquine (AS + MQ + PQ),p. falc Malaria,0,,,,
-,,,,,,Artesunate + Sulfadoxine + Primaquine (AS+SP+PQ),p. falc Malaria,"1,305.24",,,,
-2013,Daiichi Sankyo,17254.51936,13,3,2,Ofloxacin (Ofx),XDR-TB,"4,490.59",,,,
-,,,,,,Levofloxacin (Lfx),MDR-TB,"8,273.35",,,,
-,,,,,,Levofloxacin (Lfx),XDR-TB,"4,490.59",,,,
-2013,Bristol-Myers Squibb,549867.3777,9,3,3,Amikacin (Amk),XDR-TB,"6,174.56",,,,
-,,,,,,Didanosine (ddl),HIV,"1,290.14",,,,
-,,,,,,Stavudine (d4t),HIV,"542,402.68",,,,
-2013,Pfizer Inc.,12219179.9,1,7,6,Ethambutol (E or EMB),DS-TB,"10,817,673.56",,,,
-,,,,,,Ethionamide (Eto),MDR-TB,"8,273.35",,,,
-,,,,,,Cycloserine (Cs),MDR-TB,"8,273.35",,,,
-,,,,,,Cycloserine (Cs),XDR-TB,"18,523.67",,,,
-,,,,,,p-aminosalicylic acid (PAS),MDR-TB,"8,273.35",,,,
-,,,,,,Diethylcarbamazine (DEC),LF,113.51,,,,
-,,,,,,Nelfinavir (NFV),HIV,"1,358,049.12",,,,
-2013,Shire Pharmaceuticals,1646819.454,6,1,1,Lamivudine (3TC),HIV,"1,646,819.45",,,,
-2013,Boehringer Ingelheim,1358049.119,7,1,1,Nevirapine (NVP),HIV,"1,358,049.12",,,,
-2013,"Gilead Sciences, Inc.",469217.8499,10,2,2,Emtricitabine (FTC),HIV,"138,009.50",,,,
-,,,,,,Tenofovir (TDF),HIV,"331,208.35",,,,
-2013,Eli Lilly and Company,6174.557019,15,1,1,Capreomycin (Cm),XDR-TB,"6,174.56",,,,
-2013,Abbot Laboratories,6748.990512,14,1,1,Lopinavir / Ritonavir (LPV/r),HIV,"6,748.99",,,,
-2013,Johnson and Johnson,22781.23982,12,3,1,Mebendazole (MBD),Roundworm,"20,329.02",,,,
-,,,,,,Mebendazole (MBD),Hookworm,"2,132.96",,,,
-,,,,,,Mebendazole (MBD),Whipworm,319.26,,,,
-2013,Novartis,10866643.2,3,2,1,Artemether-Lumefantrine (AL),p. falc Malaria,"10,866,626.49",,,,
-,,,,,,Artemether-Lumefantrine (AL),p. vivax Malaria,16.71,,,,
-2013,Chongqing Holley Pharmaceutical Co. Ltd and Sigma Tau Industrie Farmaceutiche,14.24961499,18,2,1,DHA-Piperaquine (DHA-PPQ),p. falc Malaria,14.25,,,,
-,,,,,,DHA-Piperaquine (DHA-PPQ),p. vivax Malaria,0,,,,
-2013,"Guilin Pharmaceutical Co., Ltd",0,19,2,2,Artesunate (AS),p. vivax Malaria,0,,,,
-,,,,,,Artemether (AM),p. falc Malaria,0,,,,
-2013,GlaxoSmithKline,1080107.833,8,8,5,Albendazole (ALB),Roundworm,"52,022.61",,,,
-,,,,,,Albendazole (ALB),Hookworm,"56,388.40",,,,
-,,,,,,Albendazole (ALB),Whipworm,"2,557.88",,,,
-,,,,,,Albendazole (ALB),LF,236.6,,,,
+2010,"Guilin Pharmaceutical Co., Ltd",0,17,1,1,Artesunate,p. vivax Malaria,0,,0,,1
+2010,Chongqing Holley Pharmaceutical Co. Ltd and Sigma Tau Industrie Farmaceutiche,"7,129,446.79",6,2,1,DHA-Piperaquine,p. falc Malaria,"7,129,446.79",,16.15,3,2
+,,,,,,DHA-Piperaquine,p. vivax Malaria,0,,0,,3
+2010,"Kyorin Pharmaceutical Co., Ltd.","4,680.81",15,1,1,Gatifloxacin,XDR-TB,"4,680.81",,9.16,5,3
+2010,Eli Lilly and Company,"6,436.11",14,1,1,Capreomycin,XDR-TB,"6,436.11",,12.6,3,3
+2010,Daiichi Sankyo,"19,893.76",13,3,2,Ofloxacin,XDR-TB,"4,680.81",,18.32,2,3
+,,,,,,Levofloxacin,XDR-TB,"4,680.81",,18.32,,3
+,,,,,,Levofloxacin,MDR-TB,"10,532.14",,18.32,,3
+2010,Abbot Laboratories,"40,612.35",12,1,1,Lopinavir / Ritonavir,HIV,"40,612.35",,18.32,,3
+2010,Johnson and Johnson,425.16,16,3,1,Mebendazole,Roundworm,0,,18.32,,3
+,,,,,,Mebendazole,Hookworm,131.45,,0.47,2,3
+,,,,,,Mebendazole,Whipworm,293.71,,15.43,1,3
+2010,GlaxoSmithKline,"435,928.67",10,6,3,Zidovudine,HIV,"256,064.93",,7.51,5,3
+,,,,,,Albendazole,Roundworm,"132,138.07",,58.54,1,3
+,,,,,,Albendazole,Hookworm,"27,757.01",,99.53,1,3
+,,,,,,Albendazole,Whipworm,"1,609.90",,5.77,2,3
+,,,,,,Albendazole,LF,467.83,,5.77,2,3
+,,,,,,Abacavir,HIV,"17,890.93",,5.77,2,3
+2010,Bristol-Myers Squibb,"531,565.63",9,4,4,Amikacin,XDR-TB,"6,436.11",,5.77,2,3
+,,,,,,Didanosine,HIV,"9,525.13",,5.77,2,3
+,,,,,,Stavudine,HIV,"512,379.06",,5.77,2,3
+,,,,,,Atazanafir / Ritonavir,HIV,"3,225.33",,5.77,2,3
+2010,Bayer Healthcare,"174,621.57",11,3,3,Moxifloxacin,XDR-TB,"4,680.81",,5.77,2,3
+,,,,,,Chloroquine,p. vivax Malaria,0,,5.77,2,3
+,,,,,,Praziquantel,Schistosomiasis,"169,940.76",,5.77,2,3
+2010,Boehringer Ingelheim,"810,100.27",8,1,1,Nevirapine,HIV,"810,100.27",,5.77,2,3
+2010,Shire Pharmaceuticals,"1,194,589.55",7,1,1,Lamivudine,HIV,"1,194,589.55",,5.77,2,3
+2010,F. Hoffmann-La Roche Ltd,"13,398,454.29",5,1,1,Isoniazid,DS-TB,"13,398,454.29",,5.77,2,3
+2010,Pfizer Inc.,"13,439,349.74",4,7,6,Ethambutol,DS-TB,"13,398,454.29",,5.77,2,3
+,,,,,,Ethionamide,MDR-TB,"10,532.14",,5.77,2,3
+,,,,,,Cycloserine,MDR-TB,"10,532.14",,5.77,2,3
+,,,,,,Cycloserine,XDR-TB,"19,503.35",,5.77,2,3
+,,,,,,p-aminosalicylic acid,MDR-TB,0,,5.77,2,3
+,,,,,,Diethylcarbamazine,LF,272.39,,5.77,2,3
+,,,,,,Nelfinavir,HIV,55.42,,5.77,2,3
+2010,Merck,"13,992,698.82",3,7,4,Streptomycin,MDR-TB,"3,383.08",,5.77,2,3
+,,,,,,Efavirenz,HIV,"494,220.13",,5.77,2,3
+,,,,,,Ivermectin,Roundworm,"93,584.06",,5.77,2,3
+,,,,,,Ivermectin,Whipworm,0,,5.77,2,3
+,,,,,,Ivermectin,LF,195.43,,5.77,2,3
+,,,,,,Pyrazinamide,DS-TB,"13,398,454.29",,5.77,2,3
+,,,,,,Pyrazinamide,MDR-TB,"2,861.83",,5.77,2,3
+2010,Sanofi,"21,064,066.16",2,6,4,RIfampicin,DS-TB,"13,398,454.29",,5.77,2,3
+,,,,,,Artesunate/Amodiaquine,p. falc Malaria,"5,812,167.07",,5.77,2,3
+,,,,,,Artesunate/Amodiaquine,p. vivax Malaria,0,,5.77,2,3
+,,,,,,Artesunate / Sulfadoxine-pyrimethamine,p. falc Malaria,"1,638,444.02",,5.77,2,3
+,,,,,,Chloroquine + Primaquine,p. falc Malaria,0,,5.77,2,3
+,,,,,,Chloroquine + Primaquine,p. vivax Malaria,"215,000.78",,5.77,2,3
+2010,Novartis,"29,575,484.58",1,2,1,Artemether-Lumefantrine,p. falc Malaria,"29,575,484.58",,5.77,2,3
+,,,,,,Artemether-Lumefantrine,p. vivax Malaria,0,,5.77,2,3
+,,,,,,,,,,5.77,2,3
+2013,"Kyorin Pharmaceutical Co., Ltd.",4490.586923,16,1,1,Gatifloxacin (Gfx),XDR-TB,"4,490.59",,5.77,2,3
+2013,F. Hoffmann-La Roche Ltd,10817673.56,5,1,1,Isoniazid (H or INH),DS-TB,"10,817,673.56",,5.77,2,3
+2013,Merck,11290394.2,2,8,4,Streptomycin (S or STR),MDR-TB,"2,896.11",,5.77,2,3
+,,,,,,Efavirenz (EFV),HIV,"421,320.99",,5.77,2,3
+,,,,,,Ivermectin (IVM),Roundworm,"2,500.47",,5.77,2,3
+,,,,,,Ivermectin (IVM),Whipworm,0,,5.77,2,3
+,,,,,,Ivermectin (IVM),Onchocerciasis,"43,430.08",,5.77,2,3
+,,,,,,Ivermectin (IVM),LF,123.09,,5.77,2,3
+,,,,,,Pyrazinamide (Z or PZA),DS-TB,"10,817,673.56",,5.77,2,3
+,,,,,,Pyrazinamide (Z or PZA),MDR-TB,"2,449.89",,5.77,2,3
+2013,Bayer Healthcare,237740.8958,11,3,4,Moxifloxacin (Mfx),XDR-TB,"4,490.59",,5.77,2,3
+,,,,,,Praziquantel (PZQ),Schistosomiasis,"93,545.15",,5.77,2,3
+,,,,,,Chloroquine (CQ),p. vivax Malaria,"139,705.16",,5.77,2,3
+2013,Sanofi,10860419.51,4,8,6,RIfampicin (R or RMP),DS-TB,"10,817,673.56",,5.77,2,3
+,,,,,,Artesunate/Amodiaquine (AS + AQ),p. falc Malaria,0,,5.77,2,3
+,,,,,,Artesunate/Amodiaquine (AS + AQ),p. vivax Malaria,0,,5.77,2,3
+,,,,,,Artesunate / Sulfadoxine-pyrimethamine (AS + SP),p. falc Malaria,"22,119.06",,5.77,2,3
+,,,,,,Chloroquine + Primaquine (CQ+PQ),p. falc Malaria,0,,5.77,2,3
+,,,,,,Chloroquine + Primaquine (CQ+PQ),p. vivax Malaria,"19,321.66",,5.77,2,3
+,,,,,,Artesunate + Mefloquine + Primaquine (AS + MQ + PQ),p. falc Malaria,0,,5.77,2,3
+,,,,,,Artesunate + Sulfadoxine + Primaquine (AS+SP+PQ),p. falc Malaria,"1,305.24",,5.77,2,3
+2013,Daiichi Sankyo,17254.51936,13,3,2,Ofloxacin (Ofx),XDR-TB,"4,490.59",,5.77,2,3
+,,,,,,Levofloxacin (Lfx),MDR-TB,"8,273.35",,5.77,2,3
+,,,,,,Levofloxacin (Lfx),XDR-TB,"4,490.59",,5.77,2,3
+2013,Bristol-Myers Squibb,549867.3777,9,3,3,Amikacin (Amk),XDR-TB,"6,174.56",,5.77,2,3
+,,,,,,Didanosine (ddl),HIV,"1,290.14",,5.77,2,3
+,,,,,,Stavudine (d4t),HIV,"542,402.68",,5.77,2,3
+2013,Pfizer Inc.,12219179.9,1,7,6,Ethambutol (E or EMB),DS-TB,"10,817,673.56",,5.77,2,3
+,,,,,,Ethionamide (Eto),MDR-TB,"8,273.35",,5.77,2,3
+,,,,,,Cycloserine (Cs),MDR-TB,"8,273.35",,5.77,2,3
+,,,,,,Cycloserine (Cs),XDR-TB,"18,523.67",,5.77,2,3
+,,,,,,p-aminosalicylic acid (PAS),MDR-TB,"8,273.35",,5.77,2,3
+,,,,,,Diethylcarbamazine (DEC),LF,113.51,,5.77,2,3
+,,,,,,Nelfinavir (NFV),HIV,"1,358,049.12",,5.77,2,3
+2013,Shire Pharmaceuticals,1646819.454,6,1,1,Lamivudine (3TC),HIV,"1,646,819.45",,5.77,2,3
+2013,Boehringer Ingelheim,1358049.119,7,1,1,Nevirapine (NVP),HIV,"1,358,049.12",,5.77,2,3
+2013,"Gilead Sciences, Inc.",469217.8499,10,2,2,Emtricitabine (FTC),HIV,"138,009.50",,5.77,2,3
+,,,,,,Tenofovir (TDF),HIV,"331,208.35",,5.77,2,3
+2013,Eli Lilly and Company,6174.557019,15,1,1,Capreomycin (Cm),XDR-TB,"6,174.56",,5.77,2,3
+2013,Abbot Laboratories,6748.990512,14,1,1,Lopinavir / Ritonavir (LPV/r),HIV,"6,748.99",,5.77,2,3
+2013,Johnson and Johnson,22781.23982,12,3,1,Mebendazole (MBD),Roundworm,"20,329.02",,5.77,2,3
+,,,,,,Mebendazole (MBD),Hookworm,"2,132.96",,5.77,2,3
+,,,,,,Mebendazole (MBD),Whipworm,319.26,,5.77,2,3
+2013,Novartis,10866643.2,3,2,1,Artemether-Lumefantrine (AL),p. falc Malaria,"10,866,626.49",,5.77,2,3
+,,,,,,Artemether-Lumefantrine (AL),p. vivax Malaria,16.71,,5.77,2,3
+2013,Chongqing Holley Pharmaceutical Co. Ltd and Sigma Tau Industrie Farmaceutiche,14.24961499,18,2,1,DHA-Piperaquine (DHA-PPQ),p. falc Malaria,14.25,,5.77,2,3
+,,,,,,DHA-Piperaquine (DHA-PPQ),p. vivax Malaria,0,,5.77,2,3
+2013,"Guilin Pharmaceutical Co., Ltd",0,19,2,2,Artesunate (AS),p. vivax Malaria,0,,5.77,2,3
+,,,,,,Artemether (AM),p. falc Malaria,0,,5.77,2,3
+2013,GlaxoSmithKline,1080107.833,8,8,5,Albendazole (ALB),Roundworm,"52,022.61",,5.77,2,3
+,,,,,,Albendazole (ALB),Hookworm,"56,388.40",,5.77,2,3
+,,,,,,Albendazole (ALB),Whipworm,"2,557.88",,5.77,2,3
+,,,,,,Albendazole (ALB),LF,236.6,,5.77,2,3
 ,,,,,,"Atovaquone + Proguanil
-(AT + PG)",p. falc Malaria,0,,,,
-,,,,,,Abacavir (ABC),HIV,"56,132.34",,,,
-,,,,,,Zidovudine (AZT),HIV,"889,907.80",,,,
-,,,,,,Abacavir (ABC),HIV,"56,132.34",,,,
-2013,Artepharm,54.13472675,17,1,1,Artemisinin + Piperaquine (ART+PPQ),p. falc Malaria,54.13,,,,
+(AT + PG)",p. falc Malaria,0,,5.77,2,3
+,,,,,,Abacavir (ABC),HIV,"56,132.34",,5.77,2,3
+,,,,,,Zidovudine (AZT),HIV,"889,907.80",,5.77,2,3
+,,,,,,Abacavir (ABC),HIV,"56,132.34",,5.77,2,3
+2013,Artepharm,54.13472675,17,1,1,Artemisinin + Piperaquine (ART+PPQ),p. falc Malaria,54.13,,5.77,2,3
