@@ -131,7 +131,7 @@ unmetsum = 0
 for xx in [[8,9,10],[11,12],[13],[14],[15],[16],[17],[18],[19]]:
     val = 0
     for yy in xx:
-        t = df.iloc[yy,45]
+        t = df.iloc[yy,42]
         if isinstance(t,float) == False and isinstance(t,int) == False:
             t = float(t.replace(',',''))
         if t != t:
@@ -233,7 +233,7 @@ unmetsum = 0
 for xx in [[8,9,10],[11,12],[13],[14],[15],[16],[17],[18],[19]]:
     val = 0
     for yy in xx:
-        t = df.iloc[yy,94]
+        t = df.iloc[yy,92]
         if isinstance(t,float) == False and isinstance(t,int) == False:
             t = float(t.replace(',',''))
         if t != t:
