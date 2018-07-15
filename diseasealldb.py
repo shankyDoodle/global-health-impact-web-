@@ -54,7 +54,7 @@ df_2010B_2015 = pd.read_csv(datasrc3, skiprows=1)
 data2010 = []
 data2013 = []
 
-for i in range(1,216):
+for i in range(1,218):
     country = df.iloc[i,0]
     tb = stripdata(i,1)
     malaria = stripdata(i,2)
@@ -91,7 +91,7 @@ for row in data2013:
 
 data2010B = []
 data2015 = []
-for i in range(1,217):
+for i in range(1,218):
     country = df_2010B_2015.iloc[i,11]
     tb = stripdata3(i,12)
     malaria = stripdata3(i,13)

@@ -54,11 +54,11 @@ for k in range(8,20):
     color = colors[i]
     disease = dis[i]
     distype = distypes[i]
-    temp = df.iloc[k,43]
+    temp = df.iloc[k,39]
     print(temp)
-    temp1 = df.iloc[k,45]
+    temp1 = df.iloc[k,41]
     print(temp1)
-    temp2 = df.iloc[k,46]
+    temp2 = df.iloc[k,42]
     print(temp2)
     if type(temp) != float and type(temp1)!=float and type(temp2)!=float:
         impact = float(temp.replace(',',''))
@@ -77,9 +77,9 @@ for k in range(8,20):
     color = colors[i]
     disease = dis[i]
     distype = distypes[i]
-    temp = df.iloc[k,94]
-    temp1 = df.iloc[k,96]
-    temp2 = df.iloc[k,97]
+    temp = df.iloc[k,89]
+    temp1 = df.iloc[k,91]
+    temp2 = df.iloc[k,92]
     print(temp)
     print(temp1)
     print(temp2)
@@ -101,9 +101,9 @@ for k in range(8,20):
     color = colors[i]
     disease = dis[i]
     distype = distypes[i]
-    temp = df_2010B_2015.iloc[k,94]
-    temp1 = df_2010B_2015.iloc[k,96]
-    temp2 = df_2010B_2015.iloc[k,97]
+    temp = df_2010B_2015.iloc[k,88]
+    temp1 = df_2010B_2015.iloc[k,90]
+    temp2 = df_2010B_2015.iloc[k,91]
     print(temp)
     print(temp1)
     print(temp2)
@@ -122,6 +122,8 @@ def stripdata(x,y):
     tmp = df.iloc[x,y]
     if tmp=="#DIV/0!" or tmp=="nan":
         return(0)
+    if tmp =='No Data':
+        return (0)
     if isinstance(tmp,float) == False:
         return(float(tmp.replace(',','').replace(' ','0').replace('%','')))
     else:
@@ -131,6 +133,8 @@ def stripdata3(x,y):
     tmp = df_2010B_2015.iloc[x,y]
     if tmp=="#DIV/0!" or tmp=="nan":
         return(0)
+    if tmp =='No Data':
+        return (0)
     if isinstance(tmp,float) == False:
         return(float(tmp.replace(',','').replace(' ','0').replace('%','')))
     else:
@@ -140,6 +144,8 @@ def stripdata2(x,y):
     tmp = df2.iloc[x,y]
     if tmp=="#DIV/0!" or tmp=="nan":
         return(0)
+    if tmp =='No Data':
+        return (0)
     if isinstance(tmp,float) == False:
         res = float(tmp.replace(',','').replace(' ','0').replace('%',''))
         if res > 10000:
@@ -151,12 +157,10 @@ def stripdata2(x,y):
 
 disbars = []
 j=0
-for k in range(91, 100):
+for k in range(104, 113):
     colors = ['#FFB31C', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
               '#546675', '#8A5575', '#305516']
     diseasename = df.iloc[k,7]
-    newdiseasename = df_2010B_2015.iloc[k,7]
-    print(diseasename)
     color = colors[j]
     efficacy2010 = stripdata(k,8)
     efficacy2013 = stripdata(k,9)
@@ -164,36 +168,87 @@ for k in range(91, 100):
     coverage2013 = stripdata(k,11)
     need2010 = stripdata(k,12)
     need2013 = stripdata(k,13)
+    roww = [diseasename,color,efficacy2010,efficacy2013,coverage2010,coverage2013,need2010,need2013]
+    disbars.append(roww)
+    j+=1
+    conn.execute('insert into disbars values (?,?,?,?,?,?,?,?)', roww)
 
+
+disbars = []
+j=0
+for k in range(105, 114):
+    colors = ['#FFB31C', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
+              '#546675', '#8A5575', '#305516']
+    newdiseasename = df_2010B_2015.iloc[k,7]
+    color = colors[j]
     newefficacy2010 = stripdata3(k,8)
     newefficacy2013 = stripdata3(k,9)
     newcoverage2010 = stripdata3(k,10)
     newcoverage2013 = stripdata3(k,11)
     newneed2010 = stripdata3(k,12)
     newneed2013 = stripdata3(k,13)
-
-    roww = [diseasename,color,efficacy2010,efficacy2013,coverage2010,coverage2013,need2010,need2013]
     newroww = [diseasename,color,newefficacy2010,newefficacy2013,newcoverage2010,newcoverage2013,newneed2010,newneed2013]
-    print(roww)
-    disbars.append(roww)
     j+=1
-    conn.execute('insert into disbars values (?,?,?,?,?,?,?,?)', roww)
-    print(newdiseasename)
-    if(newdiseasename == 0):
-        print("do nothing")
-    else:
-        conn.execute('insert into disbars2010B2015 values (?,?,?,?,?,?,?,?)', newroww)
+    disbars.append(newroww)
+    conn.execute('insert into disbars2010B2015 values (?,?,?,?,?,?,?,?)', newroww)
 
 
-#=====================================Jing-3/3/2-18============================================
+def doStuff(k, i, m, mark, diseasename,disetype,color,efficacy2010,efficacy2013,coverage2010,coverage2013,p, year ):
+    if disetype=='TB' or disetype=='Malaria':
+        efficacy2010 /= m
+        efficacy2013 /= m
+        coverage2010 /= m
+        coverage2013 /= m
+    roww = [diseasename, disetype, color, efficacy2010, efficacy2013, coverage2010, coverage2013, p]
+    print(roww)
+    if year == 2010:
+        conn.execute('insert into distypes values (?,?,?,?,?,?,?,?)', roww)
+    elif year == 2015:
+        conn.execute('insert into distypes2010B2015 values (?,?,?,?,?,?,?,?)', roww)
+
+
+
+efficacyone=0
+efficacytwo=0
+coverageone=0
+coveragetwo = 0
 i=1
 j=0
 mark=0
-efficacy2010 = 0
-efficacy2013 = 0
-coverage2010 = 0
-coverage2013 = 0
-for k in [94,96,98,99,100,102]:
+for k in [107, 109, 111, 112, 113, 115]:
+    colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
+              '#546675', '#8A5575', '#305516']
+    dismap =[2,3,1]
+    position = [2,0,1]
+    disease = ['Normal-TB','MDR-TB','XDR-TB']
+    disetype='TB'
+    m = dismap[mark]
+    p = position[mark]
+    color = colors[j % 12]
+    diseasename = disease[mark]
+    efficacyone += stripdata(k, 1)
+    efficacytwo += stripdata(k, 2)
+    coverageone += stripdata(k, 3)
+    coveragetwo += stripdata(k, 5)
+    year = 2010
+    if i==m :
+        doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,
+                year)
+        i = 0
+        mark += 1
+        efficacyone = 0
+        efficacytwo = 0
+        coverageone = 0
+        coveragetwo = 0
+    i+=1
+    j+=1
+
+
+
+i=1
+j=0
+mark=0
+for k in [108, 110, 112, 113, 114, 116]:
     colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
               '#546675', '#8A5575', '#305516']
     dismap =[2,3,1]
@@ -204,66 +259,59 @@ for k in [94,96,98,99,100,102]:
     p = position[mark]
     color=colors[j%12]
     diseasename = disease[mark]
-    efficacy2010 += stripdata(k,1)
-    efficacy2013 += stripdata(k,2)
-    coverage2010 += stripdata(k,3)
-    coverage2013 += stripdata(k,5)
-
-    newefficacy2010 += stripdata3(k,1)
-    newefficacy2013 += stripdata3(k,2)
-    newcoverage2010 += stripdata3(k,3)
-    newcoverage2013 += stripdata3(k,5)
-    print('==========efficacy2010=====')
-
+    efficacyone += stripdata3(k, 1)
+    efficacytwo += stripdata3(k, 2)
+    coverageone += stripdata3(k, 3)
+    coveragetwo += stripdata3(k, 5)
+    year = 2015
     if i==m :
-        efficacy2010 /= m
-        efficacy2013 /= m
-        coverage2010 /= m
-        coverage2013 /= m
-
-        newefficacy2010 /= m
-        newefficacy2013 /= m
-        newcoverage2010 /= m
-        newcoverage2013 /= m
-
-        i=0
-        mark+=1
-        roww = [diseasename,disetype,color,efficacy2010,efficacy2013,coverage2010,coverage2013,p]
-        distypes.append(roww)
-
-        newroww = [diseasename,disetype,color,newefficacy2010,newefficacy2013,newcoverage2010,newcoverage2013,p]
-
-        print(roww)
-        conn.execute('insert into distypes values (?,?,?,?,?,?,?,?)', roww)
-        conn.execute('insert into distypes2010B2015 values (?,?,?,?,?,?,?,?)', newroww)
-        efficacy2010 = 0
-        efficacy2013 = 0
-        coverage2010 = 0
-        coverage2013 = 0
-
-        newefficacy2010 = 0
-        newefficacy2013 = 0
-        newcoverage2010 = 0
-        newcoverage2013 = 0
-
-    j+=1
+        doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,year)
+        i = 0
+        mark += 1
+        efficacyone = 0
+        efficacytwo = 0
+        coverageone = 0
+        coveragetwo = 0
     i+=1
-cur = conn.execute(' select * from distypes where distype=? ',('TB',))
-data = cur.fetchall()
+    j+=1
 
-#print(data)
-#print(data)
-i=1
+i = 1
 j=0
-mark=0
-efficacy2010 = 0
-efficacy2013 = 0
-coverage2010 = 0
-coverage2013 = 0
-for k in [111,104,105,106,107,108,109]:
+mark = 0
+for k in [117, 118, 119, 120, 121, 122, 124]:
     colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
               '#546675', '#8A5575', '#305516']
-    dismap =[1,6]
+    dismap = [6, 1]
+    position = [0, 1]
+    disease = ['p. falc Malaria', 'p. vivax Malaria']
+    disetype = 'Malaria'
+    m = dismap[mark]
+    p = position[mark]
+    color = colors[j % 12]
+    diseasename = disease[mark]
+    efficacyone += stripdata(k, 1)
+    efficacytwo += stripdata(k, 2)
+    coverageone += stripdata(k, 3)
+    coveragetwo += stripdata(k, 5)
+    year = 2010
+    if i == m:
+        doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,
+                year)
+        i = 0
+        mark += 1
+        efficacyone = 0
+        efficacytwo = 0
+        coverageone = 0
+        coveragetwo = 0
+    i += 1
+    j+=1
+
+i=1
+mark=0
+for k in [118, 119, 120, 121, 122, 123, 125]:
+    colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
+              '#546675', '#8A5575', '#305516']
+    dismap =[6, 1]
     position = [0,1]
     disease = ['p. falc Malaria', 'p. vivax Malaria']
     disetype='Malaria'
@@ -271,272 +319,331 @@ for k in [111,104,105,106,107,108,109]:
     p = position[mark]
     color=colors[j%12]
     diseasename = disease[mark]
-    efficacy2010 += stripdata(k,1)
-    efficacy2013 += stripdata(k,2)
-    coverage2010 += stripdata(k,3)
-    coverage2013 += stripdata(k,5)
-
-
-    newefficacy2010 += stripdata3(k,1)
-    newefficacy2013 += stripdata3(k,2)
-    newcoverage2010 += stripdata3(k,3)
-    newcoverage2013 += stripdata3(k,5)
-    print('==========This is Malaria=====')
-
+    efficacyone += stripdata3(k, 1)
+    efficacytwo += stripdata3(k, 2)
+    coverageone += stripdata3(k, 3)
+    coveragetwo += stripdata3(k, 5)
+    year = 2015
     if i==m :
-        efficacy2010 /= m
-        efficacy2013 /= m
-        coverage2010 /= m
-        coverage2013 /= m
-
-        newefficacy2010 /= m
-        newefficacy2013 /= m
-        newcoverage2010 /= m
-        newcoverage2013 /= m
-
-        i=0
-        mark+=1
-        roww = [diseasename,disetype,color,efficacy2010,efficacy2013,coverage2010,coverage2013,p]
-        distypes.append(roww)
-        print(roww)
-        newroww = [diseasename,disetype,color,newefficacy2010,newefficacy2013,newcoverage2010,newcoverage2013,p]
-        conn.execute('insert into distypes values (?,?,?,?,?,?,?,?)', roww)
-        conn.execute('insert into distypes2010B2015 values (?,?,?,?,?,?,?,?)', newroww)
-        efficacy2010 = 0
-        efficacy2013 = 0
-        coverage2010 = 0
-        coverage2013 = 0
-        newefficacy2010 = 0
-        newefficacy2013 = 0
-        newcoverage2010 = 0
-        newcoverage2013 = 0
-
-    j+=1
+        doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,
+                year)
+        i = 0
+        mark += 1
+        efficacyone = 0
+        efficacytwo = 0
+        coverageone = 0
+        coveragetwo = 0
     i+=1
-cur = conn.execute(' select * from distypes where distype=? ',('Malaria',))
-data = cur.fetchall()
-print(data)
+
 
 i=1
-j=0
 mark=0
-efficacy2010 = 0
-efficacy2013 = 0
-coverage2010 = 0
-coverage2013 = 0
-for k in [148,149,150,151,152,153]:
+for k in [154, 155,156,157,158,159]:
     colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
               '#546675', '#8A5575', '#305516']
-    #dismap =[2,3,1]
-    position = [5,4,3,2,1,0]
     disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
-    disetype='Hookworm'
-    p = position[mark]
-    color=colors[j%12]
+    disetype='Roundworm'
+    m = 0
+    p = 0
+    color = colors[j % 12]
     diseasename = disease[mark]
-    efficacy2010 += stripdata(k,1)
-    efficacy2013 += stripdata(k,2)
-    coverage2010 += stripdata(k,3)
-    coverage2013 += stripdata(k,5)
-
-    newefficacy2010 += stripdata3(k,1)
-    newefficacy2013 += stripdata3(k,2)
-    newcoverage2010 += stripdata3(k,3)
-    newcoverage2013 += stripdata3(k,5)
-    print('==========This is Hookworm=====')
-    i=0
-    roww = [diseasename,disetype,color,efficacy2010,efficacy2013,coverage2010,coverage2013,p]
-    distypes.append(roww)
-    print(roww)
-    newroww = [diseasename,disetype,color,newefficacy2010,newefficacy2013,newcoverage2010,newcoverage2013,p]
-    conn.execute('insert into distypes values (?,?,?,?,?,?,?,?)', roww)
-    conn.execute('insert into distypes2010B2015 values (?,?,?,?,?,?,?,?)', roww)
-    efficacy2010 = 0
-    efficacy2013 = 0
-    coverage2010 = 0
-    coverage2013 = 0
-    newefficacy2010 = 0
-    newefficacy2013 = 0
-    newcoverage2010 = 0
-    newcoverage2013 = 0
-    mark+=1
-    j+=1
-cur = conn.execute(' select * from distypes where distype=? ',('Hookworm',))
-data = cur.fetchall()
-print(data)
+    efficacyone += stripdata(k, 1)
+    efficacytwo += stripdata(k, 2)
+    coverageone += stripdata(k, 3)
+    coveragetwo += stripdata(k, 5)
+    year =2010
+    doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p, year)
+    i = 0
+    mark += 1
+    efficacyone = 0
+    efficacytwo = 0
+    coverageone = 0
+    coveragetwo = 0
+    i+=1
 
 i=1
-j=0
 mark=0
 for k in [155,156,157,158,159,160]:
     colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
               '#546675', '#8A5575', '#305516']
-    #dismap =[2,3,1]
-    position = [5,4,3,2,1,0]
+    disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
+    disetype='Roundworm'
+    m = 0
+    p = 0
+    color = colors[j % 12]
+    diseasename = disease[mark]
+    efficacyone += stripdata3(k, 1)
+    efficacytwo += stripdata3(k, 2)
+    coverageone += stripdata3(k, 3)
+    coveragetwo += stripdata3(k, 5)
+    year =2015
+    doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p, year)
+    i = 0
+    mark += 1
+    efficacyone = 0
+    efficacytwo = 0
+    coverageone = 0
+    coveragetwo = 0
+    i+=1
+
+
+i=1
+mark=0
+for k in [161,162,163,164,165,166]:
+    colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
+              '#546675', '#8A5575', '#305516']
+    disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
+    disetype='Hookworm'
+    m = 0
+    p = 0
+    color = colors[j % 12]
+    diseasename = disease[mark]
+    efficacyone += stripdata(k, 1)
+    efficacytwo += stripdata(k, 2)
+    coverageone += stripdata(k, 3)
+    coveragetwo += stripdata(k, 5)
+    year =2010
+    doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p, year)
+    i = 0
+    mark += 1
+    efficacyone = 0
+    efficacytwo = 0
+    coverageone = 0
+    coveragetwo = 0
+    i+=1
+
+i=1
+mark=0
+for k in  [162,163,164,165,166,167]:
+    colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
+              '#546675', '#8A5575', '#305516']
+    disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
+    disetype='Hookworm'
+    m = 0
+    p = 0
+    color = colors[j % 12]
+    diseasename = disease[mark]
+    efficacyone += stripdata3(k, 1)
+    efficacytwo += stripdata3(k, 2)
+    coverageone += stripdata3(k, 3)
+    coveragetwo += stripdata3(k, 5)
+    year =2015
+    doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p, year)
+    i = 0
+    mark += 1
+    efficacyone = 0
+    efficacytwo = 0
+    coverageone = 0
+    coveragetwo = 0
+    i+=1
+
+
+
+i=1
+mark=0
+for k in [168,169,170,171,172,173]:
+    colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
+              '#546675', '#8A5575', '#305516']
     disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
     disetype='Whipworm'
-    p = position[mark]
-    color=colors[j%12]
+    m = 0
+    p = 0
+    color = colors[j % 12]
     diseasename = disease[mark]
-    efficacy2010 += stripdata(k,1)
-    efficacy2013 += stripdata(k,2)
-    coverage2010 += stripdata(k,3)
-    coverage2013 += stripdata(k,5)
-    print('==========This is Whipworm=====')
-    newefficacy2010 += stripdata3(k,1)
-    newefficacy2013 += stripdata3(k,2)
-    newcoverage2010 += stripdata3(k,3)
-    newcoverage2013 += stripdata3(k,5)
-    i=0
-    roww = [diseasename,disetype,color,efficacy2010,efficacy2013,coverage2010,coverage2013,p]
-    distypes.append(roww)
-    print(roww)
-    newroww = [diseasename,disetype,color,efficacy2010,efficacy2013,coverage2010,coverage2013,p]
-    conn.execute('insert into distypes values (?,?,?,?,?,?,?,?)', roww)
-    conn.execute('insert into distypes2010B2015 values (?,?,?,?,?,?,?,?)', newroww)
-    efficacy2010 = 0
-    efficacy2013 = 0
-    coverage2010 = 0
-    coverage2013 = 0
-    newefficacy2010 = 0
-    newefficacy2013 = 0
-    newcoverage2010 = 0
-    newcoverage2013 = 0
-    mark+=1
-    j+=1
-cur = conn.execute(' select * from distypes where distype=? ',('Whipworm',))
-data = cur.fetchall()
-print(data)
+    efficacyone += stripdata(k, 1)
+    efficacytwo += stripdata(k, 2)
+    coverageone += stripdata(k, 3)
+    coveragetwo += stripdata(k, 5)
+    year =2010
+    doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p, year)
+    i = 0
+    mark += 1
+    efficacyone = 0
+    efficacytwo = 0
+    coverageone = 0
+    coveragetwo = 0
+    i+=1
 
 i=1
-j=0
 mark=0
-for k in [162,163,164,165,166,167]:
+for k in  [169,170,171,172,173,174]:
     colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
               '#546675', '#8A5575', '#305516']
-    #dismap =[2,3,1]
-    position = [5,4,3,2,1,0]
+    disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
+    disetype='Whipworm'
+    m = 0
+    p = 0
+    color = colors[j % 12]
+    diseasename = disease[mark]
+    efficacyone += stripdata3(k, 1)
+    efficacytwo += stripdata3(k, 2)
+    coverageone += stripdata3(k, 3)
+    coveragetwo += stripdata3(k, 5)
+    year =2015
+    doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p, year)
+    i = 0
+    mark += 1
+    efficacyone = 0
+    efficacytwo = 0
+    coverageone = 0
+    coveragetwo = 0
+    i+=1
+
+
+i=1
+mark=0
+for k in [175,176,177,178,179,180]:
+    colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
+              '#546675', '#8A5575', '#305516']
     disease = ['Ivm + Alb', 'Dec + Alb', 'Pzq', 'Ivm', 'Dec', 'Alb']
     disetype='Schistosomiasis'
-    p = position[mark]
-    color=colors[j%12]
+    m = 0
+    p = 0
+    color = colors[j % 12]
     diseasename = disease[mark]
-    efficacy2010 += stripdata(k,1)
-    efficacy2013 += stripdata(k,2)
-    coverage2010 += stripdata(k,3)
-    coverage2013 += stripdata(k,5)
-    print('==========This is Schistosomiasis=====')
-    newefficacy2010 += stripdata3(k,1)
-    newefficacy2013 += stripdata3(k,2)
-    newcoverage2010 += stripdata3(k,3)
-    newcoverage2013 += stripdata3(k,5)
-    i=0
-    roww = [diseasename,disetype,color,efficacy2010,efficacy2013,coverage2010,coverage2013,p]
-    distypes.append(roww)
-    print(roww)
-    newroww = [diseasename,disetype,color,newefficacy2010,newefficacy2013,newcoverage2010,newcoverage2013,p]
-    conn.execute('insert into distypes values (?,?,?,?,?,?,?,?)', roww)
-    conn.execute('insert into distypes2010B2015 values (?,?,?,?,?,?,?,?)', newroww)
-    efficacy2010 = 0
-    efficacy2013 = 0
-    coverage2010 = 0
-    coverage2013 = 0
-    newefficacy2010 = 0
-    newefficacy2013 = 0
-    newcoverage2010 = 0
-    newcoverage2013 = 0
-    mark+=1
-    j+=1
-cur = conn.execute(' select * from distypes where distype=? ',('Schistosomiasis',))
-data = cur.fetchall()
-print(data)
+    efficacyone += stripdata(k, 1)
+    efficacytwo += stripdata(k, 2)
+    coverageone += stripdata(k, 3)
+    coveragetwo += stripdata(k, 5)
+    year =2010
+    doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p, year)
+    i = 0
+    mark += 1
+    efficacyone = 0
+    efficacytwo = 0
+    coverageone = 0
+    coveragetwo = 0
+    i+=1
+
+i=1
+mark=0
+for k in  [176,177,178,179,180, 181]:
+    colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
+              '#546675', '#8A5575', '#305516']
+    disease = ['Ivm + Alb', 'Dec + Alb', 'Pzq', 'Ivm', 'Dec', 'Alb']
+    disetype='Schistosomiasis'
+    m = 0
+    p = 0
+    color = colors[j % 12]
+    diseasename = disease[mark]
+    efficacyone += stripdata3(k, 1)
+    efficacytwo += stripdata3(k, 2)
+    coverageone += stripdata3(k, 3)
+    coveragetwo += stripdata3(k, 5)
+    year =2015
+    doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p, year)
+    i = 0
+    mark += 1
+    efficacyone = 0
+    efficacytwo = 0
+    coverageone = 0
+    coveragetwo = 0
+    i+=1
+
+
 
 
 i=1
-j=0
 mark=0
-for k in [169,170,171,172]:
+for k in [182,183,184,185]:
     colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
               '#546675', '#8A5575', '#305516']
-    #dismap =[2,3,1]
-    position = [3,2,1,0]
     disease = ['Nodulectomy', 'Suramin', 'Ivm', 'Dec']
     disetype='Onchoceriasis'
-    p = position[mark]
-    color=colors[j%12]
+    m = 0
+    p = 0
+    color = colors[j % 12]
     diseasename = disease[mark]
-    efficacy2010 += stripdata(k,1)
-    efficacy2013 += stripdata(k,2)
-    coverage2010 += stripdata(k,3)
-    coverage2013 += stripdata(k,5)
-
-    newefficacy2010 += stripdata3(k,1)
-    newefficacy2013 += stripdata3(k,2)
-    newcoverage2010 += stripdata3(k,3)
-    newcoverage2013 += stripdata3(k,5)
-    print('==========This is Onchoceriasis=====')
-    i=0
-    roww = [diseasename,disetype,color,efficacy2010,efficacy2013,coverage2010,coverage2013,p]
-    distypes.append(roww)
-    print(roww)
-    newroww = [diseasename,disetype,color,efficacy2010,efficacy2013,coverage2010,coverage2013,p]
-    conn.execute('insert into distypes values (?,?,?,?,?,?,?,?)', roww)
-    conn.execute('insert into distypes2010B2015 values (?,?,?,?,?,?,?,?)', newroww)
-    efficacy2010 = 0
-    efficacy2013 = 0
-    coverage2010 = 0
-    coverage2013 = 0
-    newefficacy2010 = 0
-    newefficacy2013 = 0
-    newcoverage2010 = 0
-    newcoverage2013 = 0
-    mark+=1
-    j+=1
-cur = conn.execute(' select * from distypes where distype=? ',('Onchoceriasis',))
-data = cur.fetchall()
-print(data)
+    efficacyone += stripdata(k, 1)
+    efficacytwo += stripdata(k, 2)
+    coverageone += stripdata(k, 3)
+    coveragetwo += stripdata(k, 5)
+    year =2010
+    doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p, year)
+    i = 0
+    mark += 1
+    efficacyone = 0
+    efficacytwo = 0
+    coverageone = 0
+    coveragetwo = 0
+    i+=1
 
 i=1
-j=0
 mark=0
-for k in [174,175,176]:
+for k in  [183,184,185,186]:
     colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
               '#546675', '#8A5575', '#305516']
-    #dismap =[2,3,1]
-    position = [2,1,0]
+    disease = ['Nodulectomy', 'Suramin', 'Ivm', 'Dec']
+    disetype='Onchoceriasis'
+    m = 0
+    p = 0
+    color = colors[j % 12]
+    diseasename = disease[mark]
+    efficacyone += stripdata3(k, 1)
+    efficacytwo += stripdata3(k, 2)
+    coverageone += stripdata3(k, 3)
+    coveragetwo += stripdata3(k, 5)
+    year =2015
+    doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p, year)
+    i = 0
+    mark += 1
+    efficacyone = 0
+    efficacytwo = 0
+    coverageone = 0
+    coveragetwo = 0
+    i+=1
+
+
+
+i=1
+mark=0
+for k in [187,188,189]:
+    colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
+              '#546675', '#8A5575', '#305516']
     disease = ['Dec', 'Dec + Alb', 'Ivm + Alb']
     disetype='LF'
-    p = position[mark]
-    color=colors[j%12]
+    m = 0
+    p = 0
+    color = colors[j % 12]
     diseasename = disease[mark]
-    efficacy2010 += stripdata(k,1)
-    efficacy2013 += stripdata(k,2)
-    coverage2010 += stripdata(k,3)
-    coverage2013 += stripdata(k,5)
-    print('==========This is LF=====')
-    newefficacy2010 += stripdata3(k,1)
-    newefficacy2013 += stripdata3(k,2)
-    newcoverage2010 += stripdata3(k,3)
-    newcoverage2013 += stripdata3(k,5)
-    i=0
-    roww = [diseasename,disetype,color,efficacy2010,efficacy2013,coverage2010,coverage2013,p]
-    distypes.append(roww)
-    print(roww)
-    newroww = [diseasename,disetype,color,newefficacy2010,newefficacy2013,newcoverage2010,newcoverage2013,p]
-    conn.execute('insert into distypes values (?,?,?,?,?,?,?,?)', roww)
-    conn.execute('insert into distypes2010B2015 values (?,?,?,?,?,?,?,?)', newroww)
-    efficacy2010 = 0
-    efficacy2013 = 0
-    coverage2010 = 0
-    coverage2013 = 0
-    newefficacy2010 = 0
-    newefficacy2013 = 0
-    newcoverage2010 = 0
-    newcoverage2013 = 0
-    mark+=1
-    j+=1
-cur = conn.execute(' select * from distypes where distype=? ',('LF',))
-data = cur.fetchall()
+    efficacyone += stripdata(k, 1)
+    efficacytwo += stripdata(k, 2)
+    coverageone += stripdata(k, 3)
+    coveragetwo += stripdata(k, 5)
+    year =2010
+    doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p, year)
+    i = 0
+    mark += 1
+    efficacyone = 0
+    efficacytwo = 0
+    coverageone = 0
+    coveragetwo = 0
+    i+=1
+
+i=1
+mark=0
+for k in  [188,189,190]:
+    colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
+              '#546675', '#8A5575', '#305516']
+    disease = ['Dec', 'Dec + Alb', 'Ivm + Alb']
+    disetype='LF'
+    m = 0
+    p = 0
+    color = colors[j % 12]
+    diseasename = disease[mark]
+    efficacyone += stripdata3(k, 1)
+    efficacytwo += stripdata3(k, 2)
+    coverageone += stripdata3(k, 3)
+    coveragetwo += stripdata3(k, 5)
+    year =2015
+    doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p, year)
+    i = 0
+    mark += 1
+    efficacyone = 0
+    efficacytwo = 0
+    coverageone = 0
+    coveragetwo = 0
+    i+=1
 
 conn.commit()
 print("Database operation complete")

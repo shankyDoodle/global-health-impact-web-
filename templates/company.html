@@ -236,19 +236,25 @@ Of course, some companies may raise their scores by simply acquiring the most ef
     var chart2 = new google.visualization.PieChart(document.getElementById('patpie2'));
     chart1.draw(data1, options1);
     chart2.draw(data2, options2);
-  };
-  $('input[type=range]').on('input', function () {
-        $(this).trigger('change');
-        alert("Hi");
+
+    function OnSelectedIndexChange()
+    {
         var patentdata = {{patent2 | safe}}
         console.log(patentdata)
-        var count = Object.keys(patentdata).length;
-        var i = 0;
-         for(i = 0; i < count; ii++)
-             {
-                console.log(patentdata[i])
-             }
-});
+        if (document.getElementById('selectYear').value == "5"){
+          alert("5");
+        }
+        if (document.getElementById('selectYear').value == "10"){
+          alert("10");
+        }
+        if (document.getElementById('selectYear').value == "15"){
+          alert("15");
+        }
+        if (document.getElementById('selectYear').value == "20"){
+          alert("20");
+        }
+    }
+  };
 </script>
 <script type="text/javascript">
 
@@ -287,22 +293,20 @@ Of course, some companies may raise their scores by simply acquiring the most ef
     <div class="col-sm-6">
         <div class="contentbox">
             <p class="bluetxt" style="font-size:26px; !important">Patent Holders’ Total Drug Scores</p>
-
             <div id="chart_div">
+                <select id = selectYear onChange="OnSelectedIndexChange()">
+                    <option value="5">Past 5 years</option>
+                    <option value="10">Past 10 years</option>
+                    <option value="15">Past 15 years</option>
+                    <option value="20">Past 20 years</option>
+                </select>
                 {% for comp in patent2 %}
 
                     <div id="" style="padding-top: 2px; font-family: 'Nunito','sans-serif';"><a data-balloon="{{ comp.1 }}" data-balloon-pos="right">{{ comp.0 }}</a>
                     </div>
-                    <div style="width: {{ comp.4 }}%;background-color:#{{ comp.2 }};height: 10px;display:inline-block;font-size:0;margin-right:-4px;"></div>
+                    <div style="width: {{ comp.3 }}%;background-color:#{{ comp.2 }};height: 10px;display:inline-block;font-size:0;margin-right:-4px;"></div>
 
                 {% endfor %}
-            </div>
-
-            <div name="patentRange" id = "patentRange">
-                <input class="radPadding" type="radio" id="r1" name="patyear" value="20152010"> 2015-2010
-                <input class="radPadding" type="radio" id="r2" name="patyear" value=20152005"> 2015-2005
-                <input class="radPadding" type="radio" id="r3" name="patyear" value="20152000"> 2015-2000
-                <input class="radPadding" type="radio" id="r4" name="patyear" value="20151995"> 2015-1995
             </div>
         </div>
     </div>
