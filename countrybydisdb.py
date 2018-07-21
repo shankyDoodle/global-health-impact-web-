@@ -1,10 +1,8 @@
 import sqlite3
 import pandas as pd
-import math
-from StringIO import StringIO
 
 def createTablesCountryDist():
-    conn = sqlite3.connect('ghi.db')
+    conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
 
     conn.execute('''DROP TABLE IF EXISTS countrybydis2010''')
     conn.execute('''DROP TABLE IF EXISTS countrybydis2013''')
@@ -17,12 +15,10 @@ def createTablesCountryDist():
     conn.close()
 
 #datasrc = 'https://docs.google.com/spreadsheets/d/1IBfN_3f-dG65YbLWQbkXojUxs2PlQyo7l04Ubz9kLkU/pub?gid=1996016204&single=true&output=csv'
-datasrc = 'ORS_Daly_2010_2013.csv'
-
 
 def countryDisdbUpdate():
     try:
-        conn = sqlite3.connect('ghi.db')
+        conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
         conn.execute('''DELETE FROM countrybydis2010_bkp''')
         conn.execute('''DELETE FROM countrybydis2013_bkp''')
         conn.execute('''INSERT INTO countrybydis2010_bkp SELECT * FROM countrybydis2010''')
@@ -38,7 +34,7 @@ def countryDisdbUpdate():
         for i in range(1, 218):
             print(i)
             temprow = []
-            temprow.append(df.iloc[i, 0].decode('utf8'))
+            temprow.append(df.iloc[i, 0])
             for k in range(1, 10):
                 temp = df.iloc[i, k]
                 if isinstance(temp, float):
@@ -50,7 +46,7 @@ def countryDisdbUpdate():
 
         for i in range(1, 218):
             temprow = []
-            temprow.append(df.iloc[i, 11].decode('utf8'))
+            temprow.append(df.iloc[i, 11])
             for k in range(12, 21):
                 temp = df.iloc[i, k]
                 if isinstance(temp, float):
@@ -65,7 +61,7 @@ def countryDisdbUpdate():
         return 'success'
 
     except Exception as e:
-        error = "Country page not updated"
+        error = "Country Dist page not updated"
         conn.rollback()
         conn.close()
         return error

@@ -1880,6 +1880,7 @@ def ManageAccount():
     result = objDbCountryDis.countryDisdbUpdate()
     print ("Completed Update")
     result = objDBCountry.countrydbUpdate()
+    print (result)
     if result == 'success':
         return render_template('accountS.html', showthediv=0)
     else:

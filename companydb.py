@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd
 import math
 def createTablesCompany():
-    conn = sqlite3.connect('ghi.db')
+    conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
 
     conn.execute('''DROP TABLE IF EXISTS manudis''')
     conn.execute('''DROP TABLE IF EXISTS manutot''')
@@ -40,7 +40,7 @@ def createTablesCompany():
 
 def companydbUpdate():
     try:
-        conn = sqlite3.connect('ghi.db')
+        conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
         conn.execute('''DELETE FROM manudis_bkp''')
         conn.execute('''DELETE FROM manutot_bkp''')
         conn.execute('''DELETE FROM patent2010_bkp''')
@@ -72,8 +72,6 @@ def companydbUpdate():
         df2015 = pd.read_csv(datasrc20102015, skiprows=1).fillna(value = 0)
         is_df2015_true = df2015.notnull()
         is_df_true = df.notnull()
-        # print(df_new)
-        # print(df)
         i = 0;
         colorlist = []
         colors = ['FFB31C', '0083CA', 'EF3E2E', '003452', '86AAB9', 'CAEEFD', '546675', '8A5575', '305516', 'B78988',
@@ -180,7 +178,6 @@ def companydbUpdate():
         i = 0
         for k in range(25, 65):
             company = df.iloc[k, 8]
-            print(company)
             if isinstance(company, float):
                 if math.isnan(company):
                     break
@@ -221,7 +218,6 @@ def companydbUpdate():
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
                 unmet.append(0)
                 unmet.append('F2C2B7')
-                print(unmet)
                 conn.execute('insert into manudis values (?,?,?,?,?)', unmet)
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
@@ -263,7 +259,6 @@ def companydbUpdate():
                 unmet.append(temp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
                 unmet.append('F2C2B7')
-                print(unmet)
                 conn.execute('insert into manudis values (?,?,?,?,?)', unmet)
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
@@ -293,7 +288,6 @@ def companydbUpdate():
 
         for k in range(26, 50):
             company = df2015.iloc[k, 2]
-            print(company)
             if isinstance(company, float):
                 if math.isnan(company):
                     break
@@ -327,7 +321,6 @@ def companydbUpdate():
             if isinstance(company, float):
                 if math.isnan(company):
                     break
-            print(company)
             disease = 'HIV'
             _k6 = df2015.iloc[k, 6]
             if is_df2015_true.iloc[k, 6] == False:
@@ -365,7 +358,6 @@ def companydbUpdate():
                 unmet.append(temp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
                 unmet.append('F2C2B7')
-                print(unmet)
                 conn.execute('insert into manudis2015 values (?,?,?,?,?)', unmet)
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
@@ -399,7 +391,6 @@ def companydbUpdate():
             if isinstance(company, float):
                 if math.isnan(company):
                     break
-            print(company)
             disease = 'HIV'
             _k6 = df2015.iloc[k, 9]
             if is_df2015_true.iloc[k, 9] == False:
@@ -429,7 +420,6 @@ def companydbUpdate():
             if isinstance(company, float):
                 if math.isnan(company):
                     break
-            print(company)
             disease = 'Malaria'
             _k9 = df2015.iloc[k, 9]
             if is_df2015_true.iloc[k, 9] == False:
@@ -459,10 +449,7 @@ def companydbUpdate():
             if isinstance(company, float):
                 if math.isnan(company):
                     break
-            print(company)
-            print(k)
             k13 = df.iloc[k, 13]
-            print(k13)
             if is_df_true.iloc[k, 13] == False:
                 temphd = 0
             else:
@@ -491,9 +478,7 @@ def companydbUpdate():
             if isinstance(company, float):
                 if math.isnan(company):
                     break
-            print(company)
             k13 = df2015.iloc[k, 13]
-            print(k13)
             if is_df2015_true.iloc[k, 13] == False:
                 temphd = 0
             else:
@@ -502,7 +487,6 @@ def companydbUpdate():
             daly2010B = float(temphd)
 
             k14 = df2015.iloc[k, 14]
-            print(k14)
             if is_df2015_true.iloc[k, 14] == False:
                 tempd1 = 0
             else:
@@ -515,7 +499,6 @@ def companydbUpdate():
                 row = [company, daly2010B, daly2015, color]
                 i += 1
                 manu2015total.append(row)
-                print(row)
                 conn.execute('insert into manutot2015 values (?,?,?,?)', row)
 
         ###############################PATENT PATENT PATENT CODE BELOW ######################################################################
@@ -526,7 +509,6 @@ def companydbUpdate():
         for i in range(1, 39):
             prow = []
             comp = df.iloc[1, i]
-            print(comp)
             prow.append(comp)
             for j in range(8, 21):
                 if j == 8:
@@ -559,9 +541,7 @@ def companydbUpdate():
                     prow[ind] += oldrow[ind]
             oldrow = prow
             if comp != df.iloc[1, i + 1]:
-                print(prow)
                 pat2010.append(prow)
-                print(pat2010)
         unmet = ['Unmet Need']
         for j in range(8, 21):
             if j == 8:
@@ -592,11 +572,9 @@ def companydbUpdate():
                 unmet.append(temp)
         pat2010.append(unmet)
         colind = 0
-        print(pat2010)
         for item in pat2010:
             item.append(colors[colind])
             colind += 1
-            print(item)
             conn.execute(' insert into patent2010 values (?,?,?,?,?,?,?,?,?,?,?,?) ', item)
         # print(pat2010)
 
@@ -606,7 +584,6 @@ def companydbUpdate():
             prow = []
             comp = df.iloc[1, i]
             prow.append(comp)
-            print(comp)
             for j in range(8, 21):
                 if j == 8:
                     tb1 = cleanfloat(df.iloc[8, i])
@@ -668,12 +645,10 @@ def companydbUpdate():
                     temp = 0
                 unmet.append(temp)
         pat2013.append(unmet)
-        print(pat2013)
         colind = 0
         for item in pat2013:
             item.append(colors[colind])
             colind += 1
-            print(item)
             conn.execute(' insert into patent2013 values (?,?,?,?,?,?,?,?,?,?,?,?) ', item)
         # print(pat2013)
 
@@ -681,11 +656,8 @@ def companydbUpdate():
         pat2015 = []
         for i in range(45, 88):
             prow = []
-            print(i)
-            print(df2015)
             comp = df2015.iloc[1, i]
             prow.append(comp)
-            print(comp)
             for j in range(8, 21):
                 if j == 8:
                     if is_df2015_true.iloc[8, i] == True:
@@ -725,7 +697,6 @@ def companydbUpdate():
                     prow.append(total)
                 else:
                     temp = df2015.iloc[j, i]
-                    print(temp)
                     if temp == '-' or temp == '#REF!':
                         temp = 0
                     if isinstance(temp, float) == False and isinstance(temp, int) == False:
@@ -793,8 +764,6 @@ def companydbUpdate():
             item.append(colors[colind])
             colind += 1
             conn.execute(' insert into patent2015 values (?,?,?,?,?,?,?,?,?,?,?,?) ', item)
-        print(pat2015)
-
         # This is to calculate data for 2010B and 2015
 
         ##############   END OF PATENT CODE  ############################################################################
@@ -803,7 +772,6 @@ def companydbUpdate():
         conn.commit()
         conn.close()
         return 'success'
-        print("Database operation complete")
     except Exception as e:
         error = "Company page not updated"
         conn.rollback()

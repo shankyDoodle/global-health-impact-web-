@@ -1,9 +1,8 @@
 import sqlite3
 import pandas as pd
-import math
 
 def createTablesCountry():
-    conn = sqlite3.connect('ghi.db')
+    conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
 
     conn.execute(''' DROP TABLE IF EXISTS country2010 ''')
     conn.execute(''' DROP TABLE IF EXISTS country2013 ''')
@@ -11,7 +10,6 @@ def createTablesCountry():
     conn.execute(''' DROP TABLE IF EXISTS countryp2010 ''')
     conn.execute(''' DROP TABLE IF EXISTS countryp2013 ''')
     conn.execute(''' DROP TABLE IF EXISTS countryp2015 ''')
-
     conn.execute(
         ''' CREATE TABLE country2010 (country text, total real, tb real, malaria real, hiv real, roundworm real, hookworm real, whipworm real, schistosomiasis real, lf real) ''')
     conn.execute(
@@ -29,12 +27,11 @@ def createTablesCountry():
 
 #url = 'https://docs.google.com/spreadsheets/d/1IBfN_3f-dG65YbLWQbkXojUxs2PlQyo7l04Ubz9kLkU/pub?gid=0&single=true&output=csv'
 
+#createTablesCountry()
 
 def countrydbUpdate():
     try:
-        conn = sqlite3.connect('ghi.db')
-        url = 'ORS_Impact_Score_2010_2013.csv'
-        url2010B2015 = 'ORS_Impact_Score_2010B_2015.csv'
+        conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
         conn.execute(''' DELETE FROM country2010_bkp ''')
         conn.execute(''' DELETE FROM country2013_bkp ''')
         conn.execute(''' DELETE FROM country2015_bkp ''')
@@ -53,6 +50,8 @@ def countrydbUpdate():
         conn.execute(''' DELETE FROM countryp2010 ''')
         conn.execute(''' DELETE FROM countryp2013 ''')
         conn.execute(''' DELETE FROM countryp2015 ''')
+        #url = 'ORS_Impact_Score_2010_2013.csv'
+        #url2010B2015 = 'ORS_Impact_Score_2010B_2015.csv'
         url = 'https://docs.google.com/spreadsheets/d/1IBfN_3f-dG65YbLWQbkXojUxs2PlQyo7l04Ubz9kLkU/pub?gid=0&single=true&output=csv'
         df = pd.read_csv(url, skiprows=1)
         url2010B2015 = 'https://docs.google.com/spreadsheets/d/1vwMReqs8G2jK-Cx2_MWKn85MlNjnQK-UR3Q8vZ_pPNk/pub?gid=0&single=true&output=csv'
@@ -78,7 +77,7 @@ def countrydbUpdate():
         mapp = []
 
         for i in range(3, 220):
-            country = df.iloc[i, 0].decode('utf8')
+            country = df.iloc[i, 0]
             if is_df_true.iloc[i, 7] == True:
                 tb = clean(df.iloc[i, 7])
             else:
@@ -132,7 +131,6 @@ def countrydbUpdate():
             row = [country, total, tb, malaria, hiv, roundworm, hookworm, whipworm, schistosomiasis, lf]
             mapp.append(row)
         for k in countrydata:
-            print(k)
             conn.execute(''' INSERT INTO country2010 VALUES (?,?,?,?,?,?,?,?,?,?) ''', k)
 
         for l in mapp:
@@ -141,8 +139,7 @@ def countrydbUpdate():
         countrydata2 = []
         mapp2 = []
         for i in range(3, 218):
-            country = df.iloc[i, 65].decode('utf8')
-            print(country)
+            country = df.iloc[i, 65]
             if is_df_true.iloc[i, 72] == True:
                 tb = clean(df.iloc[i, 72])
             else:
@@ -202,7 +199,6 @@ def countrydbUpdate():
             mapp2.append(row)
 
         for k in countrydata2:
-            print(k)
             conn.execute(''' INSERT INTO country2013 VALUES (?,?,?,?,?,?,?,?,?,?,?) ''', k)
 
         for l in mapp2:
@@ -211,7 +207,7 @@ def countrydbUpdate():
         countrydata3 = []
         mapp2 = []
         for i in range(3, 218):
-            country = df2015.iloc[i, 65].decode('utf8')
+            country = df2015.iloc[i, 65]
             if is_df2015_true.iloc[i, 72] == True:
                 tb = clean(df2015.iloc[i, 72])
             else:
@@ -269,22 +265,21 @@ def countrydbUpdate():
             lf = (j[10] / maxval) * 100
             row = [country, total, tb, malaria, hiv, roundworm, hookworm, whipworm, schistosomiasis, onchoceriasis, lf]
             mapp2.append(row)
-            # print(countrydata3)
         for k in countrydata3:
-            # print(k)
             conn.execute(''' INSERT INTO country2015 VALUES (?,?,?,?,?,?,?,?,?,?,?) ''', k)
 
         for l in mapp2:
-            print(l)
             conn.execute(''' INSERT INTO countryp2015 VALUES (?,?,?,?,?,?,?,?,?,?,?) ''', l)
 
         conn.commit()
         conn.close()
-        print("Database operation complete")
+        print("Database operation compelete")
         return 'success'
 
     except Exception as e:
-        error = "Country page not updated"
+        error = e
         conn.rollback()
         conn.close()
         return error
+
+countrydbUpdate()
