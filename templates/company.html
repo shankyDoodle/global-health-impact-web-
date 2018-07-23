@@ -109,7 +109,7 @@
     </div>
     <div class="col-sm-6">
         <div class="firstPieChart">
-            <p class="bluetxt" style="font-size:26px; !important">Proportion of Global Disease Burden Alleviated by Originator Company’s Drugs</p>
+            <p class="bluetxt" style="font-size:26px; !important">Proportion of Global Disease Burden <b>Alleviated</b> by Originator Company’s Drugs</p>
             <div class="piewrap">
                 <div class="piechart" id="manupie1"></div>
             </div>
@@ -201,10 +201,11 @@ The impacts of the ranked companies’ drugs is only one of many measures of a c
 </div>
 <div class="row">
     <div class="col-sm-6">
-        <p class="txtcontent">While not intended to serve as a measure of good company behavior, we believe that this index can serve as a valuable tool. This ranking system serves as the first scientifically rigorous comparison of pharmaceutical companies by their drugs’ impacts on death and disability. A scientific model of this impact is a neglected, yet important, piece of the larger picture. While we endorse the vital importance of strong access policies, we believe this ranking can be an important piece in that puzzle. Companies’ scores will improve most if they: (1) develop drugs that will have the biggest impact on the global</p>
+        <p class="txtcontent">While not intended to serve as a measure of good company behavior, we believe that this index can serve as a valuable tool. This ranking system serves as the first scientifically rigorous comparison of pharmaceutical companies by their drugs’ impacts on death and disability. A scientific model of this impact is a neglected, yet important, piece of the larger picture.
+            <br><br>While we endorse the vital importance of strong access policies, we believe this ranking can be an important piece in that puzzle. Companies’ scores will improve most if they: (1) develop drugs that will have the biggest impact on the global</p>
     </div>
     <div class="col-sm-6">
-        <p class="txtcontent">burden of disease and (2) change their access policies to ensure these drugs (along with their existing products) reach as many people as possible. We strongly believe that this is best achieved by working closely with civil society organizations.
+        <p class="txtcontent">burden of disease and (2) change their access policies to ensure these drugs (along with their existing products) reach as many people as possible. We strongly believe that this is best achieved by working closely with civil society organizations. <br><br>
 Of course, some companies may raise their scores by simply acquiring the most effective drugs for a particular disease (the first prong), and counting on governments and aid organizations to pay inflated prices for them (ignoring the second prong). Thus, for a complete picture, this ranking system must be read in conjunction with others (see Limitations, above).</p>
     </div>
 </div>
@@ -236,24 +237,6 @@ Of course, some companies may raise their scores by simply acquiring the most ef
     var chart2 = new google.visualization.PieChart(document.getElementById('patpie2'));
     chart1.draw(data1, options1);
     chart2.draw(data2, options2);
-
-    function OnSelectedIndexChange()
-    {
-        var patentdata = {{patent2 | safe}}
-        console.log(patentdata)
-        if (document.getElementById('selectYear').value == "5"){
-          alert("5");
-        }
-        if (document.getElementById('selectYear').value == "10"){
-          alert("10");
-        }
-        if (document.getElementById('selectYear').value == "15"){
-          alert("15");
-        }
-        if (document.getElementById('selectYear').value == "20"){
-          alert("20");
-        }
-    }
   };
 </script>
 <script type="text/javascript">
@@ -270,7 +253,7 @@ Of course, some companies may raise their scores by simply acquiring the most ef
     </div>
     <div class="col-sm-6">
         <div class="contentbox">
-            <p class="bluetxt" style="font-size:26px; !important">Proportion of Global Disease Burden Alleviated by Originator Company’s Drugs</p>
+            <p class="bluetxt" style="font-size:26px; !important">Proportion of Global Disease Burden <b>Alleviated</b> by Originator Company’s Drugs</p>
             <div class="piewrap">
                 <div class="piechart" id="patpie1"></div>
             </div>
@@ -294,12 +277,6 @@ Of course, some companies may raise their scores by simply acquiring the most ef
         <div class="contentbox">
             <p class="bluetxt" style="font-size:26px; !important">Patent Holders’ Total Drug Scores</p>
             <div id="chart_div">
-                <select id = selectYear onChange="OnSelectedIndexChange()">
-                    <option value="5">Past 5 years</option>
-                    <option value="10">Past 10 years</option>
-                    <option value="15">Past 15 years</option>
-                    <option value="20">Past 20 years</option>
-                </select>
                 {% for comp in patent2 %}
 
                     <div id="" style="padding-top: 2px; font-family: 'Nunito','sans-serif';"><a data-balloon="{{ comp.1 }}" data-balloon-pos="right">{{ comp.0 }}</a>

@@ -1335,7 +1335,11 @@ def company():
         print(k)
         if n < 4:
             comp = k[0]
-            shortcomp = comp[0:10]
+            tempcomp = comp
+            if len(comp) > 17:
+                shortcomp = tempcomp.rsplit(' ', 1)[0]
+            else:
+                shortcomp = comp[0:17]
             temprow.append(comp)
             temprow.append(shortcomp)
             scolor=k[2]
@@ -1353,7 +1357,11 @@ def company():
         print(k)
         if n < 4:
             comp = k[0]
-            shortcomp = comp[0:10]
+            tempcomp = comp
+            if len(comp) > 17:
+                shortcomp = tempcomp.rsplit(' ', 1)[0]
+            else:
+                shortcomp = comp[0:17]
             temprow.append(comp)
             temprow.append(shortcomp)
             scolor=k[2]
@@ -1535,7 +1543,11 @@ def companyindx(year,disease):
         print(k)
         if n < 4:
             comp = k[0]
-            shortcomp = comp[0:10]
+            tempcomp = comp
+            if len(comp) > 25:
+                shortcomp = tempcomp.rsplit(' ', 1)[0]
+            else:
+                shortcomp = comp[0:25]
             temprow.append(comp)
             temprow.append(shortcomp)
             scolor = k[2]
@@ -1553,7 +1565,11 @@ def companyindx(year,disease):
         print(k)
         if n < 4:
             comp = k[0]
-            shortcomp = comp[0:10]
+            tempcomp = comp
+            if len(comp) > 25:
+                shortcomp = tempcomp.rsplit(' ', 1)[0]
+            else:
+                shortcomp = comp[0:25]
             temprow.append(comp)
             temprow.append(shortcomp)
             scolor = k[2]
@@ -1696,7 +1712,11 @@ def patent(year,disease):
         comp = k[0]
         score = k[1]
         color = "#"+k[2]
-        shortcomp = comp[0:10]
+        tempcomp = comp
+        if len(comp) > 17:
+            shortcomp = tempcomp.rsplit(' ', 1)[0]
+        else:
+            shortcomp = comp[0:17]
         labit.append(comp)
         labit.append(shortcomp)
         labit.append(color)
@@ -1722,7 +1742,11 @@ def patent(year,disease):
         score = k[1]
         color = "#"+k[2]
         patYear = k[3]
-        shortcomp = comp[0:10]
+        tempcomp = comp
+        if len(comp) > 17:
+            shortcomp = tempcomp.rsplit(' ', 1)[0]
+        else:
+            shortcomp = comp[0:17]
         labit.append(comp)
         labit.append(shortcomp)
         labit.append(color)
