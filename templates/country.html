@@ -57,6 +57,7 @@
 
         google.visualization.events.addListener(geomap, 'select', myClickHandler);
 
+        {% if isall == 1 %}
          row = sorted[0];
          var bardata = new google.visualization.DataTable();
          bardata.addColumn('string','Country');
@@ -85,6 +86,41 @@
          var barchart = new google.visualization.BarChart(document.getElementById('horbars'));
          barchart.draw(bardata,baroptions);
          document.getElementById('cntname').innerHTML = row[0];
+		 {% endif %}
+		 {% if isall == 0 %}
+		    row = forBarData[0];
+            console.log(row);
+            // alert("{{color}}");
+            var disColor = "color:"+"{{color}}";
+            var bardata = new google.visualization.DataTable();
+            bardata.addColumn('string','Country');
+            bardata.addColumn('number','Score');
+            bardata.addColumn({type: 'string', role: 'style'});
+            bardata.addRow(["{{ disease }}",row[1],disColor]);
+            var baroptions = {
+                legend:'none',
+                top: 0,
+                width: 400,
+                hAxis: {
+                    viewWindow: {
+                        min: 0,
+                        max: 1.5*row[1]
+                    }
+                },
+                animation:{
+                    startup: true,
+                    duration: 1000,
+                    easing: 'out',
+                }
+            };
+            // alert(bardata);
+            // alert(baroptions);
+
+            var barchart = new google.visualization.BarChart(document.getElementById('horbars'));
+            barchart.draw(bardata,baroptions);
+            // console.log(row[0]);
+            document.getElementById('cntname').innerHTML = row[0];
+		 {% endif %}
     };
 
     {% if isall == 1 %}

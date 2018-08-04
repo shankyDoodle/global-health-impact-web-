@@ -64,16 +64,21 @@
             </div>
         </div>
         <div class="pielegend" style="max-height:80px;overflow-y:scroll">
-            <table style="margin:auto">
-                {% for row in pielabb %}
-                <tr style="float:center">
-                    {% for item in row %}
-                    <td class="tablecell leftcell"><div class="colorbox" style="background-color:{{ item.2 |safe }};"></div></td>
-                    <td class="tablecell legendtxt" title="{{ item.0 |safe }}: {{ item.3 |safe }}">{{ item.1 |safe }}</td>
+              <table style="margin:auto;white-space: nowrap;">
+                    {% for row in pielab1 %}
+                    <tr style="float:center">
+                        <td class="tablecell">
+                            <div class="colorbox" style="background-color:#{{ row.2 |safe }};"></div>
+                        </td>
+                        <td class="tablecell legendtxt" title="{{ row.3 |safe }}">{{ row.1 |safe }}</td>
+
+                        <td class="tablecell leftcell">
+                            <div class="colorbox" style="background-color:#{{ row.6 |safe }};"></div>
+                        </td>
+                        <td class="tablecell legendtxt" title="{{ row.7 |safe }}">{{ row.5 |safe }}</td>
+                    </tr>
                     {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
+                </table>
         </div>
         </div>
     </div>
@@ -104,16 +109,16 @@
             }
         </script>
         <div class="pielegend">
-            <table style="margin:auto">
-                {% for row in pielabb %}
-                <tr style="float:center">
-                    {% for item in row %}
-                    <td class="tablecell leftcell"><div class="colorbox" style="background-color:{{ item.2 |safe }};"></div></td>
-                    <td class="tablecell legendtxt" title="{{ item.0 |safe }}: {{ item.3 |safe }}">{{ item.1 |safe }}</td>
+             <table style="margin:auto;white-space: nowrap;">
+                    {% for row in pielab2 %}
+                    <tr style="float:center">
+                        <td class="tablecell"><div class="colorbox" style="background-color:#{{ row.2 |safe }};"></div></td>
+                        <td class="tablecell legendtxt" title="{{ row.3 |safe }}">{{ row.1 |safe }}</td>
+                        <td class="tablecell leftcell"><div class="colorbox" style="background-color:#{{ row.6 |safe }};"></div></td>
+                        <td class="tablecell legendtxt" title="{{ row.7 |safe }}">{{ row.5 |safe }}</td>
+                    </tr>
                     {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
+                </table>
         </div>
     </div>
 </div>

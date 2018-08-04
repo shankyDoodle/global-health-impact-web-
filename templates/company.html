@@ -126,14 +126,6 @@
                             <div class="colorbox" style="background-color:#{{ row.5 |safe }};"></div>
                         </td>
                         <td class="tablecell legendtxt" title="{{ row.3 |safe }}">{{ row.4 |safe }}</td>
-
-                        <td class="tablecell leftcell">
-                            <div class="colorbox" style="background-color:#{{ row.8 |safe }};"></div>
-                        </td>
-                        <td class="tablecell legendtxt" title="{{ row.6 |safe }}">{{ row.7 |safe }}</td>
-
-                        <td class="tablecell leftcell"><div class="colorbox" style="background-color:#{{ row.11 |safe }};"></div></td>
-                        <td class="tablecell legendtxt" title="{{ row.9 |safe }}">{{ row.10 |safe }}</td>
                     </tr>
                     {% endfor %}
                 </table>
@@ -169,10 +161,6 @@
                         <td class="tablecell legendtxt" title="{{ row.0 |safe }}">{{ row.1 |safe }}</td>
                         <td class="tablecell leftcell"><div class="colorbox" style="background-color:#{{ row.5 |safe }};"></div></td>
                         <td class="tablecell legendtxt" title="{{ row.3 |safe }}">{{ row.4 |safe }}</td>
-                        <td class="tablecell leftcell"><div class="colorbox" style="background-color:#{{ row.8 |safe }};"></div></td>
-                        <td class="tablecell legendtxt" title="{{ row.6 |safe }}">{{ row.7 |safe }}</td>
-                        <td class="tablecell leftcell"><div class="colorbox" style="background-color:#{{ row.11 |safe }};"></div></td>
-                        <td class="tablecell legendtxt" title="{{ row.9 |safe }}">{{ row.10 |safe }}</td>
                     </tr>
                     {% endfor %}
                 </table>
@@ -259,14 +247,19 @@ Of course, some companies may raise their scores by simply acquiring the most ef
             </div>
             <div class="pielegend">
                 <table style="margin:auto;white-space: nowrap;">
-                {% for row in pielabb1 %}
-                <tr style="float:center">
-                    {% for item in row %}
-                    <td class="tablecell leftcell"><div class="colorbox" style="background-color:{{ item.2 |safe }};"></div></td>
-                    <td class="tablecell legendtxt" title="{{ item.0 |safe }}: {{ item.3 |safe }}">{{ item.1 |safe }}</td>
+               {% for row in pielab1 %}
+                    <tr style="float:center">
+                        <td class="tablecell">
+                            <div class="colorbox" style="background-color:#{{ row.2 |safe }};"></div>
+                        </td>
+                        <td class="tablecell legendtxt" title="{{ row.0 |safe }}">{{ row.1 |safe }}</td>
+
+                        <td class="tablecell leftcell">
+                            <div class="colorbox" style="background-color:#{{ row.5 |safe }};"></div>
+                        </td>
+                        <td class="tablecell legendtxt" title="{{ row.3 |safe }}">{{ row.4 |safe }}</td>
+                    </tr>
                     {% endfor %}
-                </tr>
-                {% endfor %}
             </table>
             </div>
         </div>
@@ -295,14 +288,14 @@ Of course, some companies may raise their scores by simply acquiring the most ef
             </div>
             <div class="pielegend">
                 <table style="margin:auto;white-space: nowrap;">
-                {% for row in pielabb2 %}
-                <tr style="float:center">
-                    {% for item in row %}
-                    <td class="tablecell leftcell"><div class="colorbox" style="background-color:{{ item.2 |safe }};"></div></td>
-                    <td class="tablecell legendtxt" title="{{ item.0 |safe }}: {{ item.3 |safe }}">{{ item.1 |safe }}</td>
+                    {% for row in pielab2 %}
+                    <tr style="float:center">
+                        <td class="tablecell"><div class="colorbox" style="background-color:#{{ row.2 |safe }};"></div></td>
+                        <td class="tablecell legendtxt" title="{{ row.0 |safe }}">{{ row.1 |safe }}</td>
+                        <td class="tablecell leftcell"><div class="colorbox" style="background-color:#{{ row.5 |safe }};"></div></td>
+                        <td class="tablecell legendtxt" title="{{ row.3 |safe }}">{{ row.4 |safe }}</td>
+                    </tr>
                     {% endfor %}
-                </tr>
-                {% endfor %}
                 </table>
             </div>
         </div>
