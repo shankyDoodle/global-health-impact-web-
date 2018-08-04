@@ -77,7 +77,7 @@ def countrydbUpdate():
         mapp = []
 
         for i in range(3, 220):
-            country = df.iloc[i, 0]
+            country = df.iloc[i, 0].decode('utf8')
             if is_df_true.iloc[i, 7] == True:
                 tb = clean(df.iloc[i, 7])
             else:
@@ -139,7 +139,7 @@ def countrydbUpdate():
         countrydata2 = []
         mapp2 = []
         for i in range(3, 218):
-            country = df.iloc[i, 65]
+            country = df.iloc[i, 65].decode('utf8')
             if is_df_true.iloc[i, 72] == True:
                 tb = clean(df.iloc[i, 72])
             else:
@@ -207,7 +207,7 @@ def countrydbUpdate():
         countrydata3 = []
         mapp2 = []
         for i in range(3, 218):
-            country = df2015.iloc[i, 65]
+            country = df2015.iloc[i, 65].decode('utf8')
             if is_df2015_true.iloc[i, 72] == True:
                 tb = clean(df2015.iloc[i, 72])
             else:

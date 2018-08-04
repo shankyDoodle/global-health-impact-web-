@@ -21,10 +21,19 @@ def countryDisdbUpdate():
         conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
         conn.execute('''DELETE FROM countrybydis2010_bkp''')
         conn.execute('''DELETE FROM countrybydis2013_bkp''')
+        conn.execute('''DELETE FROM diseaseall2010_bkp''')
+        conn.execute('''DELETE FROM diseaseall2013_bkp''')
+        conn.execute('''DELETE FROM diseaseall2015_bkp''')
         conn.execute('''INSERT INTO countrybydis2010_bkp SELECT * FROM countrybydis2010''')
         conn.execute('''INSERT INTO countrybydis2013_bkp SELECT * FROM countrybydis2013''')
+        conn.execute('''INSERT INTO diseaseall2010_bkp SELECT * FROM diseaseall2010''')
+        conn.execute('''INSERT INTO diseaseall2013_bkp SELECT * FROM diseaseall2013''')
+        conn.execute('''INSERT INTO diseaseall2015_bkp SELECT * FROM diseaseall2015''')
         conn.execute('''DELETE FROM countrybydis2010''')
         conn.execute('''DELETE FROM countrybydis2013''')
+        conn.execute('''DELETE FROM diseaseall2010''')
+        conn.execute('''DELETE FROM diseaseall2013''')
+        conn.execute('''DELETE FROM diseaseall2015''')
         datasrc = 'https://docs.google.com/spreadsheets/d/1IBfN_3f-dG65YbLWQbkXojUxs2PlQyo7l04Ubz9kLkU/pub?gid=1996016204&single=true&output=csv'
         df = pd.read_csv(datasrc, skiprows=1)
         datasrc3 = 'https://docs.google.com/spreadsheets/d/1vwMReqs8G2jK-Cx2_MWKn85MlNjnQK-UR3Q8vZ_pPNk/pub?gid=1996016204&single=true&output=csv'
@@ -34,7 +43,7 @@ def countryDisdbUpdate():
         for i in range(1, 218):
             print(i)
             temprow = []
-            temprow.append(df.iloc[i, 0])
+            temprow.append(df.iloc[i, 0].decode('utf8'))
             for k in range(1, 10):
                 temp = df.iloc[i, k]
                 if isinstance(temp, float):
@@ -43,10 +52,11 @@ def countryDisdbUpdate():
                     temprow.append(float(temp.replace(',', '').replace('-', '0')))
             print(temprow)
             conn.execute(' insert into countrybydis2010 values (?,?,?,?,?,?,?,?,?,?)', temprow)
+            conn.execute(' insert into diseaseall2010 values (?,?,?,?,?,?,?,?,?,?)', temprow)
 
         for i in range(1, 218):
             temprow = []
-            temprow.append(df.iloc[i, 11])
+            temprow.append(df.iloc[i, 11].decode('utf8'))
             for k in range(12, 21):
                 temp = df.iloc[i, k]
                 if isinstance(temp, float):
@@ -55,6 +65,31 @@ def countryDisdbUpdate():
                     temprow.append(float(temp.replace(',', '').replace('-', '0')))
             print(temprow)
             conn.execute(' insert into countrybydis2013 values (?,?,?,?,?,?,?,?,?,?)', temprow)
+            conn.execute(' insert into diseaseall2013 values (?,?,?,?,?,?,?,?,?,?)', temprow)
+
+        data2010B = []
+        data2015 = []
+        for i in range(1, 218):
+            temprow = []
+            temprow.append(df_2010B_2015.iloc[i, 11].decode('utf8'))
+            print(temprow)
+            for k in range(12, 21):
+                temp = df_2010B_2015.iloc[i, k]
+                # if isinstance(temp, float):
+                # temprow.append(0.0)
+                if k in (15, 19):
+                    try:
+                        temprow.append(temp)
+                    except:
+                        temprow.append(0.0)
+                else:
+                    try:
+                        temprow.append(float(temp.replace(',', '').replace('-', '0')))
+                    except:
+                        temprow.append(0.0)
+            # conn.execute(' insert into countrybydis2015 values (?,?,?,?,?,?,?,?,?,?)', temprow)
+            conn.execute(' insert into diseaseall2015 values (?,?,?,?,?,?,?,?,?,?)', temprow)
+
         conn.commit()
         conn.close()
         print("Database operation complete")
@@ -65,4 +100,3 @@ def countryDisdbUpdate():
         conn.rollback()
         conn.close()
         return error
-

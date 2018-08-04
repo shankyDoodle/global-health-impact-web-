@@ -68,8 +68,8 @@ def companydbUpdate():
         datasrc20102015 = 'https://docs.google.com/spreadsheets/d/1vwMReqs8G2jK-Cx2_MWKn85MlNjnQK-UR3Q8vZ_pPNk/pub?gid=1560508440&single=true&output=csv'
         # datasrc = 'ORS_GlobalBurdenDisease_2010_2013.csv'
         # datasrc20102015 = 'ORS_GlobalBurdenDisease_2010B_2015.csv'
-        df = pd.read_csv(datasrc, skiprows=1).fillna(value = 0)
-        df2015 = pd.read_csv(datasrc20102015, skiprows=1).fillna(value = 0)
+        df = pd.read_csv(datasrc, skiprows=1).fillna(value=0)
+        df2015 = pd.read_csv(datasrc20102015, skiprows=1).fillna(value=0)
         is_df2015_true = df2015.notnull()
         is_df_true = df.notnull()
         i = 0;
@@ -78,7 +78,10 @@ def companydbUpdate():
                   'BAE2DA', 'B1345D', '5B75A7', '906F76', 'C0E188', 'DE9C2A', 'F15A22', '8F918B', 'F2C2B7', 'F7C406',
                   'B83F98', '548A9B', 'D86375', 'F1DBC6', '0083CA', '7A80A3', 'CA8566', 'A3516E', '1DF533', '510B95',
                   'DFF352', 'F2C883', 'E3744D', '26B2BE', '5006BA', 'B99BCF', 'DC2A5A', 'D3D472', '2A9DC4', 'C25C90',
-                  '65A007', 'FE3289', 'C6DAB5', 'DDF6AC', 'B7E038', '1ADBBD', '3BC6D5', '0ACD57', '22419F', 'D47C5B']
+                  '65A007', 'FE3289', 'C6DAB5', 'DDF6AC', 'B7E038', '1ADBBD', '3BC6D5', '0ACD57', '22419F', 'D47C5B',
+                  '139A97', '1CDDD8', 'FF033D', '004444', 'C25C7D', 'B5A28F', 'C25C7D', '90BA3E', 'DA8709', 'B0B0CE',
+                  '2D00DD', 'DD2D00', 'FAFDFD', 'F5FD2F', '0DC4E0', 'FFD700', 'CC263C', 'F5F5DC', '3D9C35', '00CC00',
+                  'EAEAFF']
         for x in colors:
             y = '#' + x
             colorlist.append(y)
@@ -108,7 +111,6 @@ def companydbUpdate():
                 return resVal
             except:
                 return 0
-
 
         manudata = []
         manutotal = []
@@ -161,11 +163,11 @@ def companydbUpdate():
 
             hivdaly2010 = float(temph)
 
-            k11 = str (df.iloc[k, 7])
+            k11 = str(df.iloc[k, 7])
             if is_df_true.iloc[k, 7] == False:
                 temph1 = 0
             else:
-                temph1  = FloatOrZero(k11)
+                temph1 = FloatOrZero(k11)
 
             hivdaly2013 = float(temph1)
             if hivdaly2010 > 0 or hivdaly2013 > 0:
@@ -194,7 +196,7 @@ def companydbUpdate():
             if is_df_true.iloc[k, 10] == False:
                 temph1 = 0
             else:
-                temph1= FloatOrZero(k11)
+                temph1 = FloatOrZero(k11)
 
             hivdaly2013 = float(temph1)
             if hivdaly2010 > 0 or hivdaly2013 > 0:
@@ -250,9 +252,9 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'TB'
                 unmet.append(disease)
-                tb1 = cleanfloat(df.iloc[8, 92])
-                tb2 = cleanfloat(df.iloc[9, 92])
-                tb3 = cleanfloat(df.iloc[10, 92])
+                tb1 = cleanfloat(df.iloc[8, 91])
+                tb2 = cleanfloat(df.iloc[9, 91])
+                tb3 = cleanfloat(df.iloc[10, 91])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(0)
@@ -266,8 +268,8 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'Malaria'
                 unmet.append(disease)
-                mal1 = cleanfloat(df.iloc[11, 92])
-                mal2 = cleanfloat(df.iloc[12, 92])
+                mal1 = cleanfloat(df.iloc[11, 91])
+                mal2 = cleanfloat(df.iloc[12, 91])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(0)
@@ -279,13 +281,13 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'HIV'
                 unmet.append(disease)
-                hivtemp = cleanfloat(df.iloc[13, 92])
+                hivtemp = cleanfloat(df.iloc[13, 91])
                 unmet.append(0)
                 unmet.append(hivtemp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
                 unmet.append('F2C2B7')
                 conn.execute('insert into manudis values (?,?,?,?,?)', unmet)
-
+        i = 0
         for k in range(26, 50):
             company = df2015.iloc[k, 2]
             if isinstance(company, float):
@@ -396,7 +398,7 @@ def companydbUpdate():
             if is_df2015_true.iloc[k, 9] == False:
                 temph = 0
             else:
-                temph= FloatOrZero(_k6)
+                temph = FloatOrZero(_k6)
 
             hivdaly2010B = float(temph)
 
@@ -415,7 +417,7 @@ def companydbUpdate():
                 conn.execute('insert into manudis2015 values (?,?,?,?,?)', row)
 
         i = 0
-        for k in range(26, 63):
+        for k in range(26, 66):
             company = df2015.iloc[k, 8]
             if isinstance(company, float):
                 if math.isnan(company):
@@ -425,7 +427,7 @@ def companydbUpdate():
             if is_df2015_true.iloc[k, 9] == False:
                 temph = 0
             else:
-                temph= FloatOrZero(_k9)
+                temph = FloatOrZero(_k9)
 
             hivdaly2010B = float(temph)
 
@@ -433,7 +435,7 @@ def companydbUpdate():
             if is_df2015_true.iloc[k, 10] == False:
                 temph1 = 0
             else:
-                temph1= FloatOrZero(k10)
+                temph1 = FloatOrZero(k10)
 
             hivdaly2015 = float(temph1)
             if hivdaly2010B > 0 or hivdaly2015 > 0:
@@ -444,7 +446,7 @@ def companydbUpdate():
                 conn.execute('insert into manudis2015 values (?,?,?,?,?)', row)
 
         i = 0
-        for k in range(25, 88):
+        for k in range(25, 98):
             company = df.iloc[k, 12]
             if isinstance(company, float):
                 if math.isnan(company):
@@ -453,7 +455,7 @@ def companydbUpdate():
             if is_df_true.iloc[k, 13] == False:
                 temphd = 0
             else:
-                temphd =FloatOrZero(k13)
+                temphd = FloatOrZero(k13)
 
             daly2010 = float(temphd)
 
@@ -461,7 +463,7 @@ def companydbUpdate():
             if is_df_true.iloc[k, 14] == False:
                 tempd1 = 0
             else:
-                tempd1 =FloatOrZero(k14)
+                tempd1 = FloatOrZero(k14)
 
             daly2013 = float(tempd1)
 
@@ -473,7 +475,7 @@ def companydbUpdate():
                 conn.execute('insert into manutot values (?,?,?,?)', row)
 
         i = 0
-        for k in range(26, 88):
+        for k in range(26, 99):
             company = df2015.iloc[k, 12]
             if isinstance(company, float):
                 if math.isnan(company):
@@ -546,25 +548,25 @@ def companydbUpdate():
         for j in range(8, 21):
             if j == 8:
                 # print(df.iloc[7,46])
-                tb1 = cleanfloat(df.iloc[8, 42])
-                tb2 = cleanfloat(df.iloc[9, 42])
-                tb3 = cleanfloat(df.iloc[10, 42])
+                tb1 = cleanfloat(df.iloc[8, 41])
+                tb2 = cleanfloat(df.iloc[9, 41])
+                tb3 = cleanfloat(df.iloc[10, 41])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(temp)
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
-            elif j == 12:
-                mal1 = cleanfloat(df.iloc[11, 42])
-                mal2 = cleanfloat(df.iloc[12, 42])
+            elif j == 11:
+                mal1 = cleanfloat(df.iloc[11, 41])
+                mal2 = cleanfloat(df.iloc[12, 41])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(temp)
             elif j == 20:
-                total = cleanfloat(df.iloc[j, 42])
+                total = cleanfloat(df.iloc[j, 41])
                 unmet.append(total)
             else:
-                temp = df.iloc[j, 42]
+                temp = df.iloc[j, 41]
                 if isinstance(temp, float) == False and isinstance(temp, int) == False:
                     temp = float(temp.replace(',', ''))
                 if temp != temp:
@@ -620,25 +622,25 @@ def companydbUpdate():
         for j in range(8, 21):
             if j == 8:
                 # print(df.iloc[8,93])
-                tb1 = cleanfloat(df.iloc[8, 92])
-                tb2 = cleanfloat(df.iloc[9, 92])
-                tb3 = cleanfloat(df.iloc[10, 92])
+                tb1 = cleanfloat(df.iloc[8, 91])
+                tb2 = cleanfloat(df.iloc[9, 91])
+                tb3 = cleanfloat(df.iloc[10, 91])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(temp)
             elif j == 11:
-                mal1 = cleanfloat(df.iloc[11, 92])
-                mal2 = cleanfloat(df.iloc[12, 92])
+                mal1 = cleanfloat(df.iloc[11, 91])
+                mal2 = cleanfloat(df.iloc[12, 91])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(temp)
             elif j == 20:
-                total = cleanfloat(df.iloc[j, 92])
+                total = cleanfloat(df.iloc[j, 91])
                 unmet.append(total)
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
             else:
-                temp = df.iloc[j, 92]
+                temp = df.iloc[j, 91]
                 if isinstance(temp, float) == False and isinstance(temp, int) == False:
                     temp = float(temp.replace(',', ''))
                 if temp != temp:
@@ -713,17 +715,17 @@ def companydbUpdate():
         unmet = ['Unmet Need']
         for j in range(8, 21):
             if j == 8:
-                print(df2015.iloc[8, 91])
-                if is_df2015_true.iloc[8, 91] == True:
-                    tb1 = cleanfloat(df2015.iloc[8, 91])
+                print(df2015.iloc[8, 90])
+                if is_df2015_true.iloc[8, 90] == True:
+                    tb1 = cleanfloat(df2015.iloc[8, 90])
                 else:
                     tb1 = 0
-                if is_df2015_true.iloc[9, 91] == True:
-                    tb2 = cleanfloat(df2015.iloc[9, 91])
+                if is_df2015_true.iloc[9, 90] == True:
+                    tb2 = cleanfloat(df2015.iloc[9, 90])
                 else:
                     tb2 = 0
-                if is_df2015_true.iloc[10, 91] == True:
-                    tb3 = cleanfloat(df2015.iloc[10, 91])
+                if is_df2015_true.iloc[10, 90] == True:
+                    tb3 = cleanfloat(df2015.iloc[10, 90])
                 else:
                     tb3 = 0
                 tb = [tb1, tb2, tb3]
@@ -732,25 +734,25 @@ def companydbUpdate():
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
             elif j == 11:
-                if is_df2015_true.iloc[11, 91] == True:
-                    mal1 = cleanfloat(df2015.iloc[11, 91])
+                if is_df2015_true.iloc[11, 90] == True:
+                    mal1 = cleanfloat(df2015.iloc[11, 90])
                 else:
                     mall = 0
-                if is_df2015_true.iloc[12, 91] == True:
-                    mal2 = cleanfloat(df2015.iloc[12, 91])
+                if is_df2015_true.iloc[12, 90] == True:
+                    mal2 = cleanfloat(df2015.iloc[12, 90])
                 else:
                     mal2 = 0
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(temp)
             elif j == 20:
-                if is_df2015_true.iloc[j, 91] == True:
-                    total = cleanfloat(df2015.iloc[j, 91])
+                if is_df2015_true.iloc[j, 90] == True:
+                    total = cleanfloat(df2015.iloc[j, 90])
                 else:
                     total = 0
                 unmet.append(total)
             else:
-                temp = df2015.iloc[j, 91]
+                temp = df2015.iloc[j, 90]
                 if temp == '-' or temp == '#REF!':
                     temp = 0
                 if isinstance(temp, float) == False and isinstance(temp, int) == False:
@@ -777,6 +779,3 @@ def companydbUpdate():
         conn.rollback()
         conn.close()
         return error
-
-
-

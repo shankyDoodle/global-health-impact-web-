@@ -10,6 +10,8 @@ import math
 import companydb as objDbComp
 import countrybydisdb as objDbCountryDis
 import countrydb as objDBCountry
+import dbupdate as objDBDrug
+import diseasedb as objDBDisease
 
 app = Flask(__name__)
 
@@ -44,6 +46,7 @@ def requires_auth(f):
 
 
 def connect_db():
+    #return sqlite3.connect('/home/globalhealth/mysite/ghi.db')
     return sqlite3.connect('F:/global-health-impact-web/ghi.db')
 
 @app.before_request
@@ -713,7 +716,7 @@ def diseasepg(dyear, ddisease):
             print(efficacy2013)
 
         for row in data2:
-            country = str( row[0])
+            country = str(row[0])
             tb = row[1]
             # xx = [country,tb]
             xy = [country, tb]
@@ -839,38 +842,69 @@ def druginx():
         c+=1
         if _row != 'Unmet Need':
             impactpie.append(row)
-    lablist = []
     pielabb = []
+    n=0
+    temprow=[]
     for k in impactpie:
-        labit = []
-        drug = k[0]
-        score = k[1]
-        color = k[3]
-        shortdrug = drug[0:10]
-        labit.append(drug)
-        labit.append(shortdrug)
-        labit.append(color)
-        labit.append(score)
-        lablist.append(labit)
-    labrow = []
-    xx = 0
-    if len(lablist) < 4:
-        pielabb.append(lablist)
-    else:
-        for item in lablist:
-            labrow.append(item)
-            xx += 1
-            if xx % 4 == 0:
-                pielabb.append(labrow)
-                labrow = []
-                xx = 0
-    g.db.close()
+        print(k)
+        if n < 2:
+            drug = k[0]
+            tempcomp = drug
+            tempval = len(drug)
+            print(tempval)
+            if tempval > 25:
+                if len(drug) == 48:
+                    shortdrug = tempcomp.rsplit(' ', 4)[0]
+                else:
+                    shortdrug = tempcomp.rsplit(' ', 2)[0]
+            else:
+                shortdrug = drug[0:25]
+            score = k[1]
+            color = k[3]
+            col =  color[1:7]
+            temprow.append(drug)
+            temprow.append(shortdrug)
+            temprow.append(col)
+            temprow.append(score)
+            n+=1
+        else:
+            n=0
+            pielabb.append(temprow)
+            temprow=[]
+
     speclocate = ['2010','all','ALL']
+    pielabb2=[]
+    n = 0
+    temprow = []
+    for k in sortedpie2:
+        print(k)
+        if n < 2:
+            drug = str( k[0])
+            tempcomp = drug
+            tempval = len(drug)
+            if tempval > 25:
+                if len(drug) == 48:
+                    shortdrug = tempcomp.rsplit(' ', 4)[0]
+                else:
+                    shortdrug = tempcomp.rsplit(' ', 2)[0]
+            else:
+                shortdrug = drug[0:25]
+            score = k[1]
+            color = k[3]
+            col =  color[1:7]
+            temprow.append(drug)
+            temprow.append(shortdrug)
+            temprow.append(col)
+            temprow.append(score)
+            n+=1
+        else:
+            n = 0
+            pielabb2.append(temprow)
+            temprow = []
     print(pielabb)
-    print(piedata)
-    print(impactpie)
-    print(sortedpie2)
-    return render_template('drug.html', data=piedata, drug='All', navsub=3, showindex=1, pielabb=pielabb, drugcolors=drugcolors, speclocate = speclocate, scrolling=1, impactpie=impactpie, sortedpie2 = sortedpie2)
+    print(pielabb2)
+    g.db.close()
+    return render_template('drug.html', data=piedata, drug='All', navsub=3, showindex=1, pielab1=pielabb2,pielab2=pielabb, drugcolors=drugcolors, speclocate = speclocate, scrolling=1, impactpie=impactpie, sortedpie2 = sortedpie2)
 
 @app.route('/index/drug/<year>/<disease>')
 def drug(year,disease):
@@ -973,7 +1007,6 @@ def drug(year,disease):
         maxval = maxrow[1]
      else:
       maxval = maxrow[1]
-
     c = 0
     for row in sortedpie2:
         print(sortedpie2)
@@ -989,38 +1022,73 @@ def drug(year,disease):
         c+=1
         if _row != 'Unmet Need':
             impactpie.append(row)
-        lablist = []
-        pielabb = []
-        for k in impactpie:
-            labit = []
-            drug = k[0]
-            score = k[1]
-            color = k[3]
-            shortdrug = drug[0:10]
-            labit.append(drug)
-            labit.append(shortdrug)
-            labit.append(color)
-            labit.append(score)
-            lablist.append(labit)
-        labrow = []
-        xx = 0
-        if len(lablist) < 4:
-            pielabb.append(lablist)
-        else:
-            for item in lablist:
-                labrow.append(item)
-                xx += 1
-                if xx % 4 == 0:
-                    pielabb.append(labrow)
-                    labrow = []
-                    xx = 0
     g.db.close()
     speclocate = [year,drugg,disease]
-    print(piedata)
+    pielabb = []
+    n = 0
+    temprow = []
+    len(impactpie)
+    for k in impactpie:
+        print(k)
+        if n < 2:
+            drug = k[0]
+            tempcomp = drug
+            tempval = len(drug)
+            print(tempval)
+            if tempval > 25:
+                if len(drug) == 48:
+                    shortdrug = tempcomp.rsplit(' ', 4)[0]
+                else:
+                    shortdrug = tempcomp.rsplit(' ', 2)[0]
+            else:
+                shortdrug = drug[0:25]
+            score = k[1]
+            color = k[3]
+            col = color[1:7]
+            temprow.append(drug)
+            temprow.append(shortdrug)
+            temprow.append(col)
+            temprow.append(score)
+            n += 1
+        else:
+            n = 0
+            pielabb.append(temprow)
+            temprow = []
+
+    speclocate = ['2010', 'all', 'ALL']
+    pielabb2 = []
+    n = 0
+    temprow = []
+    for k in sortedpie2:
+        print(k)
+        if n < 2:
+            drug = str(k[0])
+            tempcomp = drug
+            tempval = len(drug)
+            if tempval > 25:
+                if len(drug) == 48:
+                    shortdrug = tempcomp.rsplit(' ', 4)[0]
+                else:
+                    shortdrug = tempcomp.rsplit(' ', 2)[0]
+            else:
+                shortdrug = drug[0:25]
+            score = k[1]
+            color = k[3]
+            col = color[1:7]
+            temprow.append(drug)
+            temprow.append(shortdrug)
+            temprow.append(col)
+            temprow.append(score)
+            n += 1
+        else:
+            n = 0
+            pielabb2.append(temprow)
+            temprow = []
     print(pielabb)
+    print(pielabb2)
     print(impactpie)
     print(sortedpie2)
-    return render_template('drug.html', data=piedata, drug=drugg, navsub=3, showindex=1, pielabb=pielabb, drugcolors=drugcolors, speclocate = speclocate, scrolling=1, impactpie=impactpie, sortedpie2 = sortedpie2)
+    return render_template('drug.html', data=piedata, drug=drugg, navsub=3, showindex=1, pielab1=pielabb2, pielab2=pielabb, drugcolors=drugcolors, speclocate = speclocate, scrolling=1, impactpie=impactpie, sortedpie2 = sortedpie2)
 
 @app.route('/index/country')
 def country():
@@ -1042,7 +1110,7 @@ def country():
     maps = list(filter(lambda x: x[0] != None, maps))
     mapdata = []
     for row in maps:
-        count = row[0]
+        count = str(row[0].encode('utf8'))
         score = row[1]
         hor = [count,score]
         mapdata.append(hor)
@@ -1055,7 +1123,7 @@ def country():
     i=0
     print("sortedlist")
     for row in sortedlist:
-        count = row[0]
+        count = str(row[0].encode('utf8'))
         if count is not None and count:
             #print("in here")
             combrow = [row,sortedval[i],[i]]
@@ -1333,35 +1401,45 @@ def company():
     temprow = []
     for k in piedata1:
         print(k)
-        if n < 4:
+        if n < 2:
             comp = k[0]
             tempcomp = comp
-            if len(comp) > 17:
-                shortcomp = tempcomp.rsplit(' ', 1)[0]
+            tempval = len(comp)
+            if tempval > 25:
+                if len(comp) == 77:
+                    shortcomp = tempcomp.rsplit(' ', 7)[0]
+                else:
+                    shortcomp = tempcomp.rsplit(' ', 2)[0]
             else:
-                shortcomp = comp[0:17]
+                shortcomp = comp[0:25]
             temprow.append(comp)
             temprow.append(shortcomp)
             scolor=k[2]
             sscolor=scolor[1:7]
             temprow.append(sscolor)
+            print(pielab1)
             n += 1
         else:
             n = 0
             pielab1.append(temprow)
+            print(pielab1)
             temprow = []
 
     n = 0
     temprow = []
     for k in piedata2:
         print(k)
-        if n < 4:
+        if n < 2:
             comp = k[0]
             tempcomp = comp
-            if len(comp) > 17:
-                shortcomp = tempcomp.rsplit(' ', 1)[0]
+            tempval = len(comp)
+            if tempval > 25:
+                if len(comp) == 77:
+                    shortcomp = tempcomp.rsplit(' ', 7)[0]
+                else:
+                    shortcomp = tempcomp.rsplit(' ', 2)[0]
             else:
-                shortcomp = comp[0:17]
+                shortcomp = comp[0:25]
             temprow.append(comp)
             temprow.append(shortcomp)
             scolor=k[2]
@@ -1406,6 +1484,9 @@ def company():
     g.db.close()
     url = name.lower()
     speclocate = [year,name,url]
+
+    print(pielab1)
+    print(pielab2)
     return render_template('company.html', data1=piedata2, data2=piedata1,name=name, navsub=2, showindex=1, pielab1=pielab1, pielab2=pielab2, bardata=bardata, comptype = 0, speclocate = speclocate, scrolling=1)
 
 @app.route('/index/company/manufacturer/<year>/<disease>')
@@ -1541,11 +1622,15 @@ def companyindx(year,disease):
     temprow = []
     for k in piedata1:
         print(k)
-        if n < 4:
+        if n < 2:
             comp = k[0]
             tempcomp = comp
-            if len(comp) > 25:
-                shortcomp = tempcomp.rsplit(' ', 1)[0]
+            tempval = len(comp)
+            if tempval > 25:
+                if len(comp) == 77:
+                    shortcomp = tempcomp.rsplit(' ', 7)[0]
+                else:
+                    shortcomp = tempcomp.rsplit(' ', 2)[0]
             else:
                 shortcomp = comp[0:25]
             temprow.append(comp)
@@ -1563,11 +1648,15 @@ def companyindx(year,disease):
     temprow = []
     for k in piedata2:
         print(k)
-        if n < 4:
+        if n < 2:
             comp = k[0]
             tempcomp = comp
-            if len(comp) > 25:
-                shortcomp = tempcomp.rsplit(' ', 1)[0]
+            tempval = len(comp)
+            if tempval > 25:
+                if len(comp) == 77:
+                    shortcomp = tempcomp.rsplit(' ', 7)[0]
+                else:
+                    shortcomp = tempcomp.rsplit(' ', 2)[0]
             else:
                 shortcomp = comp[0:25]
             temprow.append(comp)
@@ -1684,15 +1773,17 @@ def patent(year,disease):
         elif disease == 'lf':
             dat = g.db.execute(' select company, lf, color from patent2015 ')
     data = dat.fetchall()
+    print(data)
     patent1 = []
     patent2 = []
     for j in data:
         comp = str(j[0])
         score = j[1]
-        color = str(j[2])
+        color =  str(j[2])
         if score > 0:
             patent1.append([comp,score,color])
     patent1.sort(key=lambda x: x[1], reverse=True)
+    print(patent1)
     maxrow = patent1[0]
     if maxrow[0] == 'Unmet Need':
         maxrow = patent1[0]
@@ -1706,67 +1797,63 @@ def patent(year,disease):
     specname[0].upper()
     speclocate = [year,specname,disease]
     pielabb1 = []
-    lablist1 = []
+    n = 0
+    temprow = []
     for k in patent1:
-        labit = []
-        comp = k[0]
-        score = k[1]
-        color = "#"+k[2]
-        tempcomp = comp
-        if len(comp) > 17:
-            shortcomp = tempcomp.rsplit(' ', 1)[0]
+        print(k)
+        if n < 2:
+            comp = str(k[0])
+            tempcomp = comp
+            tempval = len(comp)
+            if tempval > 25:
+                if len(comp) == 77:
+                    shortcomp = tempcomp.rsplit(' ', 7)[0]
+                else:
+                    shortcomp = tempcomp.rsplit(' ', 2)[0]
+            else:
+                shortcomp = comp[0:25]
+            temprow.append(comp)
+            temprow.append(shortcomp)
+            scolor =  str(k[2])
+            temprow.append(scolor)
+            n += 1
         else:
-            shortcomp = comp[0:17]
-        labit.append(comp)
-        labit.append(shortcomp)
-        labit.append(color)
-        labit.append(score)
-        lablist1.append(labit)
-    labrow = []
-    xx = 0
-    if len(lablist1) < 4:
-        pielabb1.append(lablist1)
-    else:
-        for item in lablist1:
-            labrow.append(item)
-            xx += 1
-            if xx % 4 == 0:
-                pielabb1.append(labrow)
-                labrow = []
-                xx = 0
-    pielabb2 = []
-    lablist2 = []
-    for k in patent2:
-        labit = []
-        comp = k[0]
-        score = k[1]
-        color = "#"+k[2]
-        patYear = k[3]
-        tempcomp = comp
-        if len(comp) > 17:
-            shortcomp = tempcomp.rsplit(' ', 1)[0]
-        else:
-            shortcomp = comp[0:17]
-        labit.append(comp)
-        labit.append(shortcomp)
-        labit.append(color)
-        labit.append(score)
-        labit.append(patYear)
-        lablist2.append(labit)
-    labrow = []
-    xx = 0
-    if len(lablist2) < 4:
-        pielabb2.append(lablist2)
-    else:
-        for item in lablist2:
-            labrow.append(item)
-            xx += 1
-            if xx % 4 == 0:
-                pielabb2.append(labrow)
-                labrow = []
-                xx = 0
+            n = 0
+            pielabb1.append(temprow)
+            temprow = []
+
     print(patent2)
-    return render_template('company.html', navsub=2, showindex=1, comptype = 1, speclocate = speclocate, scrolling=1, patent1 = patent1, patent2 = patent2, pielabb1 = pielabb1, pielabb2 = pielabb2)
+    print(patent1)
+    n = 0
+    temprow = []
+    pielabb2=[]
+    for k in patent2:
+        print(k)
+        if n < 2:
+            comp = str( k[0])
+            tempcomp = comp
+            print(len(comp))
+            tempval = len(comp)
+            if tempval > 25:
+                if len(comp) == 77:
+                    shortcomp = tempcomp.rsplit(' ', 7)[0]
+                else:
+                    shortcomp = tempcomp.rsplit(' ', 2)[0]
+            else:
+                shortcomp = comp[0:25]
+            temprow.append(comp)
+            temprow.append(shortcomp)
+            scolor = str(k[2])
+            temprow.append(scolor)
+            n += 1
+        else:
+            n = 0
+            pielabb2.append(temprow)
+            temprow = []
+
+    print(pielabb1)
+    print(pielabb2)
+    return render_template('company.html', navsub=2, showindex=1, comptype = 1, speclocate = speclocate, scrolling=1, patent1 = patent1, patent2 = patent2, pielab1 = pielabb1, pielab2 = pielabb2)
 
 @app.route('/account')
 def account():
@@ -1776,119 +1863,62 @@ def account():
 def revert():
     print("in revert")
     conn = connect_db();
-
     conn.execute('''delete from manudis''')
-
     conn.execute('''insert into manudis select * from manudis_bkp''')
-
     conn.execute('''delete from manudis2015''')
-
     conn.execute('''insert into manudis2015 select * from manudis2015_bkp''')
-
     conn.execute('''delete from manutot''')
-
     conn.execute('''insert into manutot select * from manutot_bkp''')
-
     conn.execute('''delete from manutot2015''')
-
     conn.execute('''insert into manutot2015 select * from manutot2015_bkp''')
-
     conn.execute('''delete from countrybydis2010''')
-
     conn.execute('''insert into countrybydis2010 select * from countrybydis2010_bkp''')
-
     conn.execute('''delete from countrybydis2013''')
-
     conn.execute('''insert into countrybydis2013 select * from countrybydis2013_bkp''')
-
     conn.execute('''delete from country2010''')
-
     conn.execute('''insert into country2010 select * from country2010_bkp''')
-
     conn.execute('''delete from country2013''')
-
     conn.execute('''insert into country2013 select * from country2013_bkp''')
-
     conn.execute('''delete from country2015''')
-
     conn.execute('''insert into country2015 select * from country2015_bkp''')
-
     conn.execute('''delete from countryp2010''')
-
     conn.execute('''insert into countryp2010 select * from countryp2010_bkp''')
-
     conn.execute('''delete from countryp2013''')
-
     conn.execute('''insert into countryp2013 select * from countryp2013_bkp''')
-
     conn.execute('''delete from countryp2015''')
-
     conn.execute('''insert into countryp2015 select * from countryp2015_bkp''')
-
     conn.execute('''delete from diseaseall2010''')
-
     conn.execute('''insert into diseaseall2010 select * from diseaseall2010_bkp''')
-
     conn.execute('''delete from diseaseall2013''')
-
     conn.execute('''insert into diseaseall2013 select * from diseaseall2013_bkp''')
-
     conn.execute('''delete from diseaseall2015''')
-
     conn.execute('''insert into diseaseall2015 select * from diseaseall2015_bkp''')
-
     conn.execute('''delete from disease2010''')
-
     conn.execute('''insert into disease2010 select * from disease2010_bkp''')
-
     conn.execute('''delete from disease2013''')
-
     conn.execute('''insert into disease2013 select * from disease2013_bkp''')
-
     conn.execute('''delete from disease2015''')
-
     conn.execute('''insert into disease2015 select * from disease2015_bkp''')
-
     conn.execute('''delete from disbars''')
-
     conn.execute('''insert into disbars select * from disbars_bkp''')
-
     conn.execute('''delete from distypes''')
-
     conn.execute('''insert into distypes select * from distypes_bkp''')
-
     conn.execute('''delete from disbars2010B2015''')
-
     conn.execute('''insert into disbars2010B2015 select * from disbars2010B2015_bkp''')
-
     conn.execute('''delete from distypes2010B2015''')
-
     conn.execute('''insert into distypes2010B2015 select * from distypes2010B2015_bkp''')
-
     conn.execute('''delete from drugr2010''')
-
     conn.execute('''insert into drugr2010 select * from drugr2010_bkp''')
-
     conn.execute('''delete from drugr2013''')
-
     conn.execute('''insert into drugr2013 select * from drugr2013_bkp''')
-
     conn.execute('''delete from drugr2015''')
-
     conn.execute('''insert into drugr2015 select * from drugr2015_bkp''')
-
     conn.execute('''delete from patent2010''')
-
     conn.execute('''insert into patent2010 select * from patent2010_bkp''')
-
     conn.execute('''delete from patent2013''')
-
     conn.execute('''insert into patent2013 select * from patent2013_bkp''')
-
     conn.execute('''delete from patent2015''')
-
     conn.execute('''insert into patent2015 select * from patent2015_bkp''')
-
     conn.commit()
     print("Database Backup Restored")
     return render_template('revert.html', showthediv=0)
@@ -1900,15 +1930,27 @@ def ManageAccount():
     #conn = connect_db()
     print("inside update")
     result = objDbComp.companydbUpdate()
+    if result != 'success':
+        return render_template('accountF.html', error=result, showthediv=0)
     print ("Company Completed Update")
     result = objDbCountryDis.countryDisdbUpdate()
+    if result != 'success':
+        return render_template('accountF.html', error=result, showthediv=0)
     print ("Completed Update")
     result = objDBCountry.countrydbUpdate()
+    print (result)
+    if result != 'success':
+        return render_template('accountF.html', error=result, showthediv=0)
+    result = objDBDrug.DrugDbUpdate()
+    print (result)
+    if result != 'success':
+        return render_template('accountF.html', error=result, showthediv=0)
+    result = objDBDisease.DiseaseDbUpdate()
     print (result)
     if result == 'success':
         return render_template('accountS.html', showthediv=0)
     else:
-        return render_template('accountF.html', error = result ,  showthediv=0)
+        return render_template('accountF.html', error=result, showthediv=0)
 
 if __name__ == '__main__':
     app.run(debug=False)
