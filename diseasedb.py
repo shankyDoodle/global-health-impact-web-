@@ -12,26 +12,26 @@ def CreateDiseae():
     conn.execute('''DROP TABLE IF EXISTS distypes2010B2015''')
 
     conn.execute('''CREATE TABLE disease2013
-                 (disease text, distype text, impact real, daly real, need text, color text)''')
+                (disease text, distype text, impact real, daly real, need text, color text)''')
 
     conn.execute('''CREATE TABLE disease2010
-                 (disease text, distype text, impact real, daly real, need text, color text)''')
+                (disease text, distype text, impact real, daly real, need text, color text)''')
 
     conn.execute('''CREATE TABLE disease2015
-                 (disease text, distype text, impact real, daly real, need text, color text)''')
+                (disease text, distype text, impact real, daly real, need text, color text)''')
 
     conn.execute('''CREATE TABLE disbars
-                (disease text, color text, efficacy2010 real, efficacy2013 real, coverage2010 real, coverage2013 real, need2010 real, need2013 real)''')
+               (disease text, color text, efficacy2010 real, efficacy2013 real, coverage2010 real, coverage2013 real, need2010 real, need2013 real)''')
 
     conn.execute('''CREATE TABLE distypes
-                (disease text,distype text, color text, efficacy2010 real, efficacy2013 real, coverage2010 real, coverage2013 real,position real)''')
+               (disease text,distype text, color text, efficacy2010 real, efficacy2013 real, coverage2010 real, coverage2013 real,position real)''')
 
     conn.execute('''CREATE TABLE disbars2010B2015
-                (disease text, color text, efficacy2010 real, efficacy2013 real, coverage2010 real, coverage2013 real, need2010 real, need2013 real)''')
+               (disease text, color text, efficacy2010 real, efficacy2013 real, coverage2010 real, coverage2013 real, need2010 real, need2013 real)''')
 
     conn.execute('''CREATE TABLE distypes2010B2015
-                (disease text,distype text, color text, efficacy2010 real, efficacy2013 real, coverage2010 real, coverage2013 real,position real)''')
-
+               (disease text,distype text, color text, efficacy2010 real, efficacy2013 real, coverage2010 real, coverage2013 real,position real)''')
+    conn.commit()
     conn.close()
 
 def DiseaseDbUpdate():
@@ -84,11 +84,11 @@ def DiseaseDbUpdate():
             color = colors[i]
             disease = dis[i]
             distype = distypes[i]
-            temp = df.iloc[k, 38]
+            temp = df.iloc[k, 41]
             print(temp)
-            temp1 = df.iloc[k, 40]
+            temp1 = df.iloc[k, 43]
             print(temp1)
-            temp2 = df.iloc[k, 41]
+            temp2 = df.iloc[k, 44]
             print(temp2)
             if type(temp) != float and type(temp1) != float and type(temp2) != float:
                 impact = float(temp.replace(',', ''))
@@ -110,9 +110,9 @@ def DiseaseDbUpdate():
             color = colors[i]
             disease = dis[i]
             distype = distypes[i]
-            temp = df.iloc[k, 88]
-            temp1 = df.iloc[k, 90]
-            temp2 = df.iloc[k, 91]
+            temp = df.iloc[k, 92]
+            temp1 = df.iloc[k, 94]
+            temp2 = df.iloc[k, 95]
             print(temp)
             print(temp1)
             print(temp2)
@@ -137,9 +137,9 @@ def DiseaseDbUpdate():
             color = colors[i]
             disease = dis[i]
             distype = distypes[i]
-            temp = df_2010B_2015.iloc[k, 87]
-            temp1 = df_2010B_2015.iloc[k, 89]
-            temp2 = df_2010B_2015.iloc[k, 90]
+            temp = df_2010B_2015.iloc[k, 90]
+            temp1 = df_2010B_2015.iloc[k, 92]
+            temp2 = df_2010B_2015.iloc[k, 93]
             print(temp)
             print(temp1)
             print(temp2)
