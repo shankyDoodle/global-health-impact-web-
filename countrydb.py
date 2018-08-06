@@ -82,16 +82,16 @@ def countrydbUpdate():
                 tb = clean(df.iloc[i, 7])
             else:
                 tb = 0
-            if is_df_true.iloc[i, 32] == True:
-                malaria = clean(df.iloc[i, 34])
+            if is_df_true.iloc[i, 31] == True:
+                malaria = clean(df.iloc[i, 31])
             else:
                 malaria = 0
-            if is_df_true.iloc[i, 45] == True:
-                hiv = clean(df.iloc[i, 47])
+            if is_df_true.iloc[i, 44] == True:
+                hiv = clean(df.iloc[i, 44])
             else:
                 hiv = 0
-            if is_df_true.iloc[i, 54] == True:
-                roundworm = clean(df.iloc[i, 54])
+            if is_df_true.iloc[i, 53] == True:
+                roundworm = clean(df.iloc[i, 53])
             else:
                 roundworm = 0
             if is_df_true.iloc[i, 55] == True:
@@ -102,12 +102,12 @@ def countrydbUpdate():
                 whipworm = clean(df.iloc[i, 56])
             else:
                 whipworm = 0
-            if is_df_true.iloc[i, 59] == True:
-                schistosomiasis = clean(df.iloc[i, 59])
+            if is_df_true.iloc[i, 58] == True:
+                schistosomiasis = clean(df.iloc[i, 58])
             else:
                 schistosomiasis = 0
-            if is_df_true.iloc[i, 62] == True:
-                lf = clean(df.iloc[i, 62])
+            if is_df_true.iloc[i, 61] == True:
+                lf = clean(df.iloc[i, 61])
             else:
                 lf = 0
             total = tb + malaria + hiv + roundworm + hookworm + whipworm + schistosomiasis + lf
@@ -139,13 +139,13 @@ def countrydbUpdate():
         countrydata2 = []
         mapp2 = []
         for i in range(3, 218):
-            country = df.iloc[i, 65].decode('utf8')
-            if is_df_true.iloc[i, 72] == True:
-                tb = clean(df.iloc[i, 72])
+            country = df.iloc[i, 64].decode('utf8')
+            if is_df_true.iloc[i, 71] == True:
+                tb = clean(df.iloc[i, 71])
             else:
                 tb = 0
-            if is_df_true.iloc[i, 102] == True:
-                malaria = clean(df.iloc[i, 102])
+            if is_df_true.iloc[i, 101] == True:
+                malaria = clean(df.iloc[i, 101])
             else:
                 malaria = 0
             if is_df_true.iloc[i, 113] == True:
@@ -207,41 +207,41 @@ def countrydbUpdate():
         countrydata3 = []
         mapp2 = []
         for i in range(3, 218):
-            country = df2015.iloc[i, 65].decode('utf8')
-            if is_df2015_true.iloc[i, 72] == True:
-                tb = clean(df2015.iloc[i, 72])
+            country = df2015.iloc[i, 64].decode('utf8')
+            if is_df2015_true.iloc[i, 71] == True:
+                tb = clean(df2015.iloc[i, 71])
             else:
                 tb = 0
-            if is_df2015_true.iloc[i, 102] == True:
-                malaria = clean(df2015.iloc[i, 102])
+            if is_df2015_true.iloc[i, 98] == True:
+                malaria = clean(df2015.iloc[i, 98])
             else:
                 malaria = 0
-            if is_df2015_true.iloc[i, 113] == True:
-                hiv = clean(df2015.iloc[i, 113])
+            if is_df2015_true.iloc[i, 109] == True:
+                hiv = clean(df2015.iloc[i, 109])
             else:
                 hiv = 0
-            if is_df2015_true.iloc[i, 122] == True:
-                roundworm = clean(df2015.iloc[i, 122])
+            if is_df2015_true.iloc[i, 118] == True:
+                roundworm = clean(df2015.iloc[i, 118])
             else:
                 roundworm = 0
-            if is_df2015_true.iloc[i, 123] == True:
-                hookworm = clean(df2015.iloc[i, 123])
+            if is_df2015_true.iloc[i, 119] == True:
+                hookworm = clean(df2015.iloc[i, 119])
             else:
                 hookworm = 0
-            if is_df2015_true.iloc[i, 124] == True:
-                whipworm = clean(df2015.iloc[i, 124])
+            if is_df2015_true.iloc[i, 120] == True:
+                whipworm = clean(df2015.iloc[i, 120])
             else:
                 whipworm = 0
-            if is_df2015_true.iloc[i, 127] == True:
-                schistosomiasis = clean(df2015.iloc[i, 127])
+            if is_df2015_true.iloc[i, 123] == True:
+                schistosomiasis = clean(df2015.iloc[i, 123])
             else:
                 schistosomiasis = 0
-            if is_df2015_true.iloc[i, 129] == True:
-                onchoceriasis = clean(df2015.iloc[i, 129])
+            if is_df2015_true.iloc[i, 125] == True:
+                onchoceriasis = clean(df2015.iloc[i, 125])
             else:
                 onchoceriasis = 0
-            if is_df2015_true.iloc[i, 132] == True:
-                lf = clean(df2015.iloc[i, 132])
+            if is_df2015_true.iloc[i, 128] == True:
+                lf = clean(df2015.iloc[i, 128])
             else:
                 lf = 0
             total = tb + malaria + hiv + roundworm + hookworm + whipworm + schistosomiasis + onchoceriasis + lf
@@ -281,5 +281,3 @@ def countrydbUpdate():
         conn.rollback()
         conn.close()
         return error
-
-countrydbUpdate()

@@ -190,16 +190,62 @@ body {
     font-family: 'avenir next regular', sans-serif;
 }
 .bluetxtabout {
-    font-size: 36px;
-    color: #0083C4;
+    font-size: 29px;
+    color: rgb(0,131,196);
     font-family: 'avenir next regular', sans-serif;
 }
 .redtxtabout {
-    font-size: 36px;
-    color: rgba(255,59,59,0.75);
+    font-size: 29px;
+    color: rgba(255,59,59);
     font-family: 'avenir next demi bold', sans-serif;
 }
+.titlecolorred{
+    color: rgba(255, 59, 59, 0.82) !important;
+    font-size:36px;
+    font-weight:bold;
+    font-family: 'avenir next regular', sans-serif;
+    text-transform: uppercase;
+}
 
+.redfontlight{
+color: rgba(255, 59, 59, 0.82) !important;
+font-size:36px;
+font-family: 'avenir next regular', sans-serif;
+}
+
+.ppttext{
+    display: block;
+    margin: 4px;
+    font-weight: bold;
+    padding: 2px;
+    color: #404040;
+     margin-left: 47px;
+}
+.textcolor{
+    font-weight: bold;
+    color: #404040;
+}
+.pptborder1{
+ border: 5px solid #800080b5;
+ display: inline-block;
+  height: 150px;
+  width: 180px;
+}
+.pptborder2{
+ border: 5px solid #e6b50c;
+ display: inline-block;
+  height: 150px;
+  width: 180px;
+}
+.pptborder3{
+ border: 5px solid #0098fffc;
+ display: inline-block;
+  height: 150px;
+  width: 180px;
+}
+.marginbt13{
+    margin-top: 13px;
+}
 .newsred {
     font-size: 36px;
     color: #FF7474;
@@ -213,6 +259,9 @@ body {
 .contentbox {
     padding: 5px;
     margin-top: 20px;
+}
+.contentresource {
+    margin-bottom: 80px !important;
 }
 .contentbox:hover {
     background-color: #EDDFDF;
@@ -479,9 +528,10 @@ body {
 }
 .abtlabel {
     font-family: 'avenir next regular', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 18px;
 	color:#404040;
+	margin-left: 10px;
 }
 #paperthumb {
     width: 50%;
@@ -613,7 +663,7 @@ body {
 }
 .links {
     text-decoration:none;
-    color:black;
+    color:#000000bf;
     font-weight:bold;
 }
 .links a:hover {

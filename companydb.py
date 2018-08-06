@@ -508,7 +508,7 @@ def companydbUpdate():
 
         oldrow = ['']
         pat2010 = []
-        for i in range(1, 39):
+        for i in range(1, 41):
             prow = []
             comp = df.iloc[1, i]
             prow.append(comp)
@@ -548,25 +548,25 @@ def companydbUpdate():
         for j in range(8, 21):
             if j == 8:
                 # print(df.iloc[7,46])
-                tb1 = cleanfloat(df.iloc[8, 41])
-                tb2 = cleanfloat(df.iloc[9, 41])
-                tb3 = cleanfloat(df.iloc[10, 41])
+                tb1 = cleanfloat(df.iloc[8, 44])
+                tb2 = cleanfloat(df.iloc[9, 44])
+                tb3 = cleanfloat(df.iloc[10, 44])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(temp)
-            elif j == 9 or j == 10 or j == 12:
+            elif j == 9 or j == 10 or j == 11:
                 aa = 1
-            elif j == 11:
-                mal1 = cleanfloat(df.iloc[11, 41])
-                mal2 = cleanfloat(df.iloc[12, 41])
+            elif j == 12:
+                mal1 = cleanfloat(df.iloc[11, 44])
+                mal2 = cleanfloat(df.iloc[12, 44])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(temp)
             elif j == 20:
-                total = cleanfloat(df.iloc[j, 41])
+                total = cleanfloat(df.iloc[j, 44])
                 unmet.append(total)
             else:
-                temp = df.iloc[j, 41]
+                temp = df.iloc[j, 44]
                 if isinstance(temp, float) == False and isinstance(temp, int) == False:
                     temp = float(temp.replace(',', ''))
                 if temp != temp:
@@ -582,7 +582,7 @@ def companydbUpdate():
 
         oldrow = ['']
         pat2013 = []
-        for i in range(45, 89):
+        for i in range(47, 91):
             prow = []
             comp = df.iloc[1, i]
             prow.append(comp)
@@ -622,25 +622,25 @@ def companydbUpdate():
         for j in range(8, 21):
             if j == 8:
                 # print(df.iloc[8,93])
-                tb1 = cleanfloat(df.iloc[8, 91])
-                tb2 = cleanfloat(df.iloc[9, 91])
-                tb3 = cleanfloat(df.iloc[10, 91])
+                tb1 = cleanfloat(df.iloc[8, 94])
+                tb2 = cleanfloat(df.iloc[9, 94])
+                tb3 = cleanfloat(df.iloc[10, 94])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(temp)
             elif j == 11:
-                mal1 = cleanfloat(df.iloc[11, 91])
-                mal2 = cleanfloat(df.iloc[12, 91])
+                mal1 = cleanfloat(df.iloc[11, 94])
+                mal2 = cleanfloat(df.iloc[12, 94])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(temp)
             elif j == 20:
-                total = cleanfloat(df.iloc[j, 91])
+                total = cleanfloat(df.iloc[j, 94])
                 unmet.append(total)
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
             else:
-                temp = df.iloc[j, 91]
+                temp = df.iloc[j, 94]
                 if isinstance(temp, float) == False and isinstance(temp, int) == False:
                     temp = float(temp.replace(',', ''))
                 if temp != temp:
@@ -656,7 +656,7 @@ def companydbUpdate():
 
         oldrow = ['']
         pat2015 = []
-        for i in range(45, 88):
+        for i in range(47, 89):
             prow = []
             comp = df2015.iloc[1, i]
             prow.append(comp)
@@ -715,17 +715,17 @@ def companydbUpdate():
         unmet = ['Unmet Need']
         for j in range(8, 21):
             if j == 8:
-                print(df2015.iloc[8, 90])
-                if is_df2015_true.iloc[8, 90] == True:
-                    tb1 = cleanfloat(df2015.iloc[8, 90])
+                print(df2015.iloc[8, 92])
+                if is_df2015_true.iloc[8, 92] == True:
+                    tb1 = cleanfloat(df2015.iloc[8, 92])
                 else:
                     tb1 = 0
-                if is_df2015_true.iloc[9, 90] == True:
-                    tb2 = cleanfloat(df2015.iloc[9, 90])
+                if is_df2015_true.iloc[9, 92] == True:
+                    tb2 = cleanfloat(df2015.iloc[9, 92])
                 else:
                     tb2 = 0
-                if is_df2015_true.iloc[10, 90] == True:
-                    tb3 = cleanfloat(df2015.iloc[10, 90])
+                if is_df2015_true.iloc[10, 92] == True:
+                    tb3 = cleanfloat(df2015.iloc[10, 92])
                 else:
                     tb3 = 0
                 tb = [tb1, tb2, tb3]
@@ -734,25 +734,25 @@ def companydbUpdate():
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
             elif j == 11:
-                if is_df2015_true.iloc[11, 90] == True:
-                    mal1 = cleanfloat(df2015.iloc[11, 90])
+                if is_df2015_true.iloc[11, 92] == True:
+                    mal1 = cleanfloat(df2015.iloc[11, 92])
                 else:
                     mall = 0
-                if is_df2015_true.iloc[12, 90] == True:
-                    mal2 = cleanfloat(df2015.iloc[12, 90])
+                if is_df2015_true.iloc[12, 92] == True:
+                    mal2 = cleanfloat(df2015.iloc[12, 92])
                 else:
                     mal2 = 0
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(temp)
             elif j == 20:
-                if is_df2015_true.iloc[j, 90] == True:
-                    total = cleanfloat(df2015.iloc[j, 90])
+                if is_df2015_true.iloc[j, 92] == True:
+                    total = cleanfloat(df2015.iloc[j, 92])
                 else:
                     total = 0
                 unmet.append(total)
             else:
-                temp = df2015.iloc[j, 90]
+                temp = df2015.iloc[j, 92]
                 if temp == '-' or temp == '#REF!':
                     temp = 0
                 if isinstance(temp, float) == False and isinstance(temp, int) == False:
@@ -779,3 +779,6 @@ def companydbUpdate():
         conn.rollback()
         conn.close()
         return error
+
+
+

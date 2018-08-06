@@ -3,31 +3,34 @@ import pandas as pd
 import math
 
 def CreateDrugTable():
-    conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
-    conn.execute('''DROP TABLE IF EXISTS drug2010''')
-    conn.execute('''DROP TABLE IF EXISTS drug2013''')
-    conn.execute('''DROP TABLE IF EXISTS drug2015''')
 
-    conn.execute('''DROP TABLE IF EXISTS drugr2010''')
-    conn.execute('''DROP TABLE IF EXISTS drugpie2010''')
+ conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
 
-    conn.execute('''DROP TABLE IF EXISTS drugr2013''')
-    conn.execute('''DROP TABLE IF EXISTS drugpie2013''')
 
-    conn.execute('''DROP TABLE IF EXISTS drugr2015''')
-    conn.execute('''DROP TABLE IF EXISTS drugpie2015''')
+ conn.execute('''DROP TABLE IF EXISTS drug2010''')
+ conn.execute('''DROP TABLE IF EXISTS drug2013''')
+ conn.execute('''DROP TABLE IF EXISTS drug2015''')
 
-    conn.execute('''CREATE TABLE drugr2010
-                (drug text, company text, tb real, malaria real, hiv real, roundworm real, hookworm real, whipworm real, schistosomiasis real, onchocerciasis real, lf real, total real)''')
+ conn.execute('''DROP TABLE IF EXISTS drugr2010''')
+ conn.execute('''DROP TABLE IF EXISTS drugpie2010''')
 
-    conn.execute('''CREATE TABLE drugr2013
-                (drug text, company text, tb real, malaria real, hiv real, roundworm real, hookworm real, whipworm real, schistosomiasis real, onchocerciasis real, lf real, total real)''')
+ conn.execute('''DROP TABLE IF EXISTS drugr2013''')
+ conn.execute('''DROP TABLE IF EXISTS drugpie2013''')
 
-    conn.execute('''CREATE TABLE drugr2015
-                (drug text, company text, tb real, malaria real, hiv real, roundworm real, hookworm real, whipworm real, schistosomiasis real, onchocerciasis real, lf real, total real)''')
+ conn.execute('''DROP TABLE IF EXISTS drugr2015''')
+ conn.execute('''DROP TABLE IF EXISTS drugpie2015''')
 
-    conn.commit()
-    conn.close()
+ conn.execute('''CREATE TABLE drugr2010
+            (drug text, company text, tb real, malaria real, hiv real, roundworm real, hookworm real, whipworm real, schistosomiasis real, onchocerciasis real, lf real, total real)''')
+
+ conn.execute('''CREATE TABLE drugr2013
+            (drug text, company text, tb real, malaria real, hiv real, roundworm real, hookworm real, whipworm real, schistosomiasis real, onchocerciasis real, lf real, total real)''')
+
+ conn.execute('''CREATE TABLE drugr2015
+            (drug text, company text, tb real, malaria real, hiv real, roundworm real, hookworm real, whipworm real, schistosomiasis real, onchocerciasis real, lf real, total real)''')
+
+ conn.commit()
+ conn.close()
 
 def DrugDbUpdate():
     try:
@@ -67,7 +70,7 @@ def DrugDbUpdate():
                 var = 0
             return var
 
-        for i in range(1, 38):
+        for i in range(1, 41):
             drugr = []
             name = df.iloc[5, i]
             # print(name)
@@ -145,7 +148,7 @@ def DrugDbUpdate():
         for xx in [[8, 9, 10], [11, 12], [13], [14], [15], [16], [17], [18], [19]]:
             val = 0
             for yy in xx:
-                t = df.iloc[yy, 41]
+                t = df.iloc[yy, 44]
                 if isinstance(t, float) == False and isinstance(t, int) == False:
                     t = float(t.replace(',', ''))
                 if t != t:
@@ -166,7 +169,7 @@ def DrugDbUpdate():
         drugrdata = []
         perc2013 = []
 
-        for i in range(44, 87):
+        for i in range(47, 91):
             drugr = []
             name = df.iloc[5, i]
             # print(name)
@@ -244,7 +247,7 @@ def DrugDbUpdate():
         for xx in [[8, 9, 10], [11, 12], [13], [14], [15], [16], [17], [18], [19]]:
             val = 0
             for yy in xx:
-                t = df.iloc[yy, 91]
+                t = df.iloc[yy, 94]
                 if isinstance(t, float) == False and isinstance(t, int) == False:
                     t = float(t.replace(',', ''))
                 if t != t:
@@ -263,7 +266,7 @@ def DrugDbUpdate():
 
         drugrdata = []
         perc2015 = []
-        for i in range(44, 86):
+        for i in range(47, 89):
             drugr = []
             name = df2015.iloc[5, i]
             drugr.append(name)
@@ -343,7 +346,7 @@ def DrugDbUpdate():
         for xx in [[8, 9, 10], [11, 12], [13], [14], [15], [16], [17], [18], [19]]:
             val = 0
             for yy in xx:
-                t = df2015.iloc[yy, 90]
+                t = df2015.iloc[yy, 92]
                 if isinstance(t, float) == False and isinstance(t, int) == False:
                     t = float(t.replace(',', ''))
                 if t != t:
