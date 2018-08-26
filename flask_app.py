@@ -92,8 +92,10 @@ def diseaseinx():
     data = cur.fetchall()
     ddisease = 'All'
     dyear = '2010'
+    print(data)
     for row in data:
-        country = str(row[0])
+        country = str(row[0].encode('ascii','ignore'))
+        print(country)
         tb = row[1]
         malaria = row[2]
         hiv = row[3]
@@ -268,7 +270,7 @@ def diseasepg(dyear, ddisease):
                 ' select country, tb, malaria, hiv, roundworm, hookworm, whipworm, schistosomiasis, onchocerciasis, lf from diseaseall2010 ')
             data = cur.fetchall()
             for row in data:
-                country = str(row[0])
+                country = str(row[0].encode('ascii','ignore'))
                 tb = row[1]
                 malaria = row[2]
                 hiv = row[3]
@@ -309,7 +311,7 @@ def diseasepg(dyear, ddisease):
             print(efficacy2010)
 
         for row in data2:
-            country = str(row[0])
+            country = str(row[0].encode('ascii','ignore'))
             tb = row[1]
             # xx = [country,tb]
             xy = [country, tb]
@@ -837,7 +839,7 @@ def druginx():
         if _row != 'Unmet Need':
             color = drugcolors[c]
         else:
-            color = '#00cab1'
+            color = '#a6a6a6'
         row.append(color)
         c+=1
         if _row != 'Unmet Need':
@@ -992,7 +994,7 @@ def drug(year,disease):
     piee = cur.fetchall()
     impactpie = []
     for k in piee:
-        drug = k[0]
+        drug = k[0].replace('\n','')
         score = k[1]
         t = [drug,score]
         if score > 0:
@@ -1017,13 +1019,12 @@ def drug(year,disease):
         if _row != 'Unmet Need':
             color = drugcolors[c]
         else:
-            color = '#00cab1'
+            color = '#a6a6a6'
         row.append(color)
         c+=1
         if _row != 'Unmet Need':
             impactpie.append(row)
     g.db.close()
-    speclocate = [year,drugg,disease]
     pielabb = []
     n = 0
     temprow = []
@@ -1031,7 +1032,7 @@ def drug(year,disease):
     for k in impactpie:
         print(k)
         if n < 2:
-            drug = k[0]
+            drug = k[0].replace('\n','')
             tempcomp = drug
             tempval = len(drug)
             print(tempval)
@@ -1055,14 +1056,13 @@ def drug(year,disease):
             pielabb.append(temprow)
             temprow = []
 
-    speclocate = ['2010', 'all', 'ALL']
     pielabb2 = []
     n = 0
     temprow = []
     for k in sortedpie2:
         print(k)
         if n < 2:
-            drug = str(k[0])
+            drug = str(k[0]).replace('\n','')
             tempcomp = drug
             tempval = len(drug)
             if tempval > 25:
@@ -1084,10 +1084,7 @@ def drug(year,disease):
             n = 0
             pielabb2.append(temprow)
             temprow = []
-    print(pielabb)
-    print(pielabb2)
-    print(impactpie)
-    print(sortedpie2)
+    speclocate = [year,drugg,disease]
     return render_template('drug.html', data=piedata, drug=drugg, navsub=3, showindex=1, pielab1=pielabb2, pielab2=pielabb, drugcolors=drugcolors, speclocate = speclocate, scrolling=1, impactpie=impactpie, sortedpie2 = sortedpie2)
 
 @app.route('/index/country')
@@ -1777,7 +1774,7 @@ def patent(year,disease):
     patent1 = []
     patent2 = []
     for j in data:
-        comp = str(j[0])
+        comp = str(j[0]).replace('\n','')
         score = j[1]
         color =  str(j[2])
         if score > 0:
@@ -1798,10 +1795,11 @@ def patent(year,disease):
     speclocate = [year,specname,disease]
     pielabb1 = []
     n = 0
+    p = 0
     temprow = []
     for k in patent1:
-        print(k)
-        if n < 2:
+        print(len(patent1))
+        if len(patent1) <= 2:
             comp = str(k[0])
             tempcomp = comp
             tempval = len(comp)
@@ -1814,13 +1812,34 @@ def patent(year,disease):
                 shortcomp = comp[0:25]
             temprow.append(comp)
             temprow.append(shortcomp)
-            scolor =  str(k[2])
+            scolor = str(k[2])
             temprow.append(scolor)
-            n += 1
+            p=p+1
+            if p == 2:
+                pielabb1.append(temprow)
+                temprow = []
+                p = 0
         else:
-            n = 0
-            pielabb1.append(temprow)
-            temprow = []
+            if n < 2:
+                comp = str(k[0])
+                tempcomp = comp
+                tempval = len(comp)
+                if tempval > 25:
+                    if len(comp) == 77:
+                        shortcomp = tempcomp.rsplit(' ', 7)[0]
+                    else:
+                        shortcomp = tempcomp.rsplit(' ', 2)[0]
+                else:
+                    shortcomp = comp[0:25]
+                temprow.append(comp)
+                temprow.append(shortcomp)
+                scolor = str(k[2])
+                temprow.append(scolor)
+                n += 1
+            else:
+                n = 0
+                pielabb1.append(temprow)
+                temprow = []
 
     print(patent2)
     print(patent1)
@@ -1828,9 +1847,9 @@ def patent(year,disease):
     temprow = []
     pielabb2=[]
     for k in patent2:
-        print(k)
-        if n < 2:
-            comp = str( k[0])
+        print(len(patent2))
+        if len(patent2) == 1:
+            comp = str(k[0])
             tempcomp = comp
             print(len(comp))
             tempval = len(comp)
@@ -1845,12 +1864,29 @@ def patent(year,disease):
             temprow.append(shortcomp)
             scolor = str(k[2])
             temprow.append(scolor)
-            n += 1
-        else:
-            n = 0
             pielabb2.append(temprow)
-            temprow = []
-
+        else:
+            if n < 2:
+                comp = str(k[0])
+                tempcomp = comp
+                print(len(comp))
+                tempval = len(comp)
+                if tempval > 25:
+                    if len(comp) == 77:
+                        shortcomp = tempcomp.rsplit(' ', 7)[0]
+                    else:
+                        shortcomp = tempcomp.rsplit(' ', 2)[0]
+                else:
+                    shortcomp = comp[0:25]
+                temprow.append(comp)
+                temprow.append(shortcomp)
+                scolor = str(k[2])
+                temprow.append(scolor)
+                n += 1
+            else:
+                n = 0
+                pielabb2.append(temprow)
+                temprow = []
     print(pielabb1)
     print(pielabb2)
     return render_template('company.html', navsub=2, showindex=1, comptype = 1, speclocate = speclocate, scrolling=1, patent1 = patent1, patent2 = patent2, pielab1 = pielabb1, pielab2 = pielabb2)

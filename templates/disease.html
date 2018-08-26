@@ -71,13 +71,13 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="contentbox">
-            <p class="redtxt">DISEASE: <b>SUMMARY</b></p>
+            <p class="titlecolorredlower">DISEASE: <span class="titlecolorred">SUMMARY</span></p>
             <p class="txtcontent">The map you see displays the aggregate need for treatment for all diseases combined. These diseases include HIV/AIDS, TB, malaria, lymphatic filariasis, onchoriasis, schistosomiasis, hookworm, ringworm, and whipworm. By clicking on a country on the map, you can view its specific need for treatment for these diseases. Different drugs and combinations of drugs are having different degrees of success in combating these different diseases. The first graph illustrates the impact of key drugs on each of these diseases. Subsequent graphs illustrate the need for, access to, and effectiveness of these drugs. For additional information, please see the About the Index and Methodology.</p>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="contentbox">
-        <p class="blueheader text-center">Aggregated Impact Score</p>
+        <p class="bluefontlight text-center">Aggregated Impact Score</p>
         <div class="piewrap">
         <div class="dispie" id="diseasepie"></div>
         </div>
@@ -117,16 +117,22 @@
 
 <div class="row">
     <div class="col-sm-4">
-        <p class="blueheader text-center">Need</p>
+        <div class="contentbox">
+        <p class="bluefontlight text-center">Disability Adjusted <br>Life Years Lost</p>
         <div class="verticalbar" id="verticalbar1"></div>
+        </div>
     </div>
     <div class="col-sm-4">
-        <p class="blueheader text-center">Treatment Coverage</p>
+        <div class="contentbox">
+        <p class="bluefontlight text-center">Treatment Coverage</p>
         <div class="verticalbar" id="verticalbar2"></div>
+        </div>
     </div>
     <div class="col-sm-4">
-        <p class="blueheader text-center">Efficacy</p>
+        <div class="contentbox">
+        <p class="bluefontlight text-center">Efficacy or <br> Effectiveness</p>
         <div class="verticalbar" id="verticalbar3"></div>
+        </div>
     </div>
 </div>
 {% endif %}
@@ -161,7 +167,8 @@
       function drawcharts(rownum) {
         var clickdata = {{ clickdat |safe }};
         var specdaly = clickdata[rownum];
-        document.getElementById('cntryname').innerHTML = specdaly[0];
+        //document.getElementById('cntryname').innerHTML = specdaly[0];
+        document.getElementById('cntryname').innerHTML = 'Chad';
         var index = {{ index }};
         var rank = index[rownum] + 1;
         document.getElementById('rank').innerHTML = rank;
@@ -211,24 +218,28 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="contentbox">
-            <p class="redtxt">DISEASE: <b>ALL</b></p>
+            <p class="titlecolorredlower">DISEASE: <span class="titlecolorred">ALL</span></p>
             <p class="txtcontent">The map you see displays the aggregate need for treatment of diseases for all diseases combined. These diseases include HIV/AIDS, TB, malaria, lymphatic filariasis, onchoriasis, schistomiasis, hookworm, ringworm, and whipworm. By clicking on a country on the map, you can view its specific need for treatment and the proportion of the disease burden due to each of these individual diseases in that country.</p>
         </div>
     </div>
     <div class="col-sm-6">
+        <div class="contentbox">
 
-        <p class="bluetxt">Disability Adjusted Life Years <b>Lost</b> to By Disease</p>
+        <p class="bluefontlight">Disability Adjusted Life Years <br> <b>Lost</b> to By Disease</p>
         <div width="400px" id="mapdiv"></div>
         {% with maxVal=maxTotal %}
         {% include "map-label.html"  %}
         {% endwith %}
     </div>
+    </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
         <div class="contentbox">
-            <p class="bluetxt" style="font-size: 22px;">Disability Adjusted Life Years Lost By Disease: <span id="cntryname" style="font-size:22px;font-weight:bold;"></span></p>
-            <p class="smblue">Overall DALY's: <span class="smblack" id="score"></span>  Rank: <span class="smblack" id="rank"></span></p>
+            <p class="bluefontlight">Disability Adjusted Life Years <br> <b>Lost</b> to By Disease<br>
+                <span id="cntryname"></span>
+            </p>
+            <p class="smblue"><b>Overall DALY's:</b> <span class="smblack" id="score"></span> <b> Rank: </b><span class="smblack" id="rank"></span></p>
             <div id="vertbars"></div>
         </div>
     </div>
@@ -344,13 +355,13 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="contentbox">
-            <p class="redtxt">DISEASE: <b style="text-transform:uppercase;">{{ speclocate.2 }}</b></p>
+            <p class="titlecolorredlower">DISEASE: <span class="titlecolorred" style="text-transform:uppercase;">{{ speclocate.2 }}</span></p>
             <p class="txtcontent">The map you see displays the aggregate need for treatment of diseases for all diseases combined. These diseases include HIV/AIDS, TB, malaria, lymphatic filariasis, onchoriasis, schistomiasis, hookworm, ringworm, and whipworm. By clicking on a country on the map, you can view its specific need for treatment and the proportion of the disease burden due to each of these individual diseases in that country.</p>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="firstPieChart">
-            <p class="blueheader text-left">Disability Adjusted Life Years<br /><b>Lost</b>  to <b>{{ speclocate.2 }}</b> </p>
+            <p class="bluefontlight text-left">Disability Adjusted Life Years<br /><b>Lost</b>  to <b>{{ speclocate.2 }}</b> </p>
             <div width="400px" id="mapdiv"></div>
             {% with maxVal=maxTotal %}
             {% include "map-label.html"  %}
@@ -362,13 +373,13 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="contentbox">
-            <p class="blueheader text-left">Treatment<b> Coverage</b> <br />by {{ speclocate.2 }} Type: </p>
+            <p class="bluefontlight text-left">Treatment<b> Coverage</b> <br />by {{ speclocate.2 }} Type: </p>
             <div class="verticalbar"  id="verticalbar1"></div>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="contentbox">
-           <p class="blueheader text-left">{{ speclocate.2 }} Treatment <br /><b> Effectiveness </b>by Drug:</p>
+           <p class="bluefontlight text-left">{{ speclocate.2 }} Treatment <br /><b> Effectiveness </b>by Drug:</p>
             <div class="verticalbar" id="verticalbar2"></div>
         </div>
     </div>
@@ -436,7 +447,7 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="contentbox">
-            <p class="redtxt">DISEASE: <b>HIV/AIDS</b></p>
+            <p class="titlecolorredlower">DISEASE: <span class="titlecolorred">HIV/AIDS</span></p>
             <p class="txtcontent">Every day more than 13,400 people are infected with AIDS. Essential medicines for HIV/AIDS help us reduce the global burden of disease. The map you see displays the aggregate need for treatment for HIV/AIDS. We also provide some graphs of our data on access to medicines for this disease and their efficacy. For additional information, please see the About the Index and Methodology.</p>
         </div>
     </div>
@@ -450,13 +461,13 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="contentbox">
-            <p class="bluetxt" style="font-size: 22px;">HIV Treatment Coverage by region</p>
+            <p class="bluefontlight">HIV Treatment Coverage by region</p>
             <div class="verticalbar" id="vertbars"></div>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="contentbox">
-            <p class="bluetxt" style="font-size: 22px;">Select First Line Drug Efficacy for Adults</p>
+            <p class="bluefontlight">Select First Line Drug Efficacy for Adults</p>
             <div class="verticalbar" id="vertbars2"></div>
         </div>
     </div>
