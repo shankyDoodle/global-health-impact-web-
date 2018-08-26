@@ -3,6 +3,7 @@ import pandas as pd
 
 def CreateDiseae():
     conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
+    # conn = sqlite3.connect('/home/globalhealth/mysite/ghi.db')
     conn.execute('''DROP TABLE IF EXISTS disease2010''')
     conn.execute('''DROP TABLE IF EXISTS disease2013''')
     conn.execute('''DROP TABLE IF EXISTS disease2015''')
@@ -37,6 +38,7 @@ def CreateDiseae():
 def DiseaseDbUpdate():
     try:
         conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
+        #conn = sqlite3.connect('/home/globalhealth/mysite/ghi.db')
         conn.execute('''DELETE FROM disease2010_bkp''')
         conn.execute('''DELETE FROM disease2013_bkp''')
         conn.execute('''DELETE FROM disease2015_bkp''')
@@ -84,11 +86,11 @@ def DiseaseDbUpdate():
             color = colors[i]
             disease = dis[i]
             distype = distypes[i]
-            temp = df.iloc[k, 41]
+            temp = df.iloc[k, 44]
             print(temp)
-            temp1 = df.iloc[k, 43]
+            temp1 = df.iloc[k, 46]
             print(temp1)
-            temp2 = df.iloc[k, 44]
+            temp2 = df.iloc[k, 47]
             print(temp2)
             if type(temp) != float and type(temp1) != float and type(temp2) != float:
                 impact = float(temp.replace(',', ''))
@@ -110,9 +112,9 @@ def DiseaseDbUpdate():
             color = colors[i]
             disease = dis[i]
             distype = distypes[i]
-            temp = df.iloc[k, 92]
-            temp1 = df.iloc[k, 94]
-            temp2 = df.iloc[k, 95]
+            temp = df.iloc[k, 96]
+            temp1 = df.iloc[k, 98]
+            temp2 = df.iloc[k, 99]
             print(temp)
             print(temp1)
             print(temp2)
@@ -137,9 +139,9 @@ def DiseaseDbUpdate():
             color = colors[i]
             disease = dis[i]
             distype = distypes[i]
-            temp = df_2010B_2015.iloc[k, 90]
-            temp1 = df_2010B_2015.iloc[k, 92]
-            temp2 = df_2010B_2015.iloc[k, 93]
+            temp = df_2010B_2015.iloc[k, 94]
+            temp1 = df_2010B_2015.iloc[k, 96]
+            temp2 = df_2010B_2015.iloc[k, 97]
             print(temp)
             print(temp1)
             print(temp2)
@@ -167,7 +169,7 @@ def DiseaseDbUpdate():
 
         def stripdata3(x, y):
             tmp = df_2010B_2015.iloc[x, y]
-            if tmp == "#DIV/0!" or tmp == "nan":
+            if tmp == "#DIV/0!" or tmp == "nan" or tmp == "#REF!":
                 return (0)
             if tmp == 'No Data':
                 return (0)
@@ -178,7 +180,7 @@ def DiseaseDbUpdate():
 
         def stripdata2(x, y):
             tmp = df2.iloc[x, y]
-            if tmp == "#DIV/0!" or tmp == "nan":
+            if tmp == "#DIV/0!" or tmp == "nan" or tmp == "#REF!":
                 return (0)
             if tmp == 'No Data':
                 return (0)

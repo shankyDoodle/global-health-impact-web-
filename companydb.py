@@ -3,6 +3,7 @@ import pandas as pd
 import math
 def createTablesCompany():
     conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
+    #conn = sqlite3.connect('/home/globalhealth/mysite/ghi.db')
 
     conn.execute('''DROP TABLE IF EXISTS manudis''')
     conn.execute('''DROP TABLE IF EXISTS manutot''')
@@ -41,6 +42,7 @@ def createTablesCompany():
 def companydbUpdate():
     try:
         conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
+        #conn = sqlite3.connect('/home/globalhealth/mysite/ghi.db')
         conn.execute('''DELETE FROM manudis_bkp''')
         conn.execute('''DELETE FROM manutot_bkp''')
         conn.execute('''DELETE FROM patent2010_bkp''')
@@ -211,15 +213,15 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'TB'
                 unmet.append(disease)
-                tb1 = cleanfloat(df.iloc[8, 41])
-                tb2 = cleanfloat(df.iloc[9, 41])
-                tb3 = cleanfloat(df.iloc[10, 41])
+                tb1 = cleanfloat(df.iloc[8, 47])
+                tb2 = cleanfloat(df.iloc[9, 47])
+                tb3 = cleanfloat(df.iloc[10, 47])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(temp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
                 unmet.append(0)
-                unmet.append('F2C2B7')
+                unmet.append('a6a6a6')
                 conn.execute('insert into manudis values (?,?,?,?,?)', unmet)
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
@@ -227,24 +229,24 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'Malaria'
                 unmet.append(disease)
-                mal1 = cleanfloat(df.iloc[11, 41])
-                mal2 = cleanfloat(df.iloc[12, 41])
+                mal1 = cleanfloat(df.iloc[11, 47])
+                mal2 = cleanfloat(df.iloc[12, 47])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(temp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
                 unmet.append(0)
-                unmet.append('F2C2B7')
+                unmet.append('a6a6a6')
                 conn.execute('insert into manudis values (?,?,?,?,?)', unmet)
             elif j == 13:
                 unmet = ['Unmet Need']
                 disease = 'HIV'
                 unmet.append(disease)
-                hivtemp = cleanfloat(df.iloc[13, 41])
+                hivtemp = cleanfloat(df.iloc[13, 47])
                 unmet.append(hivtemp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
                 unmet.append(0)
-                unmet.append('F2C2B7')
+                unmet.append('a6a6a6')
                 conn.execute('insert into manudis values (?,?,?,?,?)', unmet)
 
         for j in range(8, 14):
@@ -252,15 +254,15 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'TB'
                 unmet.append(disease)
-                tb1 = cleanfloat(df.iloc[8, 91])
-                tb2 = cleanfloat(df.iloc[9, 91])
-                tb3 = cleanfloat(df.iloc[10, 91])
+                tb1 = cleanfloat(df.iloc[8, 99])
+                tb2 = cleanfloat(df.iloc[9, 99])
+                tb3 = cleanfloat(df.iloc[10, 99])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(0)
                 unmet.append(temp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
-                unmet.append('F2C2B7')
+                unmet.append('a6a6a6')
                 conn.execute('insert into manudis values (?,?,?,?,?)', unmet)
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
@@ -268,24 +270,24 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'Malaria'
                 unmet.append(disease)
-                mal1 = cleanfloat(df.iloc[11, 91])
-                mal2 = cleanfloat(df.iloc[12, 91])
+                mal1 = cleanfloat(df.iloc[11, 99])
+                mal2 = cleanfloat(df.iloc[12, 99])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(0)
                 unmet.append(temp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
-                unmet.append('F2C2B7')
+                unmet.append('a6a6a6')
                 conn.execute('insert into manudis values (?,?,?,?,?)', unmet)
             elif j == 13:
                 unmet = ['Unmet Need']
                 disease = 'HIV'
                 unmet.append(disease)
-                hivtemp = cleanfloat(df.iloc[13, 91])
+                hivtemp = cleanfloat(df.iloc[13, 99])
                 unmet.append(0)
                 unmet.append(hivtemp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
-                unmet.append('F2C2B7')
+                unmet.append('a6a6a6')
                 conn.execute('insert into manudis values (?,?,?,?,?)', unmet)
         i = 0
         for k in range(26, 50):
@@ -346,20 +348,48 @@ def companydbUpdate():
                 manudata.append(row)
                 conn.execute('insert into manudis2015 values (?,?,?,?,?)', row)
 
+        for k in range(25, 66):
+            company = df.iloc[k, 8]
+            if isinstance(company, float):
+                if math.isnan(company):
+                    break
+            disease = 'Malaria'
+            _k10 = df.iloc[k, 9]
+            if is_df_true.iloc[k, 9] == False:
+                temph = 0
+            else:
+                temph = FloatOrZero(_k10)
+
+            malariaDaly2010 = float(temph)
+
+            k11 = df.iloc[k, 10]
+            if is_df_true.iloc[k, 10] == False:
+                temph1 = 0
+            else:
+                temph1 = FloatOrZero(k11)
+
+            malariadaly2013 = float(temph1)
+            if malariaDaly2010 > 0 or malariadaly2013 > 0:
+                color = colors[i]
+                row = [company, disease, malariaDaly2010, malariadaly2013, color]
+                i += 1
+                manudata.append(row)
+                conn.execute('insert into manudis2015 values (?,?,?,?,?)', row)
+
         for j in range(8, 14):
             if j == 8:
                 unmet = ['Unmet Need']
                 disease = 'TB'
                 unmet.append(disease)
-                tb1 = cleanfloat(df2015.iloc[8, 88])
-                tb2 = cleanfloat(df2015.iloc[9, 88])
-                tb3 = cleanfloat(df2015.iloc[10, 88])
+                tb1 = cleanfloat(df2015.iloc[8, 97])
+                tb2 = cleanfloat(df2015.iloc[9, 97])
+                tb3 = cleanfloat(df2015.iloc[10, 97])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(0)
                 unmet.append(temp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
-                unmet.append('F2C2B7')
+                unmet.append('a6a6a6')
                 conn.execute('insert into manudis2015 values (?,?,?,?,?)', unmet)
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
@@ -367,148 +397,32 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'Malaria'
                 unmet.append(disease)
-                mal1 = cleanfloat(df2015.iloc[11, 88])
-                mal2 = cleanfloat(df2015.iloc[12, 88])
+                mal1 = cleanfloat(df2015.iloc[11, 97])
+                mal2 = cleanfloat(df2015.iloc[12, 97])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(0)
                 unmet.append(temp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
-                unmet.append('F2C2B7')
+                unmet.append('a6a6a6')
                 conn.execute('insert into manudis2015 values (?,?,?,?,?)', unmet)
             elif j == 13:
                 unmet = ['Unmet Need']
                 disease = 'HIV'
                 unmet.append(disease)
-                hivtemp = cleanfloat(df2015.iloc[13, 88])
+                hivtemp = cleanfloat(df2015.iloc[13, 97])
                 unmet.append(0)
                 unmet.append(hivtemp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
-                unmet.append('F2C2B7')
+                unmet.append('a6a6a6')
                 conn.execute('insert into manudis2015 values (?,?,?,?,?)', unmet)
-
-        i = 0
-        for k in range(26, 66):
-            company = df2015.iloc[k, 8]
-            if isinstance(company, float):
-                if math.isnan(company):
-                    break
-            disease = 'HIV'
-            _k6 = df2015.iloc[k, 9]
-            if is_df2015_true.iloc[k, 9] == False:
-                temph = 0
-            else:
-                temph = FloatOrZero(_k6)
-
-            hivdaly2010B = float(temph)
-
-            k7 = df2015.iloc[k, 10]
-            if is_df2015_true.iloc[k, 10] == False:
-                temph1 = 0
-            else:
-                temph1 = FloatOrZero(k7)
-
-            hivdaly2015 = float(temph1)
-            if hivdaly2010B > 0 or hivdaly2015 > 0:
-                color = colors[i]
-                row = [company, disease, hivdaly2010B, hivdaly2015, color]
-                i += 1
-                manudata.append(row)
-                conn.execute('insert into manudis2015 values (?,?,?,?,?)', row)
-
-        i = 0
-        for k in range(26, 66):
-            company = df2015.iloc[k, 8]
-            if isinstance(company, float):
-                if math.isnan(company):
-                    break
-            disease = 'Malaria'
-            _k9 = df2015.iloc[k, 9]
-            if is_df2015_true.iloc[k, 9] == False:
-                temph = 0
-            else:
-                temph = FloatOrZero(_k9)
-
-            hivdaly2010B = float(temph)
-
-            k10 = df2015.iloc[k, 10]
-            if is_df2015_true.iloc[k, 10] == False:
-                temph1 = 0
-            else:
-                temph1 = FloatOrZero(k10)
-
-            hivdaly2015 = float(temph1)
-            if hivdaly2010B > 0 or hivdaly2015 > 0:
-                color = colors[i]
-                row = [company, disease, hivdaly2010B, hivdaly2015, color]
-                i += 1
-                manudata.append(row)
-                conn.execute('insert into manudis2015 values (?,?,?,?,?)', row)
-
-        i = 0
-        for k in range(25, 98):
-            company = df.iloc[k, 12]
-            if isinstance(company, float):
-                if math.isnan(company):
-                    break
-            k13 = df.iloc[k, 13]
-            if is_df_true.iloc[k, 13] == False:
-                temphd = 0
-            else:
-                temphd = FloatOrZero(k13)
-
-            daly2010 = float(temphd)
-
-            k14 = df.iloc[k, 14]
-            if is_df_true.iloc[k, 14] == False:
-                tempd1 = 0
-            else:
-                tempd1 = FloatOrZero(k14)
-
-            daly2013 = float(tempd1)
-
-            if daly2010 > 0 or daly2013 > 0:
-                color = colors[i]
-                row = [company, daly2010, daly2013, color]
-                i += 1
-                manutotal.append(row)
-                conn.execute('insert into manutot values (?,?,?,?)', row)
-
-        i = 0
-        for k in range(26, 99):
-            company = df2015.iloc[k, 12]
-            if isinstance(company, float):
-                if math.isnan(company):
-                    break
-            k13 = df2015.iloc[k, 13]
-            if is_df2015_true.iloc[k, 13] == False:
-                temphd = 0
-            else:
-                temphd = FloatOrZero(k13)
-
-            daly2010B = float(temphd)
-
-            k14 = df2015.iloc[k, 14]
-            if is_df2015_true.iloc[k, 14] == False:
-                tempd1 = 0
-            else:
-                tempd1 = FloatOrZero(k14)
-
-            daly2015 = float(tempd1)
-
-            if daly2010B > 0 or daly2015 > 0:
-                color = colors[i]
-                row = [company, daly2010B, daly2015, color]
-                i += 1
-                manu2015total.append(row)
-                conn.execute('insert into manutot2015 values (?,?,?,?)', row)
 
         ###############################PATENT PATENT PATENT CODE BELOW ######################################################################
         ###############################PATENT PATENT PATENT CODE BELOW ######################################################################
 
         oldrow = ['']
         pat2010 = []
-        for i in range(1, 41):
+        for i in range(1, 43):
             prow = []
             comp = df.iloc[1, i]
             prow.append(comp)
@@ -548,25 +462,25 @@ def companydbUpdate():
         for j in range(8, 21):
             if j == 8:
                 # print(df.iloc[7,46])
-                tb1 = cleanfloat(df.iloc[8, 44])
-                tb2 = cleanfloat(df.iloc[9, 44])
-                tb3 = cleanfloat(df.iloc[10, 44])
+                tb1 = cleanfloat(df.iloc[8, 47])
+                tb2 = cleanfloat(df.iloc[9, 47])
+                tb3 = cleanfloat(df.iloc[10, 47])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(temp)
             elif j == 9 or j == 10 or j == 11:
                 aa = 1
             elif j == 12:
-                mal1 = cleanfloat(df.iloc[11, 44])
-                mal2 = cleanfloat(df.iloc[12, 44])
+                mal1 = cleanfloat(df.iloc[11, 47])
+                mal2 = cleanfloat(df.iloc[12, 47])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(temp)
             elif j == 20:
-                total = cleanfloat(df.iloc[j, 44])
+                total = cleanfloat(df.iloc[j, 47])
                 unmet.append(total)
             else:
-                temp = df.iloc[j, 44]
+                temp = df.iloc[j, 47]
                 if isinstance(temp, float) == False and isinstance(temp, int) == False:
                     temp = float(temp.replace(',', ''))
                 if temp != temp:
@@ -575,14 +489,18 @@ def companydbUpdate():
         pat2010.append(unmet)
         colind = 0
         for item in pat2010:
-            item.append(colors[colind])
+            if item[0] == 'Unmet Need':
+                item.append('a6a6a6')
+            else:
+                item.append(colors[colind])
+                print(colors[colind])
             colind += 1
             conn.execute(' insert into patent2010 values (?,?,?,?,?,?,?,?,?,?,?,?) ', item)
         # print(pat2010)
 
         oldrow = ['']
         pat2013 = []
-        for i in range(47, 91):
+        for i in range(50, 96):
             prow = []
             comp = df.iloc[1, i]
             prow.append(comp)
@@ -622,25 +540,25 @@ def companydbUpdate():
         for j in range(8, 21):
             if j == 8:
                 # print(df.iloc[8,93])
-                tb1 = cleanfloat(df.iloc[8, 94])
-                tb2 = cleanfloat(df.iloc[9, 94])
-                tb3 = cleanfloat(df.iloc[10, 94])
+                tb1 = cleanfloat(df.iloc[8, 99])
+                tb2 = cleanfloat(df.iloc[9, 99])
+                tb3 = cleanfloat(df.iloc[10, 99])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(temp)
             elif j == 11:
-                mal1 = cleanfloat(df.iloc[11, 94])
-                mal2 = cleanfloat(df.iloc[12, 94])
+                mal1 = cleanfloat(df.iloc[11, 99])
+                mal2 = cleanfloat(df.iloc[12, 99])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(temp)
             elif j == 20:
-                total = cleanfloat(df.iloc[j, 94])
+                total = cleanfloat(df.iloc[j, 99])
                 unmet.append(total)
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
             else:
-                temp = df.iloc[j, 94]
+                temp = df.iloc[j, 99]
                 if isinstance(temp, float) == False and isinstance(temp, int) == False:
                     temp = float(temp.replace(',', ''))
                 if temp != temp:
@@ -649,14 +567,18 @@ def companydbUpdate():
         pat2013.append(unmet)
         colind = 0
         for item in pat2013:
-            item.append(colors[colind])
+            if item[0] == 'Unmet Need':
+                item.append('a6a6a6')
+            else:
+                item.append(colors[colind])
+                print(colors[colind])
             colind += 1
             conn.execute(' insert into patent2013 values (?,?,?,?,?,?,?,?,?,?,?,?) ', item)
         # print(pat2013)
 
         oldrow = ['']
         pat2015 = []
-        for i in range(47, 89):
+        for i in range(50, 95):
             prow = []
             comp = df2015.iloc[1, i]
             prow.append(comp)
@@ -715,17 +637,17 @@ def companydbUpdate():
         unmet = ['Unmet Need']
         for j in range(8, 21):
             if j == 8:
-                print(df2015.iloc[8, 92])
-                if is_df2015_true.iloc[8, 92] == True:
-                    tb1 = cleanfloat(df2015.iloc[8, 92])
+                print(df2015.iloc[8, 97])
+                if is_df2015_true.iloc[8, 97] == True:
+                    tb1 = cleanfloat(df2015.iloc[8, 97])
                 else:
                     tb1 = 0
-                if is_df2015_true.iloc[9, 92] == True:
-                    tb2 = cleanfloat(df2015.iloc[9, 92])
+                if is_df2015_true.iloc[9, 97] == True:
+                    tb2 = cleanfloat(df2015.iloc[9, 97])
                 else:
                     tb2 = 0
-                if is_df2015_true.iloc[10, 92] == True:
-                    tb3 = cleanfloat(df2015.iloc[10, 92])
+                if is_df2015_true.iloc[10, 97] == True:
+                    tb3 = cleanfloat(df2015.iloc[10, 97])
                 else:
                     tb3 = 0
                 tb = [tb1, tb2, tb3]
@@ -734,25 +656,25 @@ def companydbUpdate():
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
             elif j == 11:
-                if is_df2015_true.iloc[11, 92] == True:
-                    mal1 = cleanfloat(df2015.iloc[11, 92])
+                if is_df2015_true.iloc[11, 97] == True:
+                    mal1 = cleanfloat(df2015.iloc[11, 97])
                 else:
                     mall = 0
-                if is_df2015_true.iloc[12, 92] == True:
-                    mal2 = cleanfloat(df2015.iloc[12, 92])
+                if is_df2015_true.iloc[12, 97] == True:
+                    mal2 = cleanfloat(df2015.iloc[12, 97])
                 else:
                     mal2 = 0
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(temp)
             elif j == 20:
-                if is_df2015_true.iloc[j, 92] == True:
-                    total = cleanfloat(df2015.iloc[j, 92])
+                if is_df2015_true.iloc[j, 97] == True:
+                    total = cleanfloat(df2015.iloc[j, 97])
                 else:
                     total = 0
                 unmet.append(total)
             else:
-                temp = df2015.iloc[j, 92]
+                temp = df2015.iloc[j, 97]
                 if temp == '-' or temp == '#REF!':
                     temp = 0
                 if isinstance(temp, float) == False and isinstance(temp, int) == False:
@@ -763,7 +685,11 @@ def companydbUpdate():
         pat2015.append(unmet)
         colind = 0
         for item in pat2015:
-            item.append(colors[colind])
+            if item[0] == 'Unmet Need':
+                item.append('a6a6a6')
+            else:
+                item.append(colors[colind])
+                print(colors[colind])
             colind += 1
             conn.execute(' insert into patent2015 values (?,?,?,?,?,?,?,?,?,?,?,?) ', item)
         # This is to calculate data for 2010B and 2015
