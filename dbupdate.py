@@ -5,6 +5,7 @@ import math
 def CreateDrugTable():
 
  conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
+ #conn = sqlite3.connect('/home/globalhealth/mysite/ghi.db')
 
 
  conn.execute('''DROP TABLE IF EXISTS drug2010''')
@@ -35,6 +36,7 @@ def CreateDrugTable():
 def DrugDbUpdate():
     try:
         conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
+        #conn = sqlite3.connect('/home/globalhealth/mysite/ghi.db')
         conn.execute('''DELETE FROM drugr2010_bkp''')
         conn.execute('''DELETE FROM drugr2013_bkp''')
         conn.execute('''DELETE FROM drugr2015_bkp''')
@@ -70,13 +72,13 @@ def DrugDbUpdate():
                 var = 0
             return var
 
-        for i in range(1, 41):
+        for i in range(1, 44):
             drugr = []
             name = df.iloc[5, i]
-            # print(name)
+            print(name)
             drugr.append(name)
             company = df.iloc[1, i]
-            # print(company)
+            print(company)
             drugr.append(company)
             for j in range(10, 20):
                 if j == 10:
@@ -148,7 +150,7 @@ def DrugDbUpdate():
         for xx in [[8, 9, 10], [11, 12], [13], [14], [15], [16], [17], [18], [19]]:
             val = 0
             for yy in xx:
-                t = df.iloc[yy, 44]
+                t = df.iloc[yy, 47]
                 if isinstance(t, float) == False and isinstance(t, int) == False:
                     t = float(t.replace(',', ''))
                 if t != t:
@@ -169,7 +171,7 @@ def DrugDbUpdate():
         drugrdata = []
         perc2013 = []
 
-        for i in range(47, 91):
+        for i in range(50, 96):
             drugr = []
             name = df.iloc[5, i]
             # print(name)
@@ -247,7 +249,7 @@ def DrugDbUpdate():
         for xx in [[8, 9, 10], [11, 12], [13], [14], [15], [16], [17], [18], [19]]:
             val = 0
             for yy in xx:
-                t = df.iloc[yy, 94]
+                t = df.iloc[yy, 99]
                 if isinstance(t, float) == False and isinstance(t, int) == False:
                     t = float(t.replace(',', ''))
                 if t != t:
@@ -266,7 +268,7 @@ def DrugDbUpdate():
 
         drugrdata = []
         perc2015 = []
-        for i in range(47, 89):
+        for i in range(50, 94):
             drugr = []
             name = df2015.iloc[5, i]
             drugr.append(name)
@@ -346,7 +348,7 @@ def DrugDbUpdate():
         for xx in [[8, 9, 10], [11, 12], [13], [14], [15], [16], [17], [18], [19]]:
             val = 0
             for yy in xx:
-                t = df2015.iloc[yy, 92]
+                t = df2015.iloc[yy, 97]
                 if isinstance(t, float) == False and isinstance(t, int) == False:
                     t = float(t.replace(',', ''))
                 if t != t:

@@ -181,35 +181,68 @@ body {
 .redtxt {
     font-size: 36px;
     color: rgba(255,59,59);
-    font-family: 'avenir next regular', sans-serif;
+    font-family: 'avenir next demi bold', sans-serif;
     text-transform: uppercase;
 }
 .bluetxt {
     font-size: 36px;
-    color: rgb(0,131,196);
+    color: rgba(0, 131, 196);
     font-family: 'avenir next regular', sans-serif;
+
+}
+
+.bluetxtlight {
+    font-size: 36px;
+    color: rgba(0, 131, 196, 0.75);
+    font-family: 'avenir next regular', sans-serif;
+
+}
+.blacktxt{
+    font-size: 24px;
+    color:rgba(12, 12, 12, 0.75);
+    font-family: 'avenir next regular', sans-serif;
+    font-weight: 700;
 }
 .bluetxtabout {
     font-size: 29px;
-    color: rgb(0,131,196);
+    color:rgba(0, 131, 196);;
     font-family: 'avenir next regular', sans-serif;
 }
 .redtxtabout {
     font-size: 29px;
-    color: rgba(255,59,59);
+    color: rgba(255, 59, 59);
+    font-family: 'avenir next demi bold', sans-serif;
+}
+.bluetxt24 {
+    font-size: 24px;
+    color:rgba(0, 131, 196);;
+    font-family: 'avenir next regular', sans-serif;
+}
+.redtxt24 {
+    font-size: 24px;
+    color: rgba(255, 59, 59);
     font-family: 'avenir next demi bold', sans-serif;
 }
 .titlecolorred{
-    color: rgba(255, 59, 59, 0.82) !important;
+    color: rgba(255, 59, 59, 0.75) !important;
     font-size:36px;
     font-weight:bold;
     font-family: 'avenir next regular', sans-serif;
     text-transform: uppercase;
 }
-
+.titlecolorredlower{
+    color: rgba(255, 59, 59, 0.75) !important;
+    font-size:36px;
+    font-family: 'avenir next regular', sans-serif;
+}
 .redfontlight{
-color: rgba(255, 59, 59, 0.82) !important;
-font-size:36px;
+color: rgba(255, 59, 59, 0.75) !important;
+font-size:24px !important;
+font-family: 'avenir next regular', sans-serif;
+}
+.bluefontlight{
+color: rgba(0, 131, 196, 0.75) !important;
+font-size:24px !important;
 font-family: 'avenir next regular', sans-serif;
 }
 
@@ -253,7 +286,7 @@ font-family: 'avenir next regular', sans-serif;
 }
 .newsblue {
     font-size: 36px;
-    color: #0083C4;
+    color:rgba(0, 131, 196, 0.75);
     font-family: 'avenir next demi bold', sans-serif;
 }
 .contentbox {
@@ -262,9 +295,6 @@ font-family: 'avenir next regular', sans-serif;
 }
 .contentresource {
     margin-bottom: 80px !important;
-}
-.contentbox:hover {
-    background-color: #EDDFDF;
 }
 
 .firstPieChart{
@@ -280,6 +310,18 @@ font-family: 'avenir next regular', sans-serif;
     font-size: 18px;
     color: #404040;
     font-family: 'avenir next regular', sans-serif;
+}
+.txtsmallcontent {
+    font-size: 12px;
+    color: #404040;
+    font-family: 'avenir next regular', sans-serif;
+    margin-left:130px;
+}
+.txtsmallcontenttwo{
+    font-size: 12px;
+    color: #404040;
+    font-family: 'avenir next regular', sans-serif;
+    margin-left:160px;
 }
 .smalltxt {
     font-size: 18px;
@@ -329,16 +371,21 @@ font-family: 'avenir next regular', sans-serif;
     padding-bottom: 15px;
 } */
 
-.col-sm-4{
-  color: #404040;
-  left: 55% !important;
-  background: linear-gradient(to right, rgba(255,255,255,0.15), rgba(255,255,255,0.7));
-  top: 25rem;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  width: 55% !important;
+.col-sm-4 {
+    width: 33.33333333%;
+    padding-top: 20px;
 }
-
+.col-sm-4index {
+    color: rgba(0,0,0,0.75);
+    right: 55% !important;
+    background: linear-gradient(to right, rgba(255,255,255,0.10), rgba(255,255,255,0.7));
+    top: 25rem;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 55% !important;
+    margin-top: 240px;
+    margin-left: 742px;
+}
 .iconbox {
     display: inline-block;
     padding-left: 15px;
@@ -363,6 +410,21 @@ font-family: 'avenir next regular', sans-serif;
         width: 80px;
     }
 }
+@media only screen and (min-width: 1600px) {
+    .col-sm-4index {
+    color: rgba(0,0,0,0.75);
+    right: 55% !important;
+    background: linear-gradient(to right, rgba(255,255,255,0.10), rgba(255,255,255,0.7));
+    top: 25rem;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 55% !important;
+    margin-top: 240px;
+    margin-left: 942px;
+    }
+}
+
+
 @media only screen and (max-width: 999px) {
     .iconimg {
         width: 80px
@@ -520,9 +582,7 @@ font-family: 'avenir next regular', sans-serif;
     padding-top: 5px;
     padding-bottom: 5px;
 }
-.socialmedia:hover {
-    background:#0083C4;
-}
+
 .par {
     z-index:1;
 }
@@ -710,7 +770,7 @@ font-family: 'avenir next regular', sans-serif;
 }
 .blueheader {
     font-size: 24px;
-    color: #0083C4;
+    color: rgba(0, 131, 196, 0.75);
     font-family:'avenir next regular', sans-serif;
     text-align: center;
 }
@@ -770,13 +830,13 @@ font-family: 'avenir next regular', sans-serif;
 }
 .smblack {
     font-family:'avenir next regular', sans-serif;
-    font-size:16px;
-    color: black;
+    font-size:14px;
+    color:rgba(12, 12, 12, 0.75);
 }
 .smblue {
     font-family:'avenir next regular', sans-serif;
     font-size:14px;
-    color: #0083C4;
+    color: rgba(0, 131, 196, 0.75);
 }
 .reportpic {
     float:left;

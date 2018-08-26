@@ -217,13 +217,13 @@
 <div class="row" id="scrollhere" onload="func1()">
     <div class="col-sm-6">
         <div class="contentbox">
-        <p class="redtxt">COUNTRY: <b>{{ name }}</b></p>
+        <p class="titlecolorredlower">COUNTRY: <span class="titlecolorred">{{ name }}</span></p>
         <p class="txtcontent">The Global Health Impact Project examines how diseases of poverty, as well as the medicines available to those who are afflicted, affect health around the world. These conditions include HIV/AIDS, TB, malaria, lymphatic filariasis, onchoriasis, schistosomiasis, hookworm, ringworm, and whipworm. The presence of these diseases, as well as access to essential medicines that treat them varies widely around the world. The Global Health Impact Country Index measures key drugs’ impact on these global health problems in each country and the total Disability Adjusted Life Years (DALYS) saved that would be lost without treatment for these conditions. For additional information, please see <b>About the Index</b> and <b>Methodology.</b></p>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="firstPieChart">
-        <p class="bluetxt">{{year}} | Country <b>Impact</b></p>
+        <p class="bluefontlight">{{year}} | Country <b>Impact</b></p>
         </div>
 
         <div id="regions_div"  class="firstPieChart"  style="width:100%;min-width:450px;"></div>
@@ -233,7 +233,7 @@
 <div class="row">
     <div class="col-sm-6">
         <div>
-          <p class="bluetxt">Overall <b>Drug Impact</b> By Country</p>
+          <p class="bluefontlight">Overall <b>Drug <br> Impact</b> By Country</p>
         <div id="chart_div" style="width: 100%; height: 350px; overflow-y: auto;overflow-x: hidden;">
             {% if isall == 0 %}
             {% for cntry in barlist %}
@@ -248,7 +248,7 @@
             {% for cntry in barlist %}
             <!-- {{cntry}} -->
             <a onclick="countryclickAll({{cntry.2}})">
-                <div id="" style="padding-top: 2px; font-family: 'Nunito','sans-serif';">{{ cntry.0.0 }}</div>
+                <div id="" style="padding-top: 2px; font-family: 'avenir next regular', sans-serif;">{{ cntry.0.0 }}</div>
                 <div class="barfloats" style="width: {{ cntry.0.2 }}%;background-color: #FFB31C;"></div>
                 <div class="barfloats" style="width: {{ cntry.0.3 }}%;background-color: #0083CA;"></div>
                 <div class="barfloats" style="width: {{ cntry.0.4 }}%;background-color: #EF3E2E;"></div>
@@ -315,8 +315,10 @@
             <p class="smallbardisease">Whipworm</p>
             <div class="smallcolorbar" id="whipbar" style="background-color:#CAEEFD;"></div>
         </div>-->
-        <p class="bluetxt text-center" id="cntname"></p>
+        <p class="blacktxt text-center" id="cntname"></p>
         <div id="horbars" style="margin:auto 0;"></div>
+        <span class="txtsmallcontent">Disability Adjusted Life <br></span>
+          <span class="txtsmallcontenttwo">Years Saved</span>
     </div>
 </div>
 {% endblock %}
