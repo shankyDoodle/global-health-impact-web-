@@ -254,9 +254,9 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'TB'
                 unmet.append(disease)
-                tb1 = cleanfloat(df.iloc[8, 99])
-                tb2 = cleanfloat(df.iloc[9, 99])
-                tb3 = cleanfloat(df.iloc[10, 99])
+                tb1 = cleanfloat(df.iloc[8, 97])
+                tb2 = cleanfloat(df.iloc[9, 97])
+                tb3 = cleanfloat(df.iloc[10, 97])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(0)
@@ -270,8 +270,8 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'Malaria'
                 unmet.append(disease)
-                mal1 = cleanfloat(df.iloc[11, 99])
-                mal2 = cleanfloat(df.iloc[12, 99])
+                mal1 = cleanfloat(df.iloc[11, 97])
+                mal2 = cleanfloat(df.iloc[12, 97])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(0)
@@ -283,7 +283,7 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'HIV'
                 unmet.append(disease)
-                hivtemp = cleanfloat(df.iloc[13, 99])
+                hivtemp = cleanfloat(df.iloc[13, 97])
                 unmet.append(0)
                 unmet.append(hivtemp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
@@ -381,9 +381,9 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'TB'
                 unmet.append(disease)
-                tb1 = cleanfloat(df2015.iloc[8, 97])
-                tb2 = cleanfloat(df2015.iloc[9, 97])
-                tb3 = cleanfloat(df2015.iloc[10, 97])
+                tb1 = cleanfloat(df2015.iloc[8, 96])
+                tb2 = cleanfloat(df2015.iloc[9, 96])
+                tb3 = cleanfloat(df2015.iloc[10, 96])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(0)
@@ -397,8 +397,8 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'Malaria'
                 unmet.append(disease)
-                mal1 = cleanfloat(df2015.iloc[11, 97])
-                mal2 = cleanfloat(df2015.iloc[12, 97])
+                mal1 = cleanfloat(df2015.iloc[11, 96])
+                mal2 = cleanfloat(df2015.iloc[12, 96])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(0)
@@ -410,7 +410,7 @@ def companydbUpdate():
                 unmet = ['Unmet Need']
                 disease = 'HIV'
                 unmet.append(disease)
-                hivtemp = cleanfloat(df2015.iloc[13, 97])
+                hivtemp = cleanfloat(df2015.iloc[13, 96])
                 unmet.append(0)
                 unmet.append(hivtemp)
                 # this is just a temporary value because I dont know what to put here as database is taking 5 values
@@ -540,25 +540,25 @@ def companydbUpdate():
         for j in range(8, 21):
             if j == 8:
                 # print(df.iloc[8,93])
-                tb1 = cleanfloat(df.iloc[8, 99])
-                tb2 = cleanfloat(df.iloc[9, 99])
-                tb3 = cleanfloat(df.iloc[10, 99])
+                tb1 = cleanfloat(df.iloc[8, 97])
+                tb2 = cleanfloat(df.iloc[9, 97])
+                tb3 = cleanfloat(df.iloc[10, 97])
                 tb = [tb1, tb2, tb3]
                 temp = (tb1 + tb2 + tb3)
                 unmet.append(temp)
             elif j == 11:
-                mal1 = cleanfloat(df.iloc[11, 99])
-                mal2 = cleanfloat(df.iloc[12, 99])
+                mal1 = cleanfloat(df.iloc[11, 97])
+                mal2 = cleanfloat(df.iloc[12, 97])
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(temp)
             elif j == 20:
-                total = cleanfloat(df.iloc[j, 99])
+                total = cleanfloat(df.iloc[j, 97])
                 unmet.append(total)
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
             else:
-                temp = df.iloc[j, 99]
+                temp = df.iloc[j, 97]
                 if isinstance(temp, float) == False and isinstance(temp, int) == False:
                     temp = float(temp.replace(',', ''))
                 if temp != temp:
@@ -578,7 +578,7 @@ def companydbUpdate():
 
         oldrow = ['']
         pat2015 = []
-        for i in range(50, 95):
+        for i in range(50, 93):
             prow = []
             comp = df2015.iloc[1, i]
             prow.append(comp)
@@ -637,17 +637,17 @@ def companydbUpdate():
         unmet = ['Unmet Need']
         for j in range(8, 21):
             if j == 8:
-                print(df2015.iloc[8, 97])
-                if is_df2015_true.iloc[8, 97] == True:
-                    tb1 = cleanfloat(df2015.iloc[8, 97])
+                print(df2015.iloc[8, 96])
+                if is_df2015_true.iloc[8, 96] == True:
+                    tb1 = cleanfloat(df2015.iloc[8, 96])
                 else:
                     tb1 = 0
-                if is_df2015_true.iloc[9, 97] == True:
-                    tb2 = cleanfloat(df2015.iloc[9, 97])
+                if is_df2015_true.iloc[9, 96] == True:
+                    tb2 = cleanfloat(df2015.iloc[9, 96])
                 else:
                     tb2 = 0
-                if is_df2015_true.iloc[10, 97] == True:
-                    tb3 = cleanfloat(df2015.iloc[10, 97])
+                if is_df2015_true.iloc[10, 96] == True:
+                    tb3 = cleanfloat(df2015.iloc[10, 96])
                 else:
                     tb3 = 0
                 tb = [tb1, tb2, tb3]
@@ -656,25 +656,25 @@ def companydbUpdate():
             elif j == 9 or j == 10 or j == 12:
                 aa = 1
             elif j == 11:
-                if is_df2015_true.iloc[11, 97] == True:
-                    mal1 = cleanfloat(df2015.iloc[11, 97])
+                if is_df2015_true.iloc[11, 96] == True:
+                    mal1 = cleanfloat(df2015.iloc[11, 96])
                 else:
                     mall = 0
-                if is_df2015_true.iloc[12, 97] == True:
-                    mal2 = cleanfloat(df2015.iloc[12, 97])
+                if is_df2015_true.iloc[12, 96] == True:
+                    mal2 = cleanfloat(df2015.iloc[12, 96])
                 else:
                     mal2 = 0
                 mal = [mal1, mal2]
                 temp = (mal1 + mal2)
                 unmet.append(temp)
             elif j == 20:
-                if is_df2015_true.iloc[j, 97] == True:
-                    total = cleanfloat(df2015.iloc[j, 97])
+                if is_df2015_true.iloc[j, 96] == True:
+                    total = cleanfloat(df2015.iloc[j, 96])
                 else:
                     total = 0
                 unmet.append(total)
             else:
-                temp = df2015.iloc[j, 97]
+                temp = df2015.iloc[j, 96]
                 if temp == '-' or temp == '#REF!':
                     temp = 0
                 if isinstance(temp, float) == False and isinstance(temp, int) == False:

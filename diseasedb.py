@@ -3,7 +3,7 @@ import pandas as pd
 
 def CreateDiseae():
     conn = sqlite3.connect('F:/global-health-impact-web/ghi.db')
-    # conn = sqlite3.connect('/home/globalhealth/mysite/ghi.db')
+    #conn = sqlite3.connect('/home/globalhealth/mysite/ghi.db')
     conn.execute('''DROP TABLE IF EXISTS disease2010''')
     conn.execute('''DROP TABLE IF EXISTS disease2013''')
     conn.execute('''DROP TABLE IF EXISTS disease2015''')
@@ -112,9 +112,9 @@ def DiseaseDbUpdate():
             color = colors[i]
             disease = dis[i]
             distype = distypes[i]
-            temp = df.iloc[k, 96]
-            temp1 = df.iloc[k, 98]
-            temp2 = df.iloc[k, 99]
+            temp = df.iloc[k, 94]
+            temp1 = df.iloc[k, 96]
+            temp2 = df.iloc[k, 97]
             print(temp)
             print(temp1)
             print(temp2)
@@ -139,9 +139,9 @@ def DiseaseDbUpdate():
             color = colors[i]
             disease = dis[i]
             distype = distypes[i]
-            temp = df_2010B_2015.iloc[k, 94]
-            temp1 = df_2010B_2015.iloc[k, 96]
-            temp2 = df_2010B_2015.iloc[k, 97]
+            temp = df_2010B_2015.iloc[k, 93]
+            temp1 = df_2010B_2015.iloc[k, 95]
+            temp2 = df_2010B_2015.iloc[k, 96]
             print(temp)
             print(temp1)
             print(temp2)
@@ -376,7 +376,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [154, 155, 156, 157, 158, 159]:
+        for k in [154, 155, 156]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
@@ -402,7 +402,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [155, 156, 157, 158, 159, 160]:
+        for k in [155, 156, 157]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
@@ -428,7 +428,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [161, 162, 163, 164, 165, 166]:
+        for k in [158,159]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
@@ -454,7 +454,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [162, 163, 164, 165, 166, 167]:
+        for k in [159,160]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
@@ -480,7 +480,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [168, 169, 170, 171, 172, 173]:
+        for k in [161,162,163]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
@@ -506,7 +506,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [169, 170, 171, 172, 173, 174]:
+        for k in [162,163,164]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
@@ -532,7 +532,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [175, 176, 177, 178, 179, 180]:
+        for k in [165]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Ivm + Alb', 'Dec + Alb', 'Pzq', 'Ivm', 'Dec', 'Alb']
@@ -558,7 +558,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [176, 177, 178, 179, 180, 181]:
+        for k in [166]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Ivm + Alb', 'Dec + Alb', 'Pzq', 'Ivm', 'Dec', 'Alb']
@@ -584,7 +584,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [182, 183, 184, 185]:
+        for k in [167]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Nodulectomy', 'Suramin', 'Ivm', 'Dec']
@@ -610,7 +610,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [183, 184, 185, 186]:
+        for k in [168]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Nodulectomy', 'Suramin', 'Ivm', 'Dec']
@@ -636,7 +636,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [187, 188, 189]:
+        for k in [169,170,171]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Dec', 'Dec + Alb', 'Ivm + Alb']
@@ -662,7 +662,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [188, 189, 190]:
+        for k in [170,171,172]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Dec', 'Dec + Alb', 'Ivm + Alb']

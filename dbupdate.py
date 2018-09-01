@@ -171,7 +171,7 @@ def DrugDbUpdate():
         drugrdata = []
         perc2013 = []
 
-        for i in range(50, 96):
+        for i in range(50, 94):
             drugr = []
             name = df.iloc[5, i]
             # print(name)
@@ -249,7 +249,7 @@ def DrugDbUpdate():
         for xx in [[8, 9, 10], [11, 12], [13], [14], [15], [16], [17], [18], [19]]:
             val = 0
             for yy in xx:
-                t = df.iloc[yy, 99]
+                t = df.iloc[yy, 97]
                 if isinstance(t, float) == False and isinstance(t, int) == False:
                     t = float(t.replace(',', ''))
                 if t != t:
@@ -268,7 +268,7 @@ def DrugDbUpdate():
 
         drugrdata = []
         perc2015 = []
-        for i in range(50, 94):
+        for i in range(50, 93):
             drugr = []
             name = df2015.iloc[5, i]
             drugr.append(name)
@@ -348,7 +348,7 @@ def DrugDbUpdate():
         for xx in [[8, 9, 10], [11, 12], [13], [14], [15], [16], [17], [18], [19]]:
             val = 0
             for yy in xx:
-                t = df2015.iloc[yy, 97]
+                t = df2015.iloc[yy, 96]
                 if isinstance(t, float) == False and isinstance(t, int) == False:
                     t = float(t.replace(',', ''))
                 if t != t:

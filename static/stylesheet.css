@@ -424,6 +424,20 @@ font-family: 'avenir next regular', sans-serif;
     }
 }
 
+@media only screen and (max-width: 1536px) {
+    .col-sm-4index {
+    color: rgba(0,0,0,0.75);
+    right: 55% !important;
+    background: linear-gradient(to right, rgba(255,255,255,0.10), rgba(255,255,255,0.7));
+    top: 25rem;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 55% !important;
+    margin-top: 240px;
+    margin-left: 842px;
+    }
+}
+
 
 @media only screen and (max-width: 999px) {
     .iconimg {
@@ -845,6 +859,7 @@ font-family: 'avenir next regular', sans-serif;
     margin-bottom: 5px;
 }
 
+
 @media only screen and (min-width: 771px) and (max-width: 1258px){
     /* For making First diagram(pie-chart) on Company page consistent with all screen sizes(making it responsive) */
     [class="firstPieChart"] {
@@ -855,3 +870,6 @@ font-family: 'avenir next regular', sans-serif;
 }
 svg > g:last-child > g:last-child { pointer-events: none }
 div.google-visualization-tooltip { pointer-events: none }
+
+
+
