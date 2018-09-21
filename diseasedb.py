@@ -112,9 +112,9 @@ def DiseaseDbUpdate():
             color = colors[i]
             disease = dis[i]
             distype = distypes[i]
-            temp = df.iloc[k, 94]
-            temp1 = df.iloc[k, 96]
-            temp2 = df.iloc[k, 97]
+            temp = df.iloc[k, 95]
+            temp1 = df.iloc[k, 97]
+            temp2 = df.iloc[k, 98]
             print(temp)
             print(temp1)
             print(temp2)
@@ -139,9 +139,9 @@ def DiseaseDbUpdate():
             color = colors[i]
             disease = dis[i]
             distype = distypes[i]
-            temp = df_2010B_2015.iloc[k, 93]
-            temp1 = df_2010B_2015.iloc[k, 95]
-            temp2 = df_2010B_2015.iloc[k, 96]
+            temp = df_2010B_2015.iloc[k, 95]
+            temp1 = df_2010B_2015.iloc[k, 97]
+            temp2 = df_2010B_2015.iloc[k, 98]
             print(temp)
             print(temp1)
             print(temp2)
@@ -157,26 +157,34 @@ def DiseaseDbUpdate():
                 conn.execute('insert into disease2015 values (?,?,?,?,?,?)', row)
 
         def stripdata(x, y):
-            tmp = df.iloc[x, y]
-            if tmp == "#DIV/0!" or tmp == "nan":
-                return (0)
-            if tmp == 'No Data':
-                return (0)
-            if isinstance(tmp, float) == False:
-                return (float(tmp.replace(',', '').replace(' ', '0').replace('%', '')))
-            else:
-                return (0)
+            try:
+                tmp = df.iloc[x, y]
+                if tmp == "#DIV/0!" or tmp == "nan":
+                    return (0)
+                if tmp == 'No Data':
+                    return (0)
+                if isinstance(tmp, float) == False:
+                    return (float(tmp.replace(',', '').replace(' ', '0').replace('%', '')))
+                else:
+                    return (0)
+            except:
+                return 0
+
 
         def stripdata3(x, y):
-            tmp = df_2010B_2015.iloc[x, y]
-            if tmp == "#DIV/0!" or tmp == "nan" or tmp == "#REF!":
-                return (0)
-            if tmp == 'No Data':
-                return (0)
-            if isinstance(tmp, float) == False:
-                return (float(tmp.replace(',', '').replace(' ', '0').replace('%', '')))
-            else:
-                return (0)
+            try:
+                tmp = df_2010B_2015.iloc[x, y]
+                if tmp == "#DIV/0!" or tmp == "nan" or tmp == "#REF!":
+                    return (0)
+                if tmp == 'No Data':
+                    return (0)
+                if isinstance(tmp, float) == False:
+                    return (float(tmp.replace(',', '').replace(' ', '0').replace('%', '')))
+                else:
+                    return (0)
+            except:
+                return 0
+
 
         def stripdata2(x, y):
             tmp = df2.iloc[x, y]
@@ -213,7 +221,7 @@ def DiseaseDbUpdate():
 
         disbars = []
         j = 0
-        for k in range(105, 114):
+        for k in range(104, 113):
             colors = ['#FFB31C', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             newdiseasename = df_2010B_2015.iloc[k, 7]
@@ -283,7 +291,7 @@ def DiseaseDbUpdate():
         i = 1
         j = 0
         mark = 0
-        for k in [108, 110, 112, 113, 114, 116]:
+        for k in [107, 109,111, 112, 113, 115]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             dismap = [2, 3, 1]
@@ -346,7 +354,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [118, 119, 120, 121, 122, 123, 125]:
+        for k in [117, 118, 119, 120, 121, 122, 124]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             dismap = [6, 1]
@@ -376,7 +384,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [154, 155, 156]:
+        for k in [160,16,162]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
@@ -402,7 +410,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [155, 156, 157]:
+        for k in [154,155, 156]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
@@ -416,6 +424,32 @@ def DiseaseDbUpdate():
             coverageone += stripdata3(k, 3)
             coveragetwo += stripdata3(k, 5)
             year = 2015
+            doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,
+                    year)
+            i = 0
+            mark += 1
+            efficacyone = 0
+            efficacytwo = 0
+            coverageone = 0
+            coveragetwo = 0
+            i += 1
+
+        i = 1
+        mark = 0
+        for k in [164,165]:
+            colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
+                      '#546675', '#8A5575', '#305516']
+            disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
+            disetype = 'Hookworm'
+            m = 0
+            p = 0
+            color = colors[j % 12]
+            diseasename = disease[mark]
+            efficacyone += stripdata(k, 1)
+            efficacytwo += stripdata(k, 2)
+            coverageone += stripdata(k, 3)
+            coveragetwo += stripdata(k, 5)
+            year = 2010
             doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,
                     year)
             i = 0
@@ -437,11 +471,11 @@ def DiseaseDbUpdate():
             p = 0
             color = colors[j % 12]
             diseasename = disease[mark]
-            efficacyone += stripdata(k, 1)
-            efficacytwo += stripdata(k, 2)
-            coverageone += stripdata(k, 3)
-            coveragetwo += stripdata(k, 5)
-            year = 2010
+            efficacyone += stripdata3(k, 1)
+            efficacytwo += stripdata3(k, 2)
+            coverageone += stripdata3(k, 3)
+            coveragetwo += stripdata3(k, 5)
+            year = 2015
             doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,
                     year)
             i = 0
@@ -454,20 +488,20 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [159,160]:
+        for k in [167,168,169]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
-            disetype = 'Hookworm'
+            disetype = 'Whipworm'
             m = 0
             p = 0
             color = colors[j % 12]
             diseasename = disease[mark]
-            efficacyone += stripdata3(k, 1)
-            efficacytwo += stripdata3(k, 2)
-            coverageone += stripdata3(k, 3)
-            coveragetwo += stripdata3(k, 5)
-            year = 2015
+            efficacyone += stripdata(k, 1)
+            efficacytwo += stripdata(k, 2)
+            coverageone += stripdata(k, 3)
+            coveragetwo += stripdata(k, 5)
+            year = 2010
             doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,
                     year)
             i = 0
@@ -489,11 +523,11 @@ def DiseaseDbUpdate():
             p = 0
             color = colors[j % 12]
             diseasename = disease[mark]
-            efficacyone += stripdata(k, 1)
-            efficacytwo += stripdata(k, 2)
-            coverageone += stripdata(k, 3)
-            coveragetwo += stripdata(k, 5)
-            year = 2010
+            efficacyone += stripdata3(k, 1)
+            efficacytwo += stripdata3(k, 2)
+            coverageone += stripdata3(k, 3)
+            coveragetwo += stripdata3(k, 5)
+            year = 2015
             doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,
                     year)
             i = 0
@@ -506,20 +540,20 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [162,163,164]:
+        for k in [171]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
-            disease = ['Alb', 'Mbd', 'Ivm + Alb', 'Dec + Alb', 'Pzq + Alb', 'Pzq + Mbd']
-            disetype = 'Whipworm'
+            disease = ['Ivm + Alb', 'Dec + Alb', 'Pzq', 'Ivm', 'Dec', 'Alb']
+            disetype = 'Schistosomiasis'
             m = 0
             p = 0
             color = colors[j % 12]
             diseasename = disease[mark]
-            efficacyone += stripdata3(k, 1)
-            efficacytwo += stripdata3(k, 2)
-            coverageone += stripdata3(k, 3)
-            coveragetwo += stripdata3(k, 5)
-            year = 2015
+            efficacyone += stripdata(k, 1)
+            efficacytwo += stripdata(k, 2)
+            coverageone += stripdata(k, 3)
+            coveragetwo += stripdata(k, 5)
+            year = 2010
             doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,
                     year)
             i = 0
@@ -541,11 +575,11 @@ def DiseaseDbUpdate():
             p = 0
             color = colors[j % 12]
             diseasename = disease[mark]
-            efficacyone += stripdata(k, 1)
-            efficacytwo += stripdata(k, 2)
-            coverageone += stripdata(k, 3)
-            coveragetwo += stripdata(k, 5)
-            year = 2010
+            efficacyone += stripdata3(k, 1)
+            efficacytwo += stripdata3(k, 2)
+            coverageone += stripdata3(k, 3)
+            coveragetwo += stripdata3(k, 5)
+            year = 2015
             doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,
                     year)
             i = 0
@@ -558,20 +592,20 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [166]:
+        for k in [173]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
-            disease = ['Ivm + Alb', 'Dec + Alb', 'Pzq', 'Ivm', 'Dec', 'Alb']
-            disetype = 'Schistosomiasis'
+            disease = ['Nodulectomy', 'Suramin', 'Ivm', 'Dec']
+            disetype = 'Onchoceriasis'
             m = 0
             p = 0
             color = colors[j % 12]
             diseasename = disease[mark]
-            efficacyone += stripdata3(k, 1)
-            efficacytwo += stripdata3(k, 2)
-            coverageone += stripdata3(k, 3)
-            coveragetwo += stripdata3(k, 5)
-            year = 2015
+            efficacyone += stripdata(k, 1)
+            efficacytwo += stripdata(k, 2)
+            coverageone += stripdata(k, 3)
+            coveragetwo += stripdata(k, 5)
+            year = 2010
             doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,
                     year)
             i = 0
@@ -593,32 +627,6 @@ def DiseaseDbUpdate():
             p = 0
             color = colors[j % 12]
             diseasename = disease[mark]
-            efficacyone += stripdata(k, 1)
-            efficacytwo += stripdata(k, 2)
-            coverageone += stripdata(k, 3)
-            coveragetwo += stripdata(k, 5)
-            year = 2010
-            doStuff(k, i, m, mark, diseasename, disetype, color, efficacyone, efficacytwo, coverageone, coveragetwo, p,
-                    year)
-            i = 0
-            mark += 1
-            efficacyone = 0
-            efficacytwo = 0
-            coverageone = 0
-            coveragetwo = 0
-            i += 1
-
-        i = 1
-        mark = 0
-        for k in [168]:
-            colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
-                      '#546675', '#8A5575', '#305516']
-            disease = ['Nodulectomy', 'Suramin', 'Ivm', 'Dec']
-            disetype = 'Onchoceriasis'
-            m = 0
-            p = 0
-            color = colors[j % 12]
-            diseasename = disease[mark]
             efficacyone += stripdata3(k, 1)
             efficacytwo += stripdata3(k, 2)
             coverageone += stripdata3(k, 3)
@@ -636,7 +644,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [169,170,171]:
+        for k in [175,176,177]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Dec', 'Dec + Alb', 'Ivm + Alb']
@@ -662,7 +670,7 @@ def DiseaseDbUpdate():
 
         i = 1
         mark = 0
-        for k in [170,171,172]:
+        for k in [169,170,171]:
             colors = ['#FFB31C', '#FFB31C', '#FFB31C', '#0083CA', '#0083CA', '#EF3E2E', '#003452', '#86AAB9', '#CAEEFD',
                       '#546675', '#8A5575', '#305516']
             disease = ['Dec', 'Dec + Alb', 'Ivm + Alb']
