@@ -414,13 +414,13 @@ font-family: 'avenir next regular', sans-serif;
     .col-sm-4index {
     color: rgba(0,0,0,0.75);
     right: 55% !important;
-    background: linear-gradient(to right, rgba(255,255,255,0.10), rgba(255,255,255,0.7));
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.73));
     top: 25rem;
     padding-top: 15px;
     padding-bottom: 15px;
     width: 55% !important;
     margin-top: 240px;
-    margin-left: 942px;
+    margin-left: 1150px;
     }
 }
 
@@ -428,13 +428,13 @@ font-family: 'avenir next regular', sans-serif;
     .col-sm-4index {
     color: rgba(0,0,0,0.75);
     right: 55% !important;
-    background: linear-gradient(to right, rgba(255,255,255,0.10), rgba(255,255,255,0.7));
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.73));
     top: 25rem;
     padding-top: 15px;
     padding-bottom: 15px;
     width: 55% !important;
     margin-top: 240px;
-    margin-left: 842px;
+    margin-left: 742px;
     }
 }
 
@@ -872,4 +872,32 @@ svg > g:last-child > g:last-child { pointer-events: none }
 div.google-visualization-tooltip { pointer-events: none }
 
 
+
+
+/*temporary changes for demo purpose*/
+p {
+    color: #000;
+}
+
+
+.clickableLabel {
+    color: #337ab7;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+
+.iconbox{
+    transition: all ease .5s;
+    border-radius: 10px;
+
+}
+
+.iconbox:hover {
+    box-shadow: 0 1px 10px 0 #80808080;
+}
 
