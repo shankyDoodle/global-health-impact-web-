@@ -1138,6 +1138,21 @@ def country():
     mapdata.insert(0,['Country','Score'])
     #sort.append(mapdata)
     g.db.close()
+
+    # sample = [
+    #     [
+    #         'Russia'.encode('utf8'),
+    #         1022976.9299999999,
+    #         1009873.71,
+    #         0.0,
+    #         13103.22,
+    #         0.0,
+    #         0.0,
+    #         0.0,
+    #         0.0,
+    #         0.0
+    #     ]
+    # ]
     return render_template('country.html', showindex=1, navsub=1, name=name, color=color, mapdata=mapdata, sortedlist=sortedlist, sortedval = sort, year=year, isall=isall, barlist = barlist, speclocate = speclocate)
 
 @app.route('/index/country/<xyear>/<xdisease>')
@@ -1338,6 +1353,21 @@ def countrydata(xdisease,xyear):
     mapdata.insert(0,['Country','Score'])
     #sort.append(mapdata)
     g.db.close()
+    # sample = [
+    #     [
+    #         'Russia',
+    #         1022976.9299999999,
+    #         1009873.71,
+    #         0.0,
+    #         13103.22,
+    #         0.0,
+    #         0.0,
+    #         0.0,
+    #         0.0,
+    #         0.0
+    #     ]
+    # ]
+    # sampleTuple = tuple(sample)
     return render_template('country.html', showindex=1, navsub=1, name=name, color=color, mapdata=mapdata, sortedlist=sortedlist, sortedval = sort, year=year, isall=isall, barlist = barlist, speclocate = speclocate,scrolling=1,disease = xdisease)
 
 

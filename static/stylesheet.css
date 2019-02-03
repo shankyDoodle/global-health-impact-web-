@@ -57,10 +57,11 @@ body {
 }
 #buttons {
     position: fixed;
-    right: 0;
+    left: 0;
     z-index: 2;
     background-color: #FFFFFF;
     width: 100vw;
+    box-shadow: 0 4px 10px 0px rgba(64, 64, 64, 0.07);
 }
 /* Dropdown button on hover & focus */
 .navbtn:hover, .dropbtn:focus, .navbtn:focus {
@@ -711,8 +712,23 @@ font-family: 'avenir next regular', sans-serif;
     max-height: 325px;
     overflow-y: auto;
     overflow-x: hidden;
-    padding:5px;
+    padding:2px;
 }
+
+.chartCountry{
+    width: 100%;
+    float: left;
+    padding: 5px;
+    transition: all ease .2s;
+}
+
+.chartCountry:hover{
+    cursor: pointer;
+    background: #8080801f;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
 .barfloats {
     height: 10px;
     display: inline-block;
@@ -882,22 +898,24 @@ p {
 
 .clickableLabel {
     color: #337ab7;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    text-decoration: underline;
+}
+
+.clickableLabel:hover{
+    opacity: .8;
+    color: #337ab7;
 }
 
 
 .iconbox{
-    transition: all ease .5s;
+    transition: all ease .2s;
     border-radius: 10px;
 
 }
 
 .iconbox:hover {
-    box-shadow: 0 1px 10px 0 #80808080;
+    box-shadow: 0px 0px 2px 0px rgba(64, 64, 64, 0.5);
+    background: #FFFFFF;
 }
 

@@ -218,7 +218,16 @@
     <div class="col-sm-6">
         <div class="contentbox">
         <p class="titlecolorredlower">COUNTRY: <span class="titlecolorred">{{ name }}</span></p>
-        <p class="txtcontent">The Global Health Impact Project examines how diseases of poverty, as well as the medicines available to those who are afflicted, affect health around the world. These conditions include HIV/AIDS, TB, malaria, lymphatic filariasis, onchoriasis, schistosomiasis, hookworm, ringworm, and whipworm. The presence of these diseases, as well as access to essential medicines that treat them varies widely around the world. The Global Health Impact Country Index measures key drugs’ impact on these global health problems in each country and the total Disability Adjusted Life Years (DALYS) saved that would be lost without treatment for these conditions. For additional information, please see <b>About the Index</b> and <b>Methodology.</b></p>
+            <p class="txtcontent">The Global Health Impact Project examines how diseases of poverty, as well as the
+                medicines available to those who are afflicted, affect health around the world. These conditions include
+                HIV/AIDS, TB, malaria, lymphatic filariasis, onchoriasis, schistosomiasis, hookworm, ringworm, and
+                whipworm. The presence of these diseases, as well as access to essential medicines that treat them
+                varies widely around the world. The Global Health Impact Country Index measures key drugs’ impact on
+                these global health problems in each country and the total Disability Adjusted Life Years (DALYS) saved
+                that would be lost without treatment for these conditions. For additional information, please see <a
+                        class="clickableLabel" href="about.html">About the Index</a> and <a href="methodology.html"
+                                                                                            class="clickableLabel">Methodology.</a>
+            </p>
         </div>
     </div>
     <div class="col-sm-6">
@@ -237,7 +246,7 @@
         <div id="chart_div" style="width: 100%; height: 350px; overflow-y: auto;overflow-x: hidden;">
             {% if isall == 0 %}
             {% for cntry in barlist %}
-            <a onclick="countryClick({{loop.index - 1}})" title="{{ cntry.0 }}: {{ cntry.1 }}">
+            <a class="" onclick="countryClick({{loop.index - 1}})" title="{{ cntry.0 }}: {{ cntry.1 }}">
                 <div style="padding-top: 2px; font-family: 'Nunito','sans-serif';">{{ cntry.0 }}</div>
                 <div style="width: {{ cntry.2 }}%;background-color: {{ color }};height: 10px;"></div>
             </a>
@@ -247,8 +256,8 @@
             {% set count = 0 %}
             {% for cntry in barlist %}
             <!-- {{cntry}} -->
-            <a onclick="countryclickAll({{cntry.2}})">
-                <div id="" style="padding-top: 2px; font-family: 'avenir next regular', sans-serif;">{{ cntry.0.0 }}</div>
+            <a class="chartCountry" onclick="countryclickAll({{cntry.2}})">
+                <div id="" style="font-family: 'avenir next regular', sans-serif;">{{ cntry.0.0 }}</div>
                 <div class="barfloats" style="width: {{ cntry.0.2 }}%;background-color: #FFB31C;"></div>
                 <div class="barfloats" style="width: {{ cntry.0.3 }}%;background-color: #0083CA;"></div>
                 <div class="barfloats" style="width: {{ cntry.0.4 }}%;background-color: #EF3E2E;"></div>
