@@ -68,7 +68,7 @@ body {
     transition: .2s ease;
 }
 
-.navbtn:hover:after{
+.navbtn:hover:after, .navbtn:focus:after{
     right: 0;
 }
 
