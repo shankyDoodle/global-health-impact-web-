@@ -40,30 +40,55 @@
     <body >
     <div id="wholepage">
     <div id="top">
-        <a href="/"><img class="logo" src="{{ url_for('static',filename='img/logo.png') }}" alt="Global Health Impact" width="100px" /></a>
         <div id="buttons">
-        <div class="dropdown">
-        <button id="about" onclick="abtNav()" class="navbtn">INFO</button>
-            <div id="abtBar" class="dropdown-content">
-                <a href="/about">ABOUT</a>
-                <a href="/news">NEWS</a>
-                <a href="/reports">REPORTS</a>
-                <a href="/resources">RESOURCES</a>
-                <a href="/methodology">METHODOLOGY</a>
-                <a href="/organization">ORGANIZATION</a>
-                <a href="/account">ACCOUNT MANAGEMENT</a>
+            <div class="upperSocialBar">
+                <div class="socialMediaIconsContainer">
+                    <div class="upperIconWrapper">
+                        <a href="https://www.instagram.com/gblhealthimpact/" target="_blank">
+                            <div class="socialIconUpper iconInstagram"></div>
+                        </a>
+                    </div>
+                    <div class="upperIconWrapper">
+                        <a href="https://twitter.com/GBLHealthImpact" target="_blank">
+                            <div class="socialIconUpper iconTwitter"></div>
+                        </a>
+                    </div>
+                    <div class="upperIconWrapper">
+                        <a href="https://www.facebook.com/GlobalHealthImpactProject" target="_blank">
+                            <div class="socialIconUpper iconFacebook"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="copyRightUpper">© 2017 GLOBAL HEALTH IMPACT</div>
             </div>
-        </div>
-        <div class="dropdown">
-            <button id="index" onclick="dropNav()" class="navbtn">INDEX</button>
-            <div id="navBar" class="dropdown-content">
-                <a href="/index/country">COUNTRY</a>
-                <a href="/index/company">COMPANY</a>
-                <a href="/index/drug">DRUG</a>
-                <a href="/index/disease">DISEASE</a>
-          </div>
-        </div>
-            <button id="home" onclick="location.href='http://127.0.0.1:5000/'" class="navbtn">HOME</button>
+
+            <div class="dummyUpperBarWrapper">
+                <a href="/"><img class="logo" src="{{ url_for('static',filename='img/logo.png') }}"
+                                 alt="Global Health Impact" width="100px"/></a>
+
+                <div class="dropdown">
+                    <button id="about" onclick="abtNav()" class="navbtn">INFO</button>
+                    <div id="abtBar" class="dropdown-content">
+                        <a href="/about">ABOUT</a>
+                        <a href="/news">NEWS</a>
+                        <a href="/reports">REPORTS</a>
+                        <a href="/resources">RESOURCES</a>
+                        <a href="/methodology">METHODOLOGY</a>
+                        <a href="/organization">ORGANIZATION</a>
+                        <a href="/account">ACCOUNT MANAGEMENT</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button id="index" onclick="dropNav()" class="navbtn">INDEX</button>
+                    <div id="navBar" class="dropdown-content">
+                        <a href="/index/country">COUNTRY</a>
+                        <a href="/index/company">COMPANY</a>
+                        <a href="/index/drug">DRUG</a>
+                        <a href="/index/disease">DISEASE</a>
+                    </div>
+                </div>
+                <button id="home" onclick="location.href='http://127.0.0.1:5000/'" class="navbtn">HOME</button>
+            </div>
         </div>
     </div>
     <div class="par">
@@ -73,6 +98,22 @@
         <script type="text/javascript">
             function navclick(ext) {
                 window.location.href = ext;
+            }
+
+
+            var lastScrollTop = 0;
+            window.onscroll = function (ev) {
+                var document = ev.currentTarget.document.documentElement;
+                var currentScrollTop = document.scrollTop;
+                if (lastScrollTop !== currentScrollTop) {
+                    var oDom = document.getElementsByClassName('upperSocialBar')[0];
+                    if(lastScrollTop < currentScrollTop ){
+                        oDom.classList.add('upperSocialBarHide');
+                    }else{
+                        oDom.classList.remove('upperSocialBarHide');
+                    }
+                    lastScrollTop = currentScrollTop;
+                }
             }
         </script>
 
@@ -347,9 +388,16 @@
             <table width=100%;>
                 <tr valign="middle">
                     <td id="contact">CONTACT US</td>
-                    <td class="socialmedia" align="left"><a href="https://www.instagram.com/gblhealthimpact/"><img src="{{ url_for('static',filename='img/socialmedia-01.png') }}" width="30px" /></a></td>
-                    <td class="socialmedia" align="left"><a href="https://twitter.com/GBLHealthImpact"><img src="{{ url_for('static',filename='img/socialmedia-02.png') }}" width="30px" /></a></td>
-                    <td class="socialmedia" align="left"><a href="https://www.facebook.com/GlobalHealthImpactProject"><img src="{{ url_for('static',filename='img/socialmedia-04.png') }}" width="30px" /></a></td>
+                    <td class="socialmedia" align="left">
+                        <a href="https://www.instagram.com/gblhealthimpact/" target="_blank">
+                            <img src="{{ url_for('static',filename='img/instagram-48.png') }}" width="30px"/></a>
+                    </td>
+                    <td class="socialmedia" align="left">
+                        <a href="https://twitter.com/GBLHealthImpact" target="_blank">
+                            <img src="{{ url_for('static',filename='img/twitter-48.png') }}" width="30px"/></a></td>
+                    <td class="socialmedia" align="left">
+                        <a href="https://www.facebook.com/GlobalHealthImpactProject" target="_blank">
+                            <img src="{{ url_for('static',filename='img/facebook-48.png') }}" width="30px"/></a></td>
                     <td id="ghi">© 2017 GLOBAL HEALTH IMPACT</td>
                 </tr>
             </table>
